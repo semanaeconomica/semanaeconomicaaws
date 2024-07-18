@@ -1,0 +1,11 @@
+<odoo>
+	<data>
+		<record id="multiple_ir_module_module" model="ir.actions.server">
+			<field name="name">Actualizacion Multiple</field>
+			<field name="model_id" ref="base.model_ir_module_module"/>
+			<field name="binding_model_id" ref="base.model_ir_module_module"/>
+			<field name="state">code</field>
+			<field name="code">action = records.multiple_button_immediate_upgrade()</field>
+		</record>
+	</data>
+</odoo>

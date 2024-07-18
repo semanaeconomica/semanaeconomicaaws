@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_account_transfer_it_form" model="ir.ui.view">
+		<field name="name">account.transfer.it.form</field>
+		<field name="model">account.transfer.it</field>
+		<field name="arch" type="xml">
+			<form string="Distribucion Analitica">
+                <header>
+                    <button string="Procesar" type="object" name="crear_asiento" states="draft" class="oe_highlight"/>
+                    <button string="Calcular" type="object" name="state_check" states="draft" class="oe_highlight"/>
+                    <button string="Vista Preliminar" type="object" name="preview"/>
+                    <button string="Cancelar" type="object" name="cancelar" states="done" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" readonly="1"/>
+                </header>
+                <group>
+                    <field name="name" readonly="1"/>
+                </group>
+                <group>
+                    <group>
+                        <field name="journal_id" attrs="{'readonly':[('state','in',['done'])]}"/>
+                        <field name="period" attrs="{'readonly':[('state','in',['done'])]}"/>
+                        <field name="ref" attrs="{'readonly':[('state','in',['done'])]}"/>
+                        <field name="glosa" attrs="{'readonly':[('state','in',['done'])]}"/>
+                    </group>
+                    <group>
+                        <field name="date_move" attrs="{'readonly':[('state','in',['done'])]}"/>
+                        <field name="move_id"/>
+                        <field name="company_id" readonly="1" required="1" groups="base.group_multi_company"/>
+                    </group>
+                </group>
+                <group>
+                    <group string="Cuentas a Distribuir">
+                        <field name="account_ids" colspan="4" nolabel="1" attrs="{'readonly':[('state','in',['done'])]}">
+                            <tree editable="bottom">
+                                <field name="account_id"/>
+                                <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
+                                <field name="debit"/>
+                                <field name="credit"/>
+                                <field name="balance"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group string="Distribucion">
+                        <field name="distribution_ids" nolabel="1" colspan="4" attrs="{'readonly':[('state','in',['done'])]}">
+                            <tree editable="bottom">
+                                <field name="analytic_account_id" required="1" groups="analytic.group_analytic_accounting"/>
+                                <field name="percent"/>
+                            </tree>
+                        </field>
+                    </group>
+                </group>
+			</form>
+		</field>
+	</record>
+	<record id="view_account_transfer_it_list" model="ir.ui.view">
+		<field name="name">account.transfer.it.list</field>
+		<field name="model">account.transfer.it</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name" optional="show"/>
+				<field name="ref" optional="show"/>
+				<field name="date_move" optional="show"/>
+				<field name="journal_id" optional="show"/>
+				<field name="state" optional="show"/>
+			</tree>
+		</field>
+	</record>
+	<record id="action_account_transfer_it_form" model="ir.actions.act_window">
+		<field name="name">Distribucion Analitica</field>
+		<field name="res_model">account.transfer.it</field>
+		<field name="view_mode">tree,form</field>
+		<field name="view_id" ref="view_account_transfer_it_list"/>
+		<field name="help" type="html">
+		  <p class="o_view_nocontent_smiling_face">
+			Crea tu primer registro de Distribucion aqui
+		  </p>
+		</field>
+	</record>
+
+    <menuitem id="menu_account_transfer_it"
+              action="action_account_transfer_it_form"
+              parent="account.menu_finance_entries_management" sequence="100"/>
+</odoo>

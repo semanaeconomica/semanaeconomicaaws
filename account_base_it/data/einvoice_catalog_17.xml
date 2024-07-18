@@ -1,0 +1,24 @@
+<odoo>
+	<data noupdate="1">
+		<record model='einvoice.catalog.17'><field name='name'>Venta lnterna</field><field name='code'>01</field></record>
+		<record model='einvoice.catalog.17'><field name='name'>Exportación de bienes</field><field name='code'>02</field></record>
+		<record model='einvoice.catalog.17'><field name='name'>No Domiciliados</field><field name='code'>03</field></record>
+		<record model='einvoice.catalog.17'><field name='name'>Venta Interna – Anticipos</field><field name='code'>04</field></record>
+		<record model='einvoice.catalog.17'><field name='name'>Venta Itinerante </field><field name='code'>05</field></record>
+		<record model='einvoice.catalog.17'><field name='name'>Factura Guía</field><field name='code'>06</field></record>
+		<record model='einvoice.catalog.17'><field name='name'>Venta Arroz Pilado</field><field name='code'>07</field></record>
+		<record model='einvoice.catalog.17'><field name='name'>Factura - Comprobante de Percepción</field><field name='code'>08</field></record>
+		<record model='einvoice.catalog.17'><field name='name'>Factura - Guía remitente</field><field name='code'>10</field></record>
+		<record model='einvoice.catalog.17'><field name='name'>Factura - Guía transportista</field><field name='code'>11</field></record>
+		<record model='einvoice.catalog.17'><field name='name'>Boleta de venta – Comprobante de Percepción.</field><field name='code'>12</field></record>
+		<record model='einvoice.catalog.17'><field name='name'>Gasto Deducible Persona Natural</field><field name='code'>13</field></record>
+		<record model='einvoice.catalog.17'><field name='name'>Exportación de servicios – prestación de servicios de hospedaje No Dom</field><field name='code'>14</field></record>
+		<record model='einvoice.catalog.17'><field name='name'>Exportación de servicios – Transporte de navieras</field><field name='code'>15</field></record>
+		<record model='einvoice.catalog.17'><field name='name'>Exportación de servicios – servicios  a naves y aeronaves de bandera extranjera</field><field name='code'>16</field></record>
+		<record model='einvoice.catalog.17'><field name='name'>Exportación de servicios – RES</field><field name='code'>17</field></record>
+		<record model='einvoice.catalog.17'><field name='name'>Exportación de servicios  - Servicios que conformen un Paquete Turístico</field><field name='code'>18</field></record>
+		<record model='einvoice.catalog.17'><field name='name'>Exportación de servicios – Servicios complementarios al transporte de carga</field><field name='code'>19</field></record>
+		<record model='einvoice.catalog.17'><field name='name'>Exportación de servicios – Suministro de energía eléctrica a favor de sujetos domiciliados en ZED</field><field name='code'>20</field></record>
+		<record model='einvoice.catalog.17'><field name='name'>Exportación de servicios – Prestación servicios realizados parcialmente en el extranjero</field><field name='code'>21</field></record>
+	</data>
+</odoo>

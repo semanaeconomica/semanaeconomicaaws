@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="pe_partner_address_form_inherit" model="ir.ui.view">
+			<field name="name">pe.res.partner.form.inherit</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="l10n_pe.pe_partner_address_form"/>
+			<field name="arch" type="xml">
+				<field name="street" position="attributes">
+					<attribute name="placeholder">Calle</attribute>
+				</field>
+				<field name="street_number" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</field>
+				<field name="street_number2" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</field>
+				<field name="l10n_pe_district" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</field>
+				<field name="city" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</field>
+				<field name="city_id" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</field>
+				<field name="state_id" position="attributes">
+					<attribute name="placeholder">Departamento</attribute>
+					<attribute name="class">o_address_street</attribute>
+					<attribute name="domain">[('country_id','=',country_id),('state_id', '=', False),('province_id','=', False)]</attribute>
+					<attribute name="options">{"no_open": True, "no_create": True}</attribute>
+				</field>
+				<field name="country_id" position="attributes">
+					<attribute name="placeholder">Pais</attribute>
+				</field>
+				<xpath expr="//div[@class='o_address_format']/div[@class='o_row']" position="replace"/>
+				<xpath expr="//div[@class='o_address_format']/field[@name='state_id']" position="after">
+					<field name="province_id" placeholder="Provincia" class="o_address_street" options='{"no_open": True, "no_create": True}' domain="[('country_id','=',country_id),('state_id', '=', state_id),('province_id','=', False)]"/>
+					<field name="district_id" placeholder="Distrito" class="o_address_street" options='{"no_open": True, "no_create": True}' domain="[('country_id','=',country_id),('state_id', '=', state_id),('province_id','=', province_id)]"/>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		
+		<record id="wizard_import_chart" model="ir.ui.view">
+			<field name="name">wizard.wizard.import.chart.form</field>
+			<field name="model">import.chart.account</field>
+			<field name="arch" type="xml">
+				<form string="Importar Plan Contable" >
+					<group>
+						<group>
+							<field name="type_import"/>
+							<field name="File_slect" filename="name" attrs="{'invisible':[('type_import','=','copy')]}"/>
+						</group>
+						<group>
+							<field name="company_id" attrs="{'invisible':[('type_import','=','import')],'required':[('type_import','=','copy')]}"/>
+							<field name="company_copy_id" attrs="{'invisible':[('type_import','=','import')],'required':[('type_import','=','copy')]}"/>
+						</group>
+					</group>	
+					<footer>
+						<button name="download_template" string="Descargar Plantilla" icon="fa-download" type="object" class="btn-primary oe_inline" attrs="{'invisible':[('type_import','=','copy')]}"/>
+						<button name="import_file" string="Importar" icon="fa-download" type="object" class="btn-primary oe_inline" attrs="{'invisible':[('type_import','=','copy')]}"/>
+						<button name="copy_accounts" string="Copiar Cuentas" icon="fa-copy" type="object" class="btn-primary oe_inline" attrs="{'invisible':[('type_import','=','import')]}" confirm="Se copiaran absolutamente todas las cuentas de la compañía origen a la compañía de destino. ¿Desea continuar?"/>
+						<button string="Cancel" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="bi_act_chart_of_account" model="ir.actions.act_window">
+			<field name="name">Importar Plan Contable</field>
+			<field name="res_model">import.chart.account</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="wizard_import_chart" />
+			<field name="target">new</field>
+		</record>
+
+		<menuitem
+    		id="menu_chart_of_account"
+    		action="bi_act_chart_of_account"
+    		name="Importar Plan Contable"
+    		parent="account_journal_sequence.menu_other_configurations"
+    		sequence="4"/>
+
+	</data>
+</odoo>

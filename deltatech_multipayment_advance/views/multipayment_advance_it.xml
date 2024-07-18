@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="multipayment_advance_it_form_view_inherit_deltatech" model="ir.ui.view">
+            <field name="name">multipayment.advance.it.form.inherit.deltatech</field>
+            <field name="model">multipayment.advance.it</field>
+            <field name="inherit_id" ref="account_multipayment_advance_it.multipayment_advance_it_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@name='other_info']/group[@name='other_1']/group[@name='other_2']" position="inside">
+                    <field name="statement_id" />
+                    <!--field name="statement_line_id"/-->
+                </xpath>
+            </field>
+        </record>
+	</data>
+</odoo>

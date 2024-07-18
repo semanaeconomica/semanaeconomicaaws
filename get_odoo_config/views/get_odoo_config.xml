@@ -1,0 +1,9 @@
+<odoo>
+	<record id="action_get_odoo_config" model="ir.actions.server">
+		<field name="name">Obtener Datos de odoo.conf</field>
+		<field name="model_id" ref="get_odoo_config.model_get_odoo_config"/>
+		<field name="state">code</field>
+		<field name="code">action = model.get_conf()</field>
+	</record>
+	<menuitem action="action_get_odoo_config" id="menu_get_odoo_config" parent="base.next_id_9"/>
+</odoo>

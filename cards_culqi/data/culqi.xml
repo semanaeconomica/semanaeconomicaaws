@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">
+		<record id="payment_acquirer_mercadopago" model="payment.acquirer">
+			<field name="name">Culqi</field>
+			<field name="provider">culqi</field>
+			<field name="image_128" type="base64" file="cards_culqi/static/description/icon.png" />
+		</record>
+	</data>
+</odoo>

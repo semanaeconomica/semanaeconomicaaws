@@ -1,0 +1,62 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="hr_vacation_role_form_view">
+            <field name="name">hr_vacation_role_form_view</field>
+            <field name="model">hr.vacation.role</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="get_vacation_role" type="object" string="Actualizar" class="oe_highlight"/>
+                        <button name="get_excel_vacation_role" type="object" string="Generar Excel" class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <h1>Rol de Vacaciones</h1>
+                        <group>
+                            <group>
+                                <field name="name" invisible="1"/>
+                                <field name="fiscal_year_id"/>
+                            </group>
+                            <group>
+                                <field name="payslip_run_id"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Vacaciones">
+                                <field name="line_ids" readonly="1">
+                                    <tree>
+                                        <field name="identification_id"/>
+                                        <field name="employee_id"/>
+                                        <field name="vacation_date"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_vacation_role_tree" model="ir.ui.view">
+            <field name="name">hr_vacation_role_tree_view</field>
+            <field name="model">hr.vacation.role</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_hr_vacation_role" model="ir.actions.act_window">
+            <field name="name">Rol de Vacaciones</field>
+            <field name="res_model">hr.vacation.role</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html"> 
+                <p class="o_view_nocontent_smiling_face"> 
+                    Haga click aqui para crear un Rol de Vacaciones.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_einvoice_document" inherit_id="l10n_pe_edi_extended.report_einvoice_document">
+        <xpath expr="//h5[@name='invoice_sequence']" position="replace">
+            <h5 name="invoice_sequence"><span class="font-weight-bold" t-esc="o.ref"/></h5>
+        </xpath>
+        <xpath expr="//span[@name='invoice_ref_number_legal']" position="replace">
+            <span name="invoice_ref_number_legal" class="font-weight-bold" t-esc="o.ref or 'NO VALID'"/>
+        </xpath>
+        <xpath expr="//dl[@name='invoice_currency']" position="after">
+            <dl class="row mb-0" name="invoice_currency_rate" t-if="o.currency_id.name!='PEN'">
+                <dt class="col-6 col-sm-6 mb-0">
+                    TIPO DE CAMBIO:
+                </dt>
+                <dd class="col-auto col-6 col-sm-7 mb-0"><t t-esc="o.currency_rate"/></dd>
+            </dl>
+        </xpath>
+        <xpath expr="//dl[@name='related_document']" position="replace">
+            <dl class="row mb-0" name="related_document" t-if="o.type_document_id.code in ['07','08']">
+                <dt class="col-auto col-6 col-sm-5 mb-0">
+                    DOCUMENTOS RELACIONADOS:
+                </dt>
+                <dd class="col-auto col-6 col-sm-7 mb-0">
+                    <t t-foreach="o.doc_invoice_relac" t-as="doc_rel">
+                        <t t-esc="doc_rel.type_document_id.name"/> <t t-esc="doc_rel.nro_comprobante"/>
+                    </t>
+                </dd>
+            </dl>
+            <dl class="row mb-0" name="detraction" t-if="o.op_type_sunat_id.code == '1001'">
+                <dt class="col-6 col-sm-5 mb-0">
+                    OPERACIÓN SUJETA A DETRACCIÓN (Tasa <t t-esc="o.detraction_type_id.percentage"/>%):
+                </dt>
+                <dd class="col-6 col-sm-7 mb-0"><t t-esc="o.detraction_amount"/> (<span t-field="o.detraction_type_id"/>)</dd>
+            </dl>
+        </xpath>
+        <xpath expr="//dl[@name='credit_note_type']" position="replace">
+            <dl class="row mb-0" name="credit_note_type" t-if="o.credit_note_type_id">
+                <dt class="col-auto col-6 col-sm-5 mb-0">
+                    TIPO DE NOTA DE CRÉDITO:
+                </dt>
+                <dd class="col-auto col-6 col-sm-7 mb-0"><t t-esc="o.credit_note_type_id.name"/></dd>
+            </dl>
+        </xpath>
+        <xpath expr="//dl[@name='debit_note_type']" position="replace">
+            <dl class="row mb-0" name="debit_note_type" t-if="o.debit_note_type_id">
+                <dt class="col-auto col-6 col-sm-5 mb-0">
+                    TIPO DE NOTA DE DÉBITO:
+                </dt>
+                <dd class="col-auto col-6 col-sm-7 mb-0"><t t-esc="o.debit_note_type_id.name"/></dd>
+            </dl>
+        </xpath>
+    </template>
+</odoo>

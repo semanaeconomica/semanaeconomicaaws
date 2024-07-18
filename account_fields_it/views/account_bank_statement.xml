@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_bank_statement_form_inherit" model="ir.ui.view">
+			<field name="name">bank.statement.form.inherit</field>
+			<field name="model">account.bank.statement</field>
+			<field name="inherit_id" ref="account.view_bank_statement_form"/>
+			<field name="arch" type="xml">
+				<data>
+					<xpath expr="//group[1]" position="before">
+						<field name="sequence_number" readonly="1" force_save="1" attrs="{'invisible':[('journal_type','!=','cash')]}"/>
+					</xpath>
+					<xpath expr="//page[@name='statement_line_ids']//field[@name='line_ids']//tree/field[@name='ref']" position="replace">
+						<field name="ref" groups="account.group_account_manager"/>
+					</xpath>
+					<xpath expr="//page[@name='statement_line_ids']//field[@name='line_ids']//tree/field[@name='ref']" position="after">
+						<field name="catalog_payment_id"/>
+					</xpath>
+					<xpath expr="//sheet/group[1]/group[2]/div[2]" position="after">
+						<field name="journal_check_surrender" attrs="{'invisible': [('journal_type','!=','cash')]}"/>
+					</xpath>
+					<field name="accounting_date" position="replace">
+						<field name="accounting_date"/>
+					</field>
+				</data>
+			</field>
+		</record>
+
+		<record id="view_bank_statement_search_inherit" model="ir.ui.view">
+			<field name="name">account.bank.statement.search.inherit</field>
+			<field name="inherit_id" ref="account.view_bank_statement_search"/>
+			<field name="model">account.bank.statement</field>
+			<field name="arch" type="xml">
+				<xpath expr="//filter[@name='status']" position="after">
+					<filter name="journal_check_surrender" string="Es Rendicion" context="{'group_by': 'journal_check_surrender'}" help="Sirve para rendiciones"/>
+					<separator/>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

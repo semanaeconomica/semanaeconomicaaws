@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="helpdesk_ticket_form_complaints_book" model="ir.ui.view">
+		<field name="model">helpdesk.ticket</field>
+		<field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form" />
+		<field name="arch" type="xml">
+			<field name="description" position="replace">
+				<group string="Libro de reclamaciones" name="complaints_book">
+					<!-- Identificacion del consumidor -->
+					<group>
+						<field name="partner_address" />
+						<field name="partner_document_number" />
+						<field name="partner_phone" />
+						<!-- Identificacion del Bien contratado -->
+						<field name="partner_product_service" />
+						<field name="partner_amount" />
+					</group>
+					<group>
+						<!-- Detalles del reclamo -->
+						<field name="partner_order" />
+						<!-- Tipo de respuesta -->
+						<field name="partner_response_type" />
+						<!-- Observaciones -->
+						<field name="response" />
+					</group>
+					<field name="description" />
+				</group>
+			</field>
+		</field>
+	</record>
+</odoo>

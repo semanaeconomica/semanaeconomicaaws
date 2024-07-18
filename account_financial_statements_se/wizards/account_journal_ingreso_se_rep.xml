@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_account_journal_ingreso_se_rep_form">
+			<field name="name">account.journal.ingreso.se.rep.form</field>
+			<field name="model">account.journal.ingreso.se.rep</field>
+			<field name="arch" type="xml">
+				<form string="Ingresos">
+					<group>
+						<group>
+							<field name="company_id"/>
+							<field name="fiscal_year_id"/>
+						</group>
+						<group>
+							<field name="type_show" required="1"/>
+						</group>
+					</group>
+					<footer>
+						<button string="Mostrar" name="get_report" type="object" class="oe_highlight"/>
+						or
+						<button string="Cancel" class="oe_link" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="account_journal_ingreso_se_rep_action" model="ir.actions.act_window">
+			<field name="name">Ingresos</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">account.journal.ingreso.se.rep</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+
+		<menuitem action="account_journal_ingreso_se_rep_action" 
+				  id="menu_action_account_journal_ingreso_se_rep" 
+				  parent="account_financial_statements_se.financial_statements_se_reports" 
+				  sequence="4"/>
+	</data>
+</odoo>

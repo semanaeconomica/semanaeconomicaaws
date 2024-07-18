@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_landed_cost_it_group_user,landed_cost.it.group.user,landed_cost_it.model_landed_cost_it,account_base_it.group_account_tables_user,1,1,1,1
+access_landed_cost_it_line_group_user,landed.cost.it.line.group.user,landed_cost_it.model_landed_cost_it_line,account_base_it.group_account_tables_user,1,1,1,1
+access_landed_invoice_book_group_user,landed.invoice.book.group.user,landed_cost_it.model_landed_invoice_book,account_base_it.group_account_tables_user,1,1,1,1
+access_landed_purchase_book_group_user,landed.purchase.book.group.user,landed_cost_it.model_landed_purchase_book,account_base_it.group_account_tables_user,1,1,1,1
+access_landed_cost_invoice_line_group_user,landed.cost.invoice.line.group.user,landed_cost_it.model_landed_cost_invoice_line,account_base_it.group_account_tables_user,1,1,1,1
+access_landed_cost_purchase_line_group_user,landed.cost.purchase.line.group.user,landed_cost_it.model_landed_cost_purchase_line,account_base_it.group_account_tables_user,1,1,1,1

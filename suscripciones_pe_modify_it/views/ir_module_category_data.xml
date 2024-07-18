@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.module.category" id="modify_vendedor_encargado">
+            <field name="name">Modificar Vendedor Encargado</field>
+            <field name="description">Helps.</field>
+            <field name="sequence">21</field>
+        </record>
+    </data>
+
+
+    <record id="group_modify_vendedor_encargado" model="res.groups">
+        <field name="name">Modificar Vendedor Encargado</field>
+        <field name="comment">The user will have access to the human resources configuration as well as statistic reports.</field>
+
+        <field name="category_id" ref="suscripciones_pe_modify_it.modify_vendedor_encargado"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <!--
+        <field name="implied_ids" eval="[(4, ref('group_hr_user'))]"/>
+         -->
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+
+    </record>
+</odoo>

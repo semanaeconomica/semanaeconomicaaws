@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="external_layout_standard_pe" model="report.layout">
+        <field name="name">Layout Fiscal PE</field>
+        <field
+            name="view_id"
+            ref="l10n_pe_extended.external_layout_standard_pe_template"
+        />
+    </record>
+</odoo>

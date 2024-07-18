@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <template id="assets_backend" name="Assets for module" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/remission_guide_it/static/src/css/styles.css"/>
+        </xpath>
+    </template>
+
+    <!-- Vista para Guía de remisión Electrónica -->
+    <record id="view_electronic_guide_wizard_form" model="ir.ui.view">
+        <field name="name">preview.remission.guide.wizard.form.view</field>
+        <field name="model">preview.remission.guide.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Previsualización Guía de Remisión Electrónica"> 
+            <sheet>
+                 <group>
+                    <group>
+                    <field name="company_image" widget="image" height="150" width="200"  readonly="1" nolabel="1"/>
+                    <h2 class="title">
+                    <field name="company_name" nolabel="1" readonly="1"/></h2>
+                    </group>
+                    <group>
+                        <div class="container_title">
+                            <h1 class="title">GUIA DE REMISIÓN</h1>
+                            <h2 class="title">RUC: <field name="company_ruc" nolabel="1" readonly="1"/></h2>
+                            <h2 class="title"><field name="numberg" nolabel="1" readonly="1"/></h2>
+                        </div>
+                    </group>
+                </group>        
+                <group  string="DESTINATARIO">
+                        <field name="receiver_partner_id" string="Denominación" readonly="1"/>
+                </group>
+                <group  string="DATOS DEL TRASLADO">
+                    <field name="date_traslate" readonly="1" string="Fecha inicio de Traslado"/> 
+                    <field name="transfer_reason_id" string="Motivo de traslado" readonly="1"/>
+                    <field name="transporter_type" readonly="1" string="Modalidad de transporte"/>
+                    <field name="gross_weight" readonly="1" string="Peso Bruto Total (Kg)"/>
+                    <field name="num_pieces" readonly="1" string="Número de bultos"/>
+                </group>
+                 <group  string="DATOS DEL PUNTO DE PARTIDA Y PUNTO DE LLEGADA">
+                    <group>
+                        <field name="start_point" readonly="1"/>
+                        <field name="ubigeo_start" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="point_arrival" readonly="1"/>
+                        <field name="ubigeo_arrival" readonly="1"/>
+                    </group>
+                </group>
+                <group  string="DATOS DEL TRANSPORTE">
+                    <group string="Transportista">
+                        <field name="transporter_id" readonly="1" string="Transportista"/>
+                        <field name="transporter_doc_id" readonly="1" string="Tipo de Documento"/>
+                        <field name="transporter_doc" readonly="1" string="Nro. Documento"/>
+                    </group>
+                    <group string="Vehículo">
+                        <field name="vehicle_id" string="Vehículo"  readonly="1"/>
+                        <field name="license_plate" string="Placa" readonly="1" />
+                    </group>
+                    <group string="Conductor">
+                        <field name="driver_id" readonly="1" string="Conductor"/>
+                        <field name="driver_doc_id" readonly="1" string="Tipo de Documento"/>
+                        <field name="driver_doc" readonly="1" string="Nro. Documento"/>
+                    </group>
+                </group>
+                <group string="Información de los bienes transportados">
+                  <field name="line_ids" readonly="1" nolabel="1">
+                     <tree>
+                        <field name="default_code" string="Código"/> 
+                        <field name="product_id" string="Producto"/>
+                        <field name="quantity" string="Cantidad"/> 
+                        <field name="uom_id" string="Unidad Medida"/>
+                     </tree>
+                  </field>
+                </group>
+                <group col="2">
+                    <field name="note" readonly="1" string="Observaciones"/>
+                    <field name="success_message" style="color:Green;font-weight:bold;" readonly="1" attrs="{'invisible':[('success_message','=',False)]}" string=""/>
+                </group>
+           </sheet>
+                <footer>
+                    <field name="pdf_url" invisible="1"/>
+                    <button string="Enviar Guia-e" name="post_request" type="object" class="btn-primary" icon="fa-envelope" confirm="¿Está seguro de registrar esta operación en NubeFact?"/>
+                    <button string="Descargar PDF" name="download_pdf_file" type="object" class="btn-success oe_inline" icon="fa-download" attrs="{'invisible':[('pdf_url','=',False)]}"/>
+                    <button string ="Cerrar" name="cancel" special="cancel" class="oe_link oe_inline"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+<!-- Vista para guía de remisión Standard -->
+ <record id="view_remission_guide_wizard_form" model="ir.ui.view">
+        <field name="name">preview.remission.guide.wizard.form.view</field>
+        <field name="model">preview.remission.guide.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Previsualización de la guía de remisión"> 
+            <sheet> 
+                 <group>
+                    <group>
+                    <field name="company_image" widget="image" height="150" width="200"  readonly="1" nolabel="1"/>
+                    <h2 class="title">
+                    <field name="company_name" nolabel="1" readonly="1"/></h2>
+                    </group>
+                    <group>
+                        <div class="container_title">
+                            <h1 class="title">GUIA DE REMISIÓN</h1>
+                            <h2 class="title">RUC: <field name="company_ruc" nolabel="1" readonly="1"/></h2>
+                            <h2 class="title"><field name="numberg" nolabel="1" readonly="1"/></h2>
+                        </div>
+                    </group>
+                </group>        
+                <group  string="Información General">
+                    <group>
+                        <field name="kardex_date" readonly="1" string="Fecha de Emisión:"/>
+                        <field name="transporter_type" readonly="1"/>
+                        <field name="series" readonly="1"  string="Serie:"/>
+                        <field name="number" readonly="1"  string="Número:"/>
+                    </group>
+                    <group>
+                        <field name="invoice_id" readonly="1"  string="Factura:"/>
+                        <field name="name" readonly="1"  string="Albarán:"/>
+                        <field name="picking_type_id" readonly="1"  string="Tipo de Picking"/>
+                        <field name="electronic_guide" readonly="1"/>
+                    </group>
+                </group>
+                <group  string="Partners" col="2">
+                    <group>
+                        <field name="company_id" string="Partner Remitente" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="receiver_partner_id" string="Partner Destinatario:" readonly="1"/>
+                    </group>
+                </group>
+                 <group  string="Información del Transporte">
+                    <group>
+                        <field name="start_point" readonly="1"/>
+                        <field name="ubigeo_start" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="point_arrival" readonly="1"/>
+                        <field name="ubigeo_arrival" readonly="1"/>
+                    </group>
+                </group>
+                <group  string="Información del Trasportista">
+                    <group>
+                        <field name="transporter_id" readonly="1"/>
+                        <field name="transporter_doc_id" readonly="1"/>
+                        <field name="driver_id" readonly="1" string="Conductor:"/>
+                        <field name="license_num" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="transporter_type" readonly="1" string="Tipo de Transporte"/>
+                        <field name="vehicle_id" string="Vehículo"  readonly="1"/>
+                        <field name="license_plate" string="Placa" readonly="1" />
+                        <field name="date_traslate" readonly="1"/> 
+                    </group>
+                </group>
+                <group string="Información de los bienes transportados">
+                  <field name="line_ids" readonly="1" nolabel="1">
+                     <tree>
+                        <field name="default_code" string="Código"/> 
+                        <field name="product_id" string="Producto"/>
+                        <field name="quantity" string="Cantidad"/> 
+                        <field name="uom_id" string="Unidad Medida"/>
+                     </tree>
+                  </field>
+                </group>
+                <group col="2">
+                    <field name="gross_weight" readonly="1"/>
+                    <field name="num_pieces" readonly="1"/>
+                    <field name="success_message" style="color:Green;font-weight:bold;" readonly="1" attrs="{'invisible':[('success_message','=',False)]}" string=""/>
+                </group>
+           </sheet>
+                <footer>
+                    <button string="Imprimir" name="print_remission_guide" type="object" class="btn-primary oe_inline" icon="fa-print"/>
+                    <button string ="Cerrar" name="cancel" special="cancel" class="oe_link oe_inline"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    </data>
+</odoo>

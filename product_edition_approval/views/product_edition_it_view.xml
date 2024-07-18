@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+
+		<record model="ir.ui.view" id="view_product_edition_it_inherit_form">
+			<field name="name">product.edition.it.inherit.form</field>
+			<field name="model">product.edition.it</field>
+			<field name="inherit_id" ref="product_edition_it.view_product_edition_it_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//form/sheet/notebook[@name='detalles']/page[@name='movebase']" position="before">
+					<page name="approves" string="Aprobaciones">
+						<field name="line_approv_ids"  readonly="1">
+							<tree name="approvetree">
+								<field name="user_id" readonly="1"/>
+								<field name="approval_date" readonly="1"/>
+								<field name="approval_state" string="Estado" readonly="1"/>
+							</tree>
+						</field>
+					</page>
+				</xpath>
+			</field>
+		</record>
+
+
+		<record model="ir.ui.view" id="view_product_edition_approval_it">
+			<field name="name">product.edition.approval.it.tree</field>
+			<field name="model">product.edition.approval.it</field>
+			<field name="arch" type="xml">
+				<tree string="Aprobar Ediciones">
+					<field name="user_id"/>
+					<field name="name"/>
+					<field name="fiscal_year_id"/>
+					<field name="week"/>
+					<field name="edition_name"/>
+					<field name="title"/>
+					<field name="date_start"/>
+					<field name="date_close"/>
+					<field name="url_link" widget="url"/>
+					<button name="set_approval" string="Aprobar" type="object"/>
+					<button name="set_reject" string="Rechazar" type="object"/>
+					<field name="approval_date"/>
+					<field name="approval_state"/>
+					<field name="state"/>
+				</tree>
+			</field>
+		</record>
+
+
+		<record id="product_edition_approval_it_search" model="ir.ui.view">
+	        <field name="name">product.edition.approval.it.search</field>
+            <field name="model">product.edition.approval.it</field>
+            <field name="arch" type="xml">
+                <search string="Aprobar ediciones">
+					<field name="user_id"/>
+					<field name="name"/>
+					<field name="fiscal_year_id"/>
+					<field name="week"/>
+					<field name="edition_name"/>
+					<field name="title"/>
+                    <separator/>
+                    <group expand="1" string="Group By...">
+                        <filter string="Responsable " name="user_id" icon="terp-partner" context="{'group_by':'user_id'}"/>
+                        <filter string="Estado" name="approval_state" icon="terp-partner" context="{'group_by':'approval_state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+		<record id="product_edition_approval_it_action" model="ir.actions.act_window">
+			<field name="name">Revisión de Edición</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">product.edition.approval.it</field>
+			<field name="view_mode">tree</field>
+			<field name="search_view_id" ref="product_edition_approval_it_search"/>
+			<field name="domain">[('state','=','open')]</field>
+		</record>
+
+		<menuitem action="product_edition_approval_it_action" id="menu_product_edition_approval_it" parent="perueco_base_it.menu_guidelines_operations" sequence="2" groups="perueco_base_it.group_guidelines_aproval"/>
+	</data>
+</odoo>

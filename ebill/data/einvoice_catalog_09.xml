@@ -1,0 +1,16 @@
+<odoo>
+	<data noupdate="1">
+		<record model='einvoice.catalog.09'><field name='name'>Anulación de la operación</field><field name='code'>01</field></record>
+		<record model='einvoice.catalog.09'><field name='name'>Anulación por error en el RUC</field><field name='code'>02</field></record>
+		<record model='einvoice.catalog.09'><field name='name'>Corrección por error en la descripción</field><field name='code'>03</field></record>
+		<record model='einvoice.catalog.09'><field name='name'>Descuento global</field><field name='code'>04</field></record>
+		<record model='einvoice.catalog.09'><field name='name'>Descuento por ítem</field><field name='code'>05</field></record>
+		<record model='einvoice.catalog.09'><field name='name'>Devolución total</field><field name='code'>06</field></record>
+		<record model='einvoice.catalog.09'><field name='name'>Devolución por ítem</field><field name='code'>07</field></record>
+		<record model='einvoice.catalog.09'><field name='name'>Bonificación</field><field name='code'>08</field></record>
+		<record model='einvoice.catalog.09'><field name='name'>Disminución en el valor</field><field name='code'>09</field></record>
+		<record model='einvoice.catalog.09'><field name='name'>Otros Conceptos </field><field name='code'>10</field></record>
+		<record model='einvoice.catalog.09'><field name='name'>Ajustes de operaciones de exportación</field><field name='code'>11</field></record>
+		<record model='einvoice.catalog.09'><field name='name'>Ajustes afectos al IVAP</field><field name='code'>12</field></record>
+	</data>
+</odoo>

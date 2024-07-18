@@ -1,0 +1,376 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+         <menuitem
+            id="menu_sale_suscription"
+            name="Suscripciones"
+            parent="sale.sale_menu_root"
+            sequence="7"
+            groups="sales_team.group_sale_manager"/>
+
+
+        <menuitem   id="menu_sale_suscription_catalog"
+                    name="Catalogos"
+                    parent="menu_sale_suscription"
+                    sequence="1"/>
+
+
+        <record id="view_type_contract_yaros_tree" model="ir.ui.view">
+            <field name="name">type.contract.yaros.tree</field>
+            <field name="model">type.contract.yaros</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name" required="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_type_rayos_contract" model="ir.actions.act_window">
+            <field name="name">Tipos de Contrato</field>
+            <field name="res_model">type.contract.yaros</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('view_type_contract_yaros_tree')})]"/>
+        </record>
+
+        <menuitem   id="menu_sale_suscription_tipo_contrato"
+                    name="Tipo Contrato"
+                    parent="menu_sale_suscription_catalog"
+                    action="action_type_rayos_contract"
+                    sequence="1"/>
+
+
+        <record id="view_format_delivery_yaros_tree" model="ir.ui.view">
+            <field name="name">format.delivery.yaros.tree</field>
+            <field name="model">format.delivery.yaros</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name" required="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_format_delivery_contract" model="ir.actions.act_window">
+            <field name="name">Forma de Entrega</field>
+            <field name="res_model">format.delivery.yaros</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('view_format_delivery_yaros_tree')})]"/>
+        </record>
+
+        <menuitem   id="menu_sale_suscription_entrega"
+                    name="Forma de Entrega"
+                    parent="menu_sale_suscription_catalog"
+                    action="action_format_delivery_contract"
+                    sequence="1"/>
+
+
+        <record id="view_route_yaros_tree" model="ir.ui.view">
+            <field name="name">route.yaros.tree</field>
+            <field name="model">route.yaros</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name" required="1"/>
+                    <field name="day_week" required="1"/>
+                    <field name="district_ids" widget="many2many_tags" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_route_yaros" model="ir.actions.act_window">
+            <field name="name">Rutas</field>
+            <field name="res_model">route.yaros</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('view_route_yaros_tree')})]"/>
+        </record>
+
+        <menuitem   id="menu_sale_suscription_rutas"
+                    name="Rutas"
+                    parent="menu_sale_suscription_catalog"
+                    action="action_route_yaros"
+                    sequence="1"/>
+
+
+
+
+
+        <record id="view_sync_se_sesi_etiquetas_form" model="ir.ui.view">
+            <field name="name">sync.se.sesi.etiquetas.form</field>
+            <field name="model">sync.se.sesi.etiquetas</field>
+            <field name="arch" type="xml">
+                <form string="Etiqueta">
+                        <group string="Etiqueta">
+                            <group string="Info. Contacto">
+                                <field name="orden" readonly="1"/>
+                                <field name="contract_id" readonly="1"/>
+                                <field name="salesorderid" readonly="1"/>
+                                <field name="numerodeordeninterno" readonly="1"/>
+                                <field name="contactid" readonly="1"/>
+                                <field name="saludo" readonly="1"/>
+                                <field name="nombre" readonly="1"/>
+                                <field name="apellido" readonly="1"/>
+                                <field name="cargo" readonly="1"/>
+                                <field name="direccion" readonly="1"/>
+                                <field name="distrito" readonly="1"/>
+                                <field name="provincia" readonly="1"/>
+                                <field name="pais" readonly="1"/>
+                                <field name="remitente" readonly="0"/>
+                                <field name="fecha_registro" readonly="1"/>
+                            </group>
+
+                            <group string="Info. Producto">
+                                <field name="accountid" readonly="0"/>
+                                <field name="empresa_name" readonly="0"/>
+                                <field name="cantidad" readonly="0"/>
+                                <field name="fecha_inicio" readonly="0"/>
+                                <field name="fecha_fin" readonly="0"/>
+                                <field name="state" readonly="1"/>
+                                <field name="formaentrega" readonly="0"/>
+                                <field name="product" readonly="1"/>
+                                <field name="codproduct" readonly="0"/>
+                                <field name="prioridad" readonly="0"/>
+                                <field name="ruta" readonly="0"/>
+                                <field name="tipo_revista" readonly="0"/>
+                                <field name="orden_entrega" readonly="0"/>
+                                <field name="categoria" readonly="0"/>
+                                <field name="propietario_cortesia" readonly="0"/>
+                            </group>
+                        </group>
+                </form>
+            </field>
+        </record>
+
+
+
+        <record id="view_sale_suscription_form" model="ir.ui.view">
+            <field name="name">view.sale.suscription.form</field>
+            <field name="model">suscription.sale.order</field>
+            <field name="arch" type="xml">
+                <form string="">                    
+                <header>
+                    <button name="en_progreso" string="En Progreso" type="object" states='draft,cancel,close,pending' class="oe_highlight"/>
+                    <button name="para_renovar" string="Para Renovar" type="object" states='open' class="oe_highlight"/>
+                    <button name="cerrar_contrat" string="Cerrar Contrato" type="object" states='open,pending' />
+                    <button name="cancelar_contrat" string="Cancelar Contrato" type="object" states='open,pending' />
+                    <field name="state" widget="statusbar" readonly="1"/>
+                </header>                            
+                    <sheet>                        
+						<div class="oe_title">
+                            <h1>
+                                Suscripción: <field name="name" class="oe_inline" readonly="1" />
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="orden" readonly="1"/>
+                                <field name="partner_id" required="1"/>
+                                <field name="parent_new_id" />
+                                <field name="type_contract_id" />
+                                <field name="manager_id" />
+                            </group>
+
+                            <group>
+                                <field name="product_yaros_id" required="1"/>
+                                <field name="package" />
+                                <field name="recurring_rule_type" />
+                                <field name="new_suscription_id" />
+                                <field name="not_etiquet" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page id="pagina1" string="Informacion del contrato">
+                                <group>
+                                    <group>
+                                        <field name="date_start" />
+                                        <field name="date" />
+                                    </group>
+                                    <group>
+                                        <field name="quantity_yaros" />
+                                        <field name="description" />
+                                    </group>
+                                </group>
+                            </page>
+                            <page id="pagina2" string="Forma de Entrega">
+                                <group>
+                                    <group>
+                                        <field name="partner_contacts_id" />
+                                        <field name="route_yaros_id" />
+                                        <field name="format_delivery_id" />
+                                    </group>
+                                    <group>
+                                        <field name="sender_id"/>
+                                        <field name="courtesy" />
+                                        <field name="note" />
+                                    </group>
+                                </group>
+                            </page>
+                            <page id="pagina4" string="Ordenes de Venta">
+                                <group>
+                                    <field name="order_ids" nolabel="1"/>
+                                </group>
+                            </page>
+                            <page id="pagina3" string="Etiquetas">
+                                <group>
+                                    <field name="etiquetas_ids" colspan="4" nolabel="1" >
+                                     <tree create="1" delete="1">
+                                         <field name="orden"/>
+                                         <field name="salesorderid"/>
+                                         <field name="numerodeordeninterno"/>
+                                         <field name="contactid"/>
+                                         <field name="saludo"/>
+                                         <field name="nombre"/>
+                                         <field name="apellido"/>
+                                         <field name="cargo"/>
+                                         <field name="direccion"/>
+                                         <field name="distrito"/>
+                                         <field name="provincia"/>
+                                         <field name="pais"/>
+                                         <field name="remitente"/>
+                                         <field name="fecha_registro"/>
+                                    </tree>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+  
+        <record id="view_sale_suscription_tree" model="ir.ui.view">
+            <field name="name">view.sale.suscription.tree</field>
+            <field name="model">suscription.sale.order</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="orden" />
+                    <field name="partner_id" />
+                    <field name="parent_new_id" />
+                    <field name="partner_contacts_id" />
+                    <field name="email_partner_contacts" />
+                    <field name="last_order_id" />
+                    <field name="manager_id" />
+                    <field name="product_yaros_id" />
+                    <field name="package" />
+                    <field name="recurring_rule_type" />
+                    <field name="not_etiquet" />
+                    <field name="date_start" />
+                    <field name="date" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_sale_suscription" model="ir.actions.act_window">
+            <field name="name">Suscripciones</field>
+            <field name="res_model">suscription.sale.order</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('view_sale_suscription_tree')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('view_sale_suscription_form')})]"/>
+        </record>
+
+        <menuitem   id="menu_sale_suscription_hijo"
+                    name="Suscripciones"
+                    parent="menu_sale_suscription"
+                    action="action_sale_suscription"
+                    sequence="1"/>
+
+
+         <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/notebook/page[@name='order_lines']/field[@name='order_line']/tree/field[@name='product_id']" position="after">
+                    <field name="pw_original_price" optional="hide" />
+                    <field name="pw_discount" optional="hide" />
+                    <field name="subscription_start_date" optional="show" string="F. Inicio"/>
+                </xpath>
+
+                <xpath expr="/form/sheet/notebook/page[@name='order_lines']/field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
+                    <field name="agents" optional="show" />
+                    <button name="open_agents" string="Editar Agentes" type="object" />
+                    <!-- <field name="periodo" optional="hide" /> -->
+                </xpath>
+
+                <xpath expr="/form/sheet/notebook/page[@name='order_lines']/field[@name='order_line']/form//field[@name='product_id']" position="after">                    
+                    <field name="agents" >                   
+                        <tree editable="bottom">
+                            <field name="agente"/>
+                            <field name="comision"/>
+                        </tree>
+                    </field>
+                </xpath>
+
+                <xpath expr="//div[@name='button_box']" position="inside">
+                        <button name="open_suscriptions" type="object" class="oe_stat_button" icon="fa-pencil-square-o">
+                            <field name="suscription_count" widget="statinfo" string="Suscripciones"/>
+                        </button>
+                </xpath>
+
+                <xpath expr="/form/sheet/notebook" position="inside">
+                    <page string="Culqi">
+                        <group>
+                            <group>
+                                <field name="ident_culqi" readonly="1" />
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <field name="validity_date" position="after">
+                    <field name="assisted" attrs="{'readonly':[('state','not in',('draft','sent'))]}" />
+                 </field>
+                
+<!--			    
+                 <xpath expr="//button[@name='action_quotation_send']"  position="after">
+                        <button name="fun_ex" type="object" class="btn-primary" string="nro de suscripciones"/>
+                 </xpath>-->
+            </field>
+        </record>
+
+
+
+        <record id="view_sale_order_line_agent_tree" model="ir.ui.view">
+            <field name="name">sale.order.line.agent.tree</field>
+            <field name="model">sale.order.line.agent</field>
+            <field name="arch" type="xml">
+                <tree string="Agentes" editable="bottom">
+                    <field name="agente" />
+                    <field name="comision" />
+                    <field name="order_line_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+
+         <record id="purchase_order_form" model="ir.ui.view">
+            <field name="name">purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <field name="origin" position="after">
+                    <field name="sale_order_agent_id" />
+                </field>
+<!--                
+                 <xpath expr="//button[@name='action_quotation_send']"  position="after">
+                        <button name="fun_ex" type="object" class="btn-primary" string="nro de suscripciones"/>
+                 </xpath>-->
+            </field>
+        </record>
+
+
+        <record id="view_product_template_form_inherit_onu" model="ir.ui.view">
+            <field name="name">product.template.inherit.onu</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <field name="uom_po_id" position="before">
+                    <field name="no_generar_etiqueta"/>
+                </field>
+            </field>
+        </record>
+
+
+    
+    </data>
+</odoo>

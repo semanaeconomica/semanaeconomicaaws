@@ -1,0 +1,30 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_change_account_account_wizard_form">
+			<field name="name">change.account.account.wizard.form</field>
+			<field name="model">change.account.account.wizard</field>
+			<field name="arch" type="xml">
+				<form string="Actualizar Cuentas">
+					<group>
+						<group>
+							<field name="account_id" required="1"/>
+						</group>
+					</group>
+					<footer>
+						<button string="Actualizar" name="update_account" type="object" class="oe_highlight"/>
+						or
+						<button string="Cancel" class="oe_link" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="change_account_account_wizard_action" model="ir.actions.act_window">
+			<field name="name">Actualizar Cuentas</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">change.account.account.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+	</data>
+</odoo>

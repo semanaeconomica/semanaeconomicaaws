@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="view_account_letras_payment_form_receivables" model="ir.ui.view">
+			<field name="name">account.letras.payment.form</field>
+			<field name="model">account.letras.payment</field>
+			<field name="arch" type="xml">
+				<form string="Canje de Letras">
+					<header>
+						<button string="Procesar" type="object" name="crear_asiento" states="check" class="oe_highlight"/>
+						<button string="Cambiar a borrador" type="object" name="change_draft" states="check"/>
+						<button string="Calcular" type="object" name="state_check" states="draft" class="oe_highlight"/>
+						<button string="Cancelar" type="object" name="cancelar" states="done" class="oe_highlight"/>
+						<field name="state" widget="statusbar" readonly="1"/>
+					</header>
+					<group>
+						<field name="name" readonly="1"/>
+					</group>
+					<group>
+						<group>                            
+							<field name="partner_id" required="1" string="Cliente" attrs="{'readonly':[('state','in',['check','done'])]}" domain="[('customer_rank','>',0)]"/>
+							<field name="journal_id" required="1" attrs="{'readonly':[('state','in',['check','done'])]}"/>
+							<field name="tipo_cambio" required="1" attrs="{'readonly':[('state','in',['check','done'])]}"/>
+							<field name="asiento_id" readonly="1"/>
+						</group>
+						<group> 
+							<field name="date_exchange" required="1" attrs="{'readonly':[('state','in',['check','done'])]}"/>
+							<field name="reference" required="1" attrs="{'readonly':[('state','in',['check','done'])]}"/>
+							<field name="glosa" required="1" attrs="{'readonly':[('state','in',['check','done'])]}"/>
+							<field name="company_id" readonly="1" required="1" groups="base.group_multi_company"/>                    
+						</group>
+					</group>
+					<notebook>
+						<page string="Facturas">
+							<field name="factura_ids"  attrs="{'readonly':[('state','in',['check','done'])]}">
+								<tree editable="bottom">
+									<field name="type_document_id"/>
+									<field name="move_id" required="1" domain="[('partner_id','=',parent.partner_id),('state','=','posted'),('invoice_payment_state','=','not_paid'),('type','in',('out_invoice','out_refund')),('type_document_id','=',type_document_id)]"/>
+									<field name="nro_comprobante" required="0" readonly="1"/>
+									<field name="account_id" readonly="1"/>
+									<field name="currency_id" readonly="1"/>
+									<field name="saldo" required="1" readonly="1"/>
+									<field name="imp_div"/>
+									<field name="debit" readonly="1" sum="debit"/>
+									<field name="credit" readonly="1" sum="credit"/>
+								</tree>
+							</field>
+						</page>
+						<page string="Letras">
+							<field name="letras_manual_ids"  attrs="{'readonly':[('state','in',['check','done'])]}">
+								<tree editable="bottom" create="1" delete="1">
+									<field name="letra_user_id"/>
+									<field name="partner_id" invisible="1"/>
+									<field name="tipo_cambio" invisible="1"/>
+									<field name="date_exchange" invisible="1"/>
+									<field name="type" invisible="1"/>
+									<field name="nro_letra" required="1"/>
+									<field name="currency_id" required="1"/>
+									<field name="account_id" readonly="1"/>
+									<field name="account_id" invisible="1"/>
+									<field name="expiration_date" required="1"/>
+									<field name="imp_div"/>
+									<field name="debit" readonly="1" sum="debit"/>
+									<field name="debit" invisible="1"/>
+									<field name="credit" readonly="1" sum="credit"/>
+									<field name="credit" invisible="1"/>
+								</tree>
+							</field>
+						</page>
+						<page string="Redondeos" attrs="{'invisible':[('state','not in',['check','done'])]}">
+							<field name="residual_ids" readonly="1">
+								<tree editable="bottom">
+									<field name="comprobante" required="1"/>
+									<field name="account_id" readonly="1"/>
+									<field name="debit" readonly="1"/>
+									<field name="credit" readonly="1"/>
+								</tree>
+							</field>
+						</page>
+					</notebook>
+				</form>
+			</field>
+		</record>
+		
+		<record id="view_account_letras_payment_form" model="ir.ui.view">
+			<field name="name">account.letras.payment.form</field>
+			<field name="model">account.letras.payment</field>
+			<field name="arch" type="xml">
+				<form string="Canje de Letras">
+					<header>
+						<button string="Procesar" type="object" name="crear_asiento" states="check" class="oe_highlight"/>
+						<button string="Cambiar a borrador" type="object" name="change_draft" states="check"/>
+						<button string="Comprobar" type="object" name="state_check" states="draft" class="oe_highlight"/>
+						<button string="Cancelar" type="object" name="cancelar" states="done" class="oe_highlight"/>
+						<field name="state" widget="statusbar" readonly="1"/>
+					</header>
+
+					<group>
+						<field name="name" readonly="1"/>
+					</group>
+					<group>
+						<group>                            
+							<field name="partner_id" required="1" string="Proveedor" attrs="{'readonly':[('state','in',['check','done'])]}" domain="[('supplier_rank','>',0)]"/>
+							<field name="journal_id" required="1" attrs="{'readonly':[('state','in',['check','done'])]}"/>
+							<field name="tipo_cambio" required="1" attrs="{'readonly':[('state','in',['check','done'])]}"/>
+							<field name="asiento_id" readonly="1"/>
+						</group>
+						<group> 
+							<field name="date_exchange" required="1" attrs="{'readonly':[('state','in',['check','done'])]}"/>
+							<field name="reference" required="1" attrs="{'readonly':[('state','in',['check','done'])]}"/>
+							<field name="glosa" required="1" attrs="{'readonly':[('state','in',['check','done'])]}"/>
+							<field name="company_id" readonly="1" required="1" groups="base.group_multi_company"/>                    
+						</group>
+					</group>
+					<notebook>
+						<page string="Facturas">
+							<field name="factura_ids"  attrs="{'readonly':[('state','in',['check','done'])]}">
+								<tree editable="bottom">
+									<field name="type_document_id"/>
+									<field name="move_id" required="1" domain="[('partner_id','=',parent.partner_id),('state','=','posted'),('invoice_payment_state','=','not_paid'),('type','in',('in_invoice','in_refund')),('type_document_id','=',type_document_id)]"/>
+									<field name="nro_comprobante" required="0" readonly="1"/>
+									<field name="account_id" readonly="1"/>
+									<field name="currency_id" readonly="1"/>
+									<field name="saldo" required="1" readonly="1"/>
+									<field name="imp_div"/>
+									<field name="debit" readonly="1" sum="debit"/>
+									<field name="credit" readonly="1" sum="credit"/>
+								</tree>
+							</field>
+						</page>
+						<page string="Letras">
+							<field name="letras_manual_ids"  attrs="{'readonly':[('state','in',['check','done'])]}">
+								<tree editable="bottom" create="1" delete="1">
+									<field name="letra_user_id"/>
+									<field name="partner_id"/>
+									<field name="partner_id" invisible="1"/>
+									<field name="tipo_cambio"/>
+									<field name="tipo_cambio" invisible="1"/>
+									<field name="date_exchange"/>
+									<field name="date_exchange" invisible="1"/>
+									<field name="type" invisible="1"/>
+									<field name="nro_letra" required="1"/>
+									<field name="currency_id" required="1"/>
+									<field name="account_id" readonly="1"/>
+									<field name="account_id" invisible="1"/>
+									<field name="expiration_date" required="1"/>
+									<field name="imp_div"/>
+									<field name="debit" readonly="1" sum="debit"/>
+									<field name="debit" invisible="1"/>
+									<field name="credit" readonly="1" sum="credit"/>
+									<field name="credit" invisible="1"/>
+								</tree>
+							</field>
+						</page>
+						<page string="Redondeos" attrs="{'invisible':[('state','not in',['check','done'])]}">
+							<field name="residual_ids" readonly="1">
+								<tree editable="bottom">
+									<field name="comprobante" required="1"/>
+									<field name="account_id" readonly="1"/>
+									<field name="debit" readonly="1" sum="debit"/>
+									<field name="credit" readonly="1" sum="credit"/>
+								</tree>
+							</field>
+						</page>
+					</notebook>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_account_letras_payment_tree" model="ir.ui.view">
+			<field name="name">account.letras.payment.tree</field>
+			<field name="model">account.letras.payment</field>
+			<field name="arch" type="xml">
+				<tree string="Canje de Letras" >
+					<field name="name"  />
+					<field name="partner_id" />
+					<field name="glosa" />
+					<field name="date_exchange" />
+					<field name="reference" />
+					<field name="journal_id" />
+					<field name="state" />
+					<field name="company_id" groups="base.group_multi_company"/>  
+				</tree>
+			</field>
+		</record>
+
+		<record id="action_account_letras_payment_receivables" model="ir.actions.act_window">
+			<field name="name">Canje de Letras</field>
+			<field name="res_model">account.letras.payment</field>
+			<field name="view_ids" eval="[(5, 0, 0),
+				(0, 0, {'view_mode': 'tree', 'view_id': ref('view_account_letras_payment_tree')}),
+				(0, 0, {'view_mode': 'form', 'view_id': ref('view_account_letras_payment_form_receivables')})]"/>
+			<field name="domain">[('type','=','out')]</field>
+			<field name="context">{'default_type':'out'}</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+
+
+		<record id="action_account_letras_payment_payables" model="ir.actions.act_window">
+			<field name="name">Canje de Letras</field>
+			<field name="res_model">account.letras.payment</field>
+			<field name="view_ids" eval="[(5, 0, 0),
+				(0, 0, {'view_mode': 'tree', 'view_id': ref('view_account_letras_payment_tree')}),
+				(0, 0, {'view_mode': 'form', 'view_id': ref('view_account_letras_payment_form')})]"/>
+			<field name="domain">[('type','=','in')]</field>
+			<field name="context">{'default_type':'in'}</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem id="menu_account_letras_payment_receivables" name="Canje de Letras"
+				  parent="account.menu_finance_receivables"
+				  action="action_account_letras_payment_receivables"
+				  sequence="3"/>
+
+
+		<menuitem id="menu_account_letras_payment_payables" name="Canje de Letras"
+				  parent="account.menu_finance_payables"
+				  action="action_account_letras_payment_payables"
+				  sequence="3"/>
+	</data>
+</odoo>

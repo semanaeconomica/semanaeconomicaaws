@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_jp_custom_currency_rate_jp_custom_currency_rate,jp_custom_currency_rate.jp_custom_currency_rate,model_jp_custom_currency_rate_jp_custom_currency_rate,base.group_user,1,1,1,1

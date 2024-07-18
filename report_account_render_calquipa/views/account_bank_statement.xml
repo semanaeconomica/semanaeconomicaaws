@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_bank_statement_form_inherit_calquipa_render" model="ir.ui.view">
+        <field name="name">bank.statement.form.inherit.calquipa.render</field>
+        <field name="model">account.bank.statement</field>
+        <field name="inherit_id" ref="account.view_bank_statement_form"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Datos Rendicion" name="render_data" attrs="{'invisible': [('journal_check_surrender','!=',True)]}">
+                        <group>
+                            <group>
+                                <field name="date_surrender"/>
+                                <field name="employee_id"/>
+                                <field name="amount_surrender"/>
+                                <field name="einvoice_catalog_payment_id"/>
+                            </group>
+                            <group>
+                                <field name="comp_number"/>
+                                <field name="memory"/>
+                                <field name="date_render_it"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//header" position="inside">
+                    <button name="get_wizard_report_c" string="Reporte Rendicion" type="object" class="oe_highlight" attrs="{'invisible': [('journal_check_surrender','!=',True)]}"/>
+				</xpath>
+            </data>
+        </field>
+    </record>
+
+    <record id="view_bank_statement_surrender_tree_render" model="ir.ui.view">
+        <field name="name">account.bank.statement.tree.surrender.render</field>
+        <field name="inherit_id" ref="account_statement_payment.view_bank_statement_surrender_tree"/>
+        <field name="model">account.bank.statement</field>
+        <field name="arch" type="xml">
+            <field name="journal_id" position="after">
+                <field name="employee_id" optional="hide"/>
+                <field name="amount_surrender" optional="hide"/>
+                <field name="memory" optional="hide"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.actions.server" id="reg_account_move_lines_it_account_bank_statement">
+		<field name="name">Regularizar Cuentas Corrientes</field>
+		<field name="model_id" ref="account.model_account_bank_statement"/>
+		<field name="binding_model_id" ref="account.model_account_bank_statement" />
+		<field name="state">code</field>
+		<field name="code">action = records.reg_account_move_lines_it()</field>
+	</record>
+</odoo>

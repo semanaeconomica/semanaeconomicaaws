@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_remission_guide_series_user,remission.guide.series.user,remission_guide_it.model_remission_guide_series,account_base_it.group_account_tables_user,1,1,1,1
+access_remission_guide_series_stock,remission.guide.series.stock,remission_guide_it.model_remission_guide_series,stock.group_stock_manager,1,1,1,1
+access_main_parameter_stock,main.parameter.user.stock,account_base_it.model_main_parameter,stock.group_stock_manager,1,0,0,0

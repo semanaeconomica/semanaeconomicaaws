@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>	
+		<record id="payment_transaction_form_culqi" model="ir.ui.view">
+			<field name="name">payment.transaction.form.culqi</field>
+			<field name="model">payment.transaction</field>
+			<field name="inherit_id" ref="payment.transaction_form" />
+			<field name="arch" type="xml">
+				<field name="date" position="after">
+					<notebook attrs="{'invisible': [('id_culqi','=',False)]}">
+					 	<page string="Culqi" name='culqi'>
+							<group>
+								<field name="id_culqi" />
+								<field name="culqi_type" />
+								<field name="culqi_card_number" />
+								<field name="culqi_card_category" />
+								<field name="culqi_card_brand" />
+								<field name="culqi_card_type" />
+								<field name="culqi_outcome_merchant_type" />
+								<field name="culqi_outcome_merchant_message" />                
+								<field name="culqi_response" readonly="1" />            
+							</group>
+                    	</page>
+					</notebook>
+				</field>				
+			</field>
+		</record>
+	</data>
+</odoo>

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_patrimony_book_group_user,account.patrimony.book.group.user,account_patrimony_rep_it.model_account_patrimony_book,account_base_it.group_account_tables_user,1,1,1,1

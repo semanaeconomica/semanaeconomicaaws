@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_f1_register_tree">
+			<field name="name">f1.register.tree</field>
+			<field name="model">f1.register</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="mayor"/>
+					<field name="cuenta"/>
+					<field name="nomenclatura"/>
+					<field name="debe"/>
+					<field name="haber"/>
+					<field name="saldo_deudor"/>
+					<field name="saldo_acreedor"/>
+					<field name="activo"/>
+					<field name="pasivo"/>
+					<field name="perdinat"/>
+					<field name="ganannat"/>
+					<field name="perdifun"/>
+					<field name="gananfun"/>
+					<button name="view_detail" icon="fa-eye" string="Ver Detalle" type="object"/>
+				</tree>
+			</field>
+		</record>
+		<record model="ir.ui.view" id="view_f1_register_tree_true">
+			<field name="name">f1.register.tree.true</field>
+			<field name="model">f1.register</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="mayor"/>
+					<field name="cuenta"/>
+					<field name="nomenclatura"/>
+					<field name="debe"/>
+					<field name="haber"/>
+					<field name="saldo_deudor"/>
+					<field name="saldo_acreedor"/>
+					<field name="activo"/>
+					<field name="pasivo"/>
+					<field name="perdinat"/>
+					<field name="ganannat"/>
+					<field name="perdifun"/>
+					<field name="gananfun"/>
+					<field name="rubro"/>
+					<button name="view_detail" icon="fa-eye" string="Ver Detalle" type="object"/>
+				</tree>
+			</field>
+		</record>
+	</data>
+</odoo>

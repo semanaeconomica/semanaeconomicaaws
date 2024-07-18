@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="reconcile_assets" name="custom reconcile assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/account_reconcile_it/static/src/js/reconciliation_model.js"></script>
+            </xpath>
+        </template>
+    </data>
+</odoo>

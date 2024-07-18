@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_fee_book_group_user,account.fee.book.group.user,account_fee_rep_it.model_account_fee_book,account_base_it.group_account_tables_user,1,1,1,1

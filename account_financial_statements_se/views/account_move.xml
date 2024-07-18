@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_move_form_financial_statement_inherit" model="ir.ui.view">
+		<field name="name">move.form.financial.statement.inherit</field>
+		<field name="model">account.move</field>
+		<field name="inherit_id" ref="account_fields_it.view_move_form_inherit"/>
+		<field name="arch" type="xml">
+			<data>
+				<!--field name="glosa" position="after">
+					<field name="canje_se" attrs="{'invisible': [('type', 'not in', ('out_invoice', 'out_refund'))]}"/>
+				</field-->
+
+				<field name="ref" position="after">
+					<field name="patrimony_table_id" attrs="{'invisible': [('type', 'not in', ('entry'))]}"/>
+				</field>
+			</data>
+		</field>
+	</record>
+</odoo>

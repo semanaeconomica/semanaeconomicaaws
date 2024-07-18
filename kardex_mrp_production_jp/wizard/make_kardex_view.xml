@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="mrp_production_form_view" model="ir.ui.view">
+            <field name="name">mrp.production.form</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+
+                    <xpath expr="//field[@name='finished_move_line_ids']/tree/field[@name='state']"  position="after">
+                        <field name='price_unit_it' />
+                    </xpath>
+
+                    
+                    <xpath expr="//button[@name='button_scrap']"  position="after">
+                        <button name="calcular_costos" type="object" string="Calcular Precio Unitario"/>
+                    </xpath>
+
+            </field>
+        </record>
+        
+
+        <record id="view_stock_move_raw_tree" model="ir.ui.view">
+            <field name="name">stock.move.form</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="mrp.view_stock_move_raw_tree"/>
+            <field name="arch" type="xml">
+                    <xpath expr="//tree"  position="inside">
+                        <field name='price_unit_it' />
+                    </xpath>                    
+            </field>
+        </record>
+
+    </data>
+</odoo>

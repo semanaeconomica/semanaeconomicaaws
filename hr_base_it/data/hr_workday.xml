@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">
+		<record model='hr.workday' id="workday_JOR6">
+			<field name='name'>Jornada Laboral 6 dias</field>
+			<field name='code'>JOR6</field>
+		</record>
+		<record model='hr.workday' id="workday_JOR5">
+			<field name='name'>Jornada Laboral 5 dias</field>
+			<field name='code'>JOR5</field>
+		</record>
+	</data>
+</odoo>

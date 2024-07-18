@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_update_account_analytic_wizard_form">
+			<field name="name">update.account.analytic.wizard.form</field>
+			<field name="model">update.account.analytic.wizard</field>
+			<field name="arch" type="xml">
+				<form>
+					<group>
+						<group>
+							<field name="analytic_account_id" required="1"/>
+						</group>
+					</group>
+					<footer>
+						<button string="Aplicar" name="edit_line_analytic_account_id" type="object" class="oe_highlight"/>
+						or
+						<button string="Cancel" class="oe_link" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_update_account_analytic_wizard_analytic_form">
+			<field name="name">update.account.analytic.wizard.form</field>
+			<field name="model">update.account.analytic.wizard</field>
+			<field name="arch" type="xml">
+				<form>
+					<group>
+						<group>
+							<field name="analytic_account_id" required="1"/>
+						</group>
+					</group>
+					<footer>
+						<button string="Aplicar" name="edit_line_analytic_account_analytic_id" type="object" class="oe_highlight"/>
+						or
+						<button string="Cancel" class="oe_link" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="update_account_analytic_wizard_action" model="ir.actions.act_window">
+			<field name="name">Actualizar Cuenta Analitica</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">update.account.analytic.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+	</data>
+</odoo>

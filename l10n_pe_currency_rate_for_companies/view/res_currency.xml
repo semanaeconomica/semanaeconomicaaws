@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="res_currency_herencia" >
+        <field name="name">res.currency.rate.form</field>
+	    <field name="model">res.currency.rate</field>
+        <field name="inherit_id" ref="l10n_pe_currency_rate.view_base_currency_rate_list_it"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='purchase_type']" position="after">
+                <field  name="date_update_rate"  readonly="1" optional="hidden"  />
+            </xpath>
+        </field>
+    </record>
+</odoo>

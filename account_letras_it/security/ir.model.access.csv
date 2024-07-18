@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_letras_payment_group_user,account.letras.payment.group.user,account_letras_it.model_account_letras_payment,account_base_it.group_account_tables_user,1,1,1,1
+access_account_letras_payment_factura_group_user,account.letras.payment.factura.group.user,account_letras_it.model_account_letras_payment_factura,account_base_it.group_account_tables_user,1,1,1,1
+access_account_letras_payment_manual_group_user,account.letras.payment.manual.group.user,account_letras_it.model_account_letras_payment_manual,account_base_it.group_account_tables_user,1,1,1,1
+access_account_letras_payment_residual_group_user,account.letras.payment.residual.group.user,account_letras_it.model_account_letras_payment_residual,account_base_it.group_account_tables_user,1,1,1,1

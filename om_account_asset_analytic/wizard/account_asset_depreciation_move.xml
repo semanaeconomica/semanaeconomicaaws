@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_account_asset_depreciation_move" model="ir.ui.view">
+        <field name="name">account.asset.depreciation.move</field>
+        <field name="model">account.asset.depreciation.move</field>
+        <field name="arch" type="xml">
+            <form string="Compute Asset">
+                <div>
+                    <p>
+                        Este nuevo asistente genera el asiento de depreciacion para el periodo seleccionado.
+                    </p> 
+                </div>
+                <group>
+                    <field name="period"/>
+                </group>
+                <footer>
+                    <button string="Generar Asiento" name="asset_compute" type="object" class="btn-primary"/>
+                    <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+         </field>
+    </record>
+
+    <record id="action_account_asset_depreciation_move" model="ir.actions.act_window">
+        <field name="name">Asiento de lineas de Depreciacion</field>
+        <field name="res_model">account.asset.depreciation.move</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_account_asset_depreciation_move"/>
+        <field name="target">new</field>
+    </record>
+
+    <record model="ir.ui.menu" id="om_account_asset.menu_asset_depreciation_confirmation_wizard">
+		<field name="action" ref="action_account_asset_depreciation_move"/>
+	</record>
+
+</odoo>

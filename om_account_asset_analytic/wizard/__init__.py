@@ -1,0 +1,1 @@
+from . import account_asset_depreciation_move

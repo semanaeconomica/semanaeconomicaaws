@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="currency_rate_update_now_form" model="ir.ui.view">
+            <field name="name">currency.rate.update.now.form</field>
+            <field name="model">currency.rate.update.now</field>
+            <field name="arch" type="xml">
+                <form string="Date Range">
+                    <group>
+                         <group>
+                            <field name="rate_update_id" invisible= "True"/>
+                            <field name="date"/>
+                            <!--field name="sale_type"/>
+                            <field name="purchase_type"/-->
+                         </group>
+                    </group>
+                    <footer>
+				        <button name="update_now" string="Actualizar" icon="fa-upload" type="object" class="btn-primary oe_inline"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_currency_rate_update_now" model="ir.actions.act_window">
+            <field name="name">Actualizar Ahora</field>
+            <field name="res_model">currency.rate.update.now</field>
+            <field name="view_mode">tree,form</field>
+           <field name="view_id" ref="currency_rate_update_now_form"/>
+           <field name="target">new</field>
+        </record>
+
+        <menuitem action="action_currency_rate_update_now"
+            id="action_currency_rate_update_now_menu" 
+            parent="l10n_pe_currency_rate.menu_account_sunat_currency_rate"
+            sequence="10"/>
+
+    </data>
+</odoo>

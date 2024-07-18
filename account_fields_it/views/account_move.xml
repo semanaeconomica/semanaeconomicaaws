@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_move_form_inherit" model="ir.ui.view">
+		<field name="name">move.form.inherit</field>
+		<field name="model">account.move</field>
+		<field name="inherit_id" ref="account.view_move_form"/>
+		<field name="arch" type="xml">
+			<data>
+				<!--xpath from saldos_cuentas_por_cobrar_it-->
+				<xpath expr="//notebook/page[@id='other_tab']/group[@id='other_tab_group']" position="inside">
+					<group string="Venta"
+							name="account_customer_it"
+							attrs="{'invisible': [('type', 'not in', ('out_invoice', 'out_refund'))]}">
+						<field name="doc_origin_customer"/>
+					</group>
+				</xpath>
+				
+				<xpath expr="//div[@name='button_box']" position="inside">
+					<field name="line_ids" invisible="1"/>
+					<button string="Apuntes Contables" type="object"
+						name="show_move_line_ids"
+						class="oe_stat_button" icon="fa-list"
+						attrs="{'invisible': ['|',('line_ids', '=', []),('type', 'not in', ['entry'])]}" />
+				</xpath>
+				<field name="name" position="attributes">
+                    <attribute name="attrs">{'readonly':[('es_editable', '=', False)]}</attribute>
+                    <attribute name="readonly" />
+                </field>
+                <field name="name" position="after">
+                    <field name="es_editable" invisible="1" />
+                </field>
+				<xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='product_id']" position="before">
+					<field string="Almacen" name="location_id" domain="[('usage','in',['internal'])]" optional="hide"/>
+				</xpath>
+				<xpath expr="//field[@name='partner_id']" position="after">
+					<field name="partner_id" string="Partner" attrs="{'invisible': ['|',('type', 'in', ['out_receipt','in_receipt','out_invoice','in_invoice','out_refund','in_refund']),'&amp;',('register_sunat','not in',['1']),('type','=','entry')]}"/>
+					<field name="type_document_id" attrs="{'invisible': ['|',('type', 'in', ['out_receipt','in_receipt']),'&amp;',('register_sunat','not in',['1']),('type','=','entry')], 'required': ['|',('type','in', ['out_invoice','in_invoice','out_refund','in_refund']),'&amp;',('register_sunat','in',['1']),('type','=','entry')],'readonly': [('state', 'in', ['posted','cancel'])]}"/>
+					<field name="serie_id" attrs="{'invisible': [('type', 'not in', ['out_invoice','out_refund'])]}" domain="[('company_id','=',company_id),('document_type_id','=',type_document_id)]"/>
+				</xpath>
+				<xpath expr="//field[@name='date']" position="before">
+					<field name="invoice_date" string="Fecha factura" attrs="{'invisible': [('type', 'not in', ['entry'])]}"/>
+				</xpath>
+
+				<xpath expr="//field[@name='journal_id']" position="before">
+					<field name="invoice_date_due" string="Fecha Vencimiento" attrs="{'invisible': ['|',('type', 'in', ['out_receipt','in_receipt','out_invoice','in_invoice','out_refund','in_refund']),'&amp;',('register_sunat','not in',['1']),('type','=','entry')]}"/>
+				</xpath>
+
+				<xpath expr="//field[@name='company_id']" position="after">
+					<field name="currency_id" string="Moneda" groups="base.group_multi_currency" attrs="{'invisible': ['|',('type', 'in', ['out_receipt','in_receipt','out_invoice','in_invoice','out_refund','in_refund']),'&amp;',('register_sunat','not in',['1']),('type','=','entry')]}"/>
+				</xpath>
+				
+				<xpath expr="//field[@name='ref']" position="replace">
+					<div class="o_td_label">
+						<label for="ref" string="Nro Comprobante" style="font-weight:bold;"
+								attrs="{'invisible': [('type', 'not in', ('out_invoice', 'out_refund','in_invoice', 'in_refund'))]}"/>
+						<label for="ref" string="Referencia" style="font-weight:bold;"
+								attrs="{'invisible': [('type', 'not in', ('out_receipt', 'in_receipt','entry'))]}"/>
+					</div>
+					<field name="ref" nolabel="1" attrs="{'required': [('type', 'in', ('out_invoice', 'out_refund','in_invoice', 'in_refund'))],'readonly': [('state', 'in', ['posted','cancel'])]}"/>
+				</xpath>
+				<xpath expr="//field[@name='ref']" position="after">
+					<field name="glosa" attrs="{'required': [('type', 'in', ('out_invoice', 'out_refund','in_invoice', 'in_refund'))]}"/>
+				</xpath>
+				<xpath expr="//form/sheet/div[2]/div/field[@name='invoice_sequence_number_next']" position="attributes">
+					<attribute name="readonly">1</attribute>
+				</xpath>
+				<xpath expr="//notebook/page[@id='aml_tab']/field[@name='line_ids']/tree/field[@name='partner_id']" position="after">
+					<field name="type_document_id" optional="hide"/>
+					<field name="nro_comp" optional="hide"/>
+				</xpath>
+				<xpath expr="//notebook/page[@id='aml_tab']/field[@name='line_ids']/tree/field[@name='account_id']" position="attributes">
+					<attribute name="options">{"no_edit": True, "no_create": True}</attribute>
+				</xpath>
+				<xpath expr="//notebook/page[@id='aml_tab']/field[@name='line_ids']/tree/field[@name='analytic_tag_ids']" position="attributes">
+					<attribute name="options">{"no_edit": True, "no_create": True}</attribute>
+				</xpath>
+				<xpath expr="//notebook/page[@id='aml_tab']/field[@name='line_ids']/tree/field[@name='analytic_account_id']" position="attributes">
+					<attribute name="options">{"no_edit": True, "no_create": True}</attribute>
+				</xpath>
+				<xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='account_id']" position="attributes">
+					<attribute name="options">{"no_edit": True, "no_create": True}</attribute>
+				</xpath>
+				<xpath expr="//notebook/page[@id='aml_tab']/field[@name='line_ids']/tree/field[@name='credit']" position="after">
+					<field name="tax_amount_it" optional="hide"/>
+					<field name="tax_amount_me" optional="hide"/>
+					<field name="tc" optional="hide"/>
+					<field name="cuo" optional="hide"/>
+					<field string="Almacen" name="location_id" domain="[('usage','in',['internal'])]" invisible="1"/>
+					<field name="is_advance_check" optional="hide"/>
+				</xpath>
+				<xpath expr="//notebook/page[@id='aml_tab']/field[@name='line_ids']/tree/field[@name='tax_ids']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<xpath expr="//notebook/page[@id='aml_tab']/field[@name='line_ids']/tree/field[@name='account_id']" position="before">
+					<field string="Conciliacion #" name="full_reconcile_id"  optional="hide"/>
+				</xpath>
+				<xpath expr="//notebook/page[@id='aml_tab']/field[@name='line_ids']/form/group/field[@name='account_id']" position="before">
+					<field string="Conciliacion #" name="full_reconcile_id"  optional="hide"/>
+				</xpath>
+				<xpath expr="//notebook/page[@id='other_tab_entry']/group/group/field[@name='to_check']" position="after">
+					<field name="is_opening_close"/>
+					<field name="tc_per" attrs="{'readonly': [('state','!=','draft')]}"/>
+					<field name="td_payment_id" style="width:200px"/>
+					<field name="ple_state" style="width:200px"/>
+					<field name="date_corre_ple" style="width:200px"/>
+					<field name="perception_date" attrs="{'invisible': [('register_sunat','not in',['1'])]}"/>
+				</xpath>
+				<xpath expr="//notebook/page[@id='other_tab']/group/group/field[@name='invoice_payment_ref']" position="after">
+					<field name="is_descount"/>
+					<field name="acc_number_partner_id" force_save="1" domain="[('partner_id', '=', partner_id)]" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+				</xpath>
+				<xpath expr="//notebook/page[@id='other_tab']/group/group/field[@name='invoice_partner_bank_id']" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', '!=', 'draft')],'invisible':[('type', 'not in', ('out_invoice', 'out_refund', 'out_receipt'))]}</attribute>
+				</xpath>
+				<xpath expr="//notebook/page[@id='other_tab']/group/group/field[@name='inalterable_hash']" position="after">
+					<field name="tc_per" attrs="{'readonly': [('state','!=','draft')]}"/>
+					<field name="perception_date" attrs="{'invisible': [('type', 'not in', ['in_invoice'])]}"/>
+					<field name="ple_state" style="width:200px"/>
+					<field name="date_corre_ple" style="width:200px"/>
+				</xpath>
+				<xpath expr="//notebook/page[@id='other_tab_entry']/group/group/field[@name='company_id']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<xpath expr="//notebook/page[@id='other_tab_entry']/group/group/field[@name='inalterable_hash']" position="after">
+					<field name="petty_cash_id" style="width:200px"/>
+				</xpath>
+				<xpath expr="//field[@name='invoice_date_due']" position="attributes">
+					<attribute name="attrs">{'invisible':['|',('type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}</attribute>
+				</xpath>
+				<xpath expr="//field[@name='invoice_payment_term_id']" position="after">
+					<span class="o_form_label mx-3"
+										  attrs="{'invisible': [('type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}"> - </span>
+				</xpath>
+				<xpath expr="//field[@name='journal_id']" position="after">
+					<field name="register_sunat" invisible="1"/>
+					<field name="currency_rate" attrs="{'readonly': ['|',('tc_per', '=', False),('state','!=','draft')]}" force_save="1"/>
+				</xpath>
+				<xpath expr="//notebook" position='inside'>
+					<!--page string='SUNAT' attrs="{'invisible': ['|',('type', 'in', ['out_receipt','in_receipt']),'&amp;',('register_sunat','not in',['1']),('type','=','entry')]}"-->
+					<page string='SUNAT'>
+						<group>
+							<group string='Detracción'>
+								<field name="linked_to_detractions"/>
+								<field name="type_op_det"/>
+								<field name="date_detraccion"/>
+								<field name="code_operation" force_save="1"/>
+								<field name="voucher_number"/>
+								<field name="detra_amount"/>
+							</group>
+							<group string='Percepción'>
+								<field name="linked_to_perception"/>
+								<field name="type_t_perception"/>
+								<field name="number_perception"/>
+							</group>
+						</group>
+						<group>
+							<group string='Documentos Relacionados'>
+							</group>
+							<field name="doc_invoice_relac">
+								<tree editable="bottom">
+									<field name="type_document_id" width="2"/>
+									<field name="date" width="3"/>
+									<field name="nro_comprobante" width="4"/>
+									<field name="amount_currency" width="2"/>
+									<field name="amount" width="2"/>
+
+									<field name="bas_amount" width="2"/>
+									<field name="tax_amount" width="2"/>
+								</tree>
+						</field>
+						</group>
+					</page>
+					<page string='PLE' attrs="{'invisible': [('type', 'not in', ['out_invoice','out_refund'])]}">
+						<group>
+							<group>
+								<field name="campo_09_sale"/>
+								<field name="campo_31_sale"/>
+								<field name="campo_32_sale"/>
+								<field name="c_sire"/>
+								<field name="adj_sire"/>
+							</group>
+							<group>
+								<field name="campo_33_sale"/>
+								<field name="campo_34_sale"/>
+								<field name="date_modify_sale"/>
+							</group>
+						</group>
+					</page>
+					<page string='PLE' attrs="{'invisible': ['|',('type', 'in', ['out_receipt','in_receipt','out_invoice','out_refund']),'&amp;',('register_sunat','not in',['1']),('type','=','entry')]}">
+						<group>
+							<group>
+								<field name="campo_09_purchase"/>
+								<field name="campo_33_purchase"/>
+								<field name="campo_34_purchase"/>
+								<field name="campo_35_purchase"/>
+								<field name="campo_36_purchase"/>
+								<field name="participation_percent_sire" widget="percentage"/>
+								<field name="tax_mat_exo_igv_sire"/>
+								<field name="corre_sire"/>
+							</group>
+							<group>
+								<field name="campo_37_purchase"/>
+								<field name="campo_38_purchase"/>
+								<field name="campo_39_purchase"/>
+								<field name="campo_40_purchase"/>
+								<field name="campo_41_purchase"/>
+								<field name="date_modify_purchase"/>
+							</group>
+						</group>
+					</page>
+					<page string='PLE NO DOMIC.' attrs="{'invisible': ['|',('type', 'in', ['out_receipt','in_receipt','out_invoice','out_refund']),'&amp;',('register_sunat','not in',['1']),('type','=','entry')]}">
+						<group>
+							<group>
+								<field name="campo_26_purchase_nd"/>
+								<field name="campo_27_purchase_nd"/>
+								<field name="campo_28_purchase_nd"/>
+								<field name="campo_29_purchase_nd"/>
+								<field name="campo_30_purchase_nd"/>
+							</group>
+							<group>
+								<field name="campo_32_purchase_nd"/>
+								<field name="campo_33_purchase_nd"/>
+								<field name="campo_34_purchase_nd"/>
+								<field name="campo_35_purchase_nd"/>
+								<field name="campo_23_purchase_nd"/>
+							</group>
+						</group>
+						<group string="Sustento Credito Fiscal">
+							<group>
+								<field name="campo_11_purchase_nd"/>
+								<field name="campo_12_purchase_nd"/>
+							</group>
+							<group>
+								<field name="campo_13_purchase_nd"/>
+								<field name="campo_14_purchase_nd"/>
+								<field name="campo_15_purchase_nd"/>
+							</group>
+						</group>
+					</page>
+				</xpath>
+			</data>
+		</field>
+	</record>
+
+	<record id="view_move_tree_inherit_field" model="ir.ui.view">
+		<field name="name">move.tree.inherit.field</field>
+		<field name="model">account.move</field>
+		<field name="inherit_id" ref="account.view_invoice_tree"/>
+		<field name="arch" type="xml">
+			<field name="name" position="after">
+				<field name="ref" string="Nro Comprobante" optional="show"/>
+			</field>
+			<field name="invoice_date_due" position="after">
+				<field name="currency_id" string="Moneda" optional="show"/>
+				<field name="currency_rate" string="TC" optional="hide"/>
+			</field>
+			<field name="amount_untaxed_signed" position="before">
+				<field name="amount_untaxed" string="Base Moneda" optional="hide"/>
+			</field>
+			<field name="amount_untaxed_signed" position="attributes">
+				<attribute name="string">Base MN</attribute>
+			</field>
+			<field name="amount_total_signed" position="before">
+				<field name="amount_total" string="Total Moneda" optional="hide"/>
+			</field>
+			<field name="amount_residual_signed" position="after">
+				<field name="amount_residual" string="Importe Adeudado Moneda" optional="hide"/>
+			</field>
+		</field>
+	</record>
+
+	<record id="view_account_invoice_filter_inherit" model="ir.ui.view">
+			<field name="name">account.invoice.select.inherit</field>
+			<field name="inherit_id" ref="account.view_account_invoice_filter"/>
+			<field name="model">account.move</field>
+			<field name="arch" type="xml">
+				<xpath expr="/search/group/filter[@name='invoicedate']" position="after">
+					<filter name="date" string="Fecha Contable" context="{'group_by': 'date'}"/>
+				</xpath>
+				<xpath expr="/search/group/filter[@name='duedate']" position="after">
+					<separator/>
+					<filter name="type_document_id" string="Tipo de Comprobante" context="{'group_by': 'type_document_id'}"/>
+				</xpath>
+			</field>
+		</record>
+
+	<record model="ir.actions.server" id="action_change_name_account_move">
+		<field name="name">Borrar Secuencia</field>
+		<field name="model_id" ref="account.model_account_move"/>
+		<field name="binding_model_id" ref="account.model_account_move" />
+		<field name="state">code</field>
+		<field name="code">action = records.action_change_name()</field>
+	</record>
+	<record model="ir.actions.server" id="action_change_account_move_line">
+		<field name="name">Convertir lineas</field>
+		<field name="model_id" ref="account.model_account_move"/>
+		<field name="binding_model_id" ref="account.model_account_move" />
+		<field name="state">code</field>
+		<field name="code">action = records.action_change_line()</field>
+	</record>
+</odoo>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="powerbi_list_view_tree" model="ir.ui.view">
+        <field name="name">sale.report.view.tree</field>
+        <field name="model">sale.report</field>
+        <field name="arch" type="xml">
+            <tree string="xaxaxa">
+                <field name="name_partner" />
+                <field name="name_sell" />
+                <field name="number_order" />
+                <field name="name_product" />
+                <field name="plazo_pago" />
+                <field name="categoria" />
+                <field name="subcategoria" />
+                <field name="name_contract_type" />
+                <field name="id_odoo8" />
+                <field name="date_edition" />
+                <field name="edicion" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="powerbi_list_action" model="ir.actions.act_window">
+        <field name="name">Lista powerbi</field>
+        <field name="res_model">sale.report</field>
+        <field name="view_mode">tree</field>
+        <!-- <field name="view_id" ref="powerbi_list_view_tree" /> -->
+    </record>
+
+    <menuitem
+        id="powerbi_menu"
+        name="LISTAAAA"
+        action="powerbi.powerbi_list_action"
+        />
+
+</odoo>

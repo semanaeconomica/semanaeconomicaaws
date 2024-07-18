@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_f2_register_group_root,f2.register.group.root,account_htf2_report.model_f2_register,account_base_it.group_account_tables_user,1,1,1,1
+access_f2_balance_group_root,f2.balance.group.root,account_htf2_report.model_f2_balance,account_base_it.group_account_tables_user,1,1,1,1

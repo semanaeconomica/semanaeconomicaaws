@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<odoo>
+	<menuitem
+		id ="menu_hr_vacation"
+		name="Vacaciones"
+		parent="hr_payroll.menu_hr_payroll_root"
+		sequence="74"
+	/>
+	<menuitem
+		id="menu_hr_vacation_control"
+		parent="menu_hr_vacation"
+		action="action_hr_vacation_control"
+		sequence="1"
+		groups="hr_vacations.group_hr_vacation_root"
+	/>
+	<menuitem
+		id="menu_hr_vacation_role"
+		parent="menu_hr_vacation"
+		action="action_hr_vacation_role"
+		sequence="2"
+		groups="hr_vacations.group_hr_vacation_root"
+	/>
+</odoo>

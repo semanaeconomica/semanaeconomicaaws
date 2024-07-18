@@ -1,0 +1,5 @@
+<odoo>
+	<data noupdate="1">
+		<!--<function model="hr.payroll.structure" name="change_force_domain"/>-->
+	</data>
+</odoo>

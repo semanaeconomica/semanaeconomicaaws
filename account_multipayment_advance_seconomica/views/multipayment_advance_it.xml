@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="multipayment_advance_it_form_view_inherit_se" model="ir.ui.view">
+        <field name="name">multipayment.advance.it.form.inherit.se</field>
+        <field name="model">multipayment.advance.it</field>
+        <field name="inherit_id" ref="account_multipayment_advance_it.multipayment_advance_it_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string='Detracciones'>
+                    <group>
+                        <group>
+                            <field name="operation_type"/>
+                        </group>
+                        <group>
+                            <field name="good_services"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

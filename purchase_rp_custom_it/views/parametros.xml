@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+
+
+    <record id="pedidos_FORM_herencia" model="ir.ui.view">
+           <field name="name">Pedidos.Form</field>
+           <field name="model">sale.order</field>
+           <field name="inherit_id" ref="sale.view_order_form"/>
+           <field name="arch" type="xml">
+               <xpath expr="//page[@name='customer_signature']" position="after">
+                   <page  string="Plantilla Reporte" name="plantilla_reporte" >
+                            <group>
+                                <field name="plantilla_rep"  />
+                                <field name="plantilla_reporte"  />
+                                <field name="leyenda"  />
+                            </group>
+                   </page>
+               </xpath>
+           </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_plantilla_reporte">
+            <field name="name">Plantilla de Reporte de Venta</field>
+            <field name="res_model">plantilla.reporte</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Crea tu primer Woocommerce List
+                </p>
+            </field>
+    </record>
+
+
+    <menuitem action="action_plantilla_reporte" id="menu_plantilla_reporte" parent="sale.menu_sales_config" sequence="90"/>
+
+
+
+
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="unique_sequence_id" model="ir.sequence">
+	   <field name="name">Comisiones Seq</field>
+	   <field name="code">comission.seq</field>
+	   <field name="active">TRUE</field>
+	   <field name="prefix">INV-</field>
+	   <field name="padding">5</field>
+	   <field name="number_next">1</field>
+	   <field name="number_increment">1</field>
+	</record>
+	<record id="hr_main_parameter_comission_form" model="ir.ui.view">
+		<field name="name">hr.main.parameter.comission.form</field>
+		<field name="model">hr.main.parameter</field>
+		<field name="inherit_id" ref="hr_base_it.hr_main_parameter_form"/>
+		<field name="arch" type="xml">
+			<xpath expr="//form/sheet/notebook" position="inside">
+				<page id="comissionfields" string="Ingresos Variables - Aprobadores">		
+					<field name="validator_comission_ids" nolabel="1" >
+						<tree id="validatortree" editable="top">
+							<field name="user_id"/>
+							<field name="first_validate"/>
+							<field name="second_validate"/>
+						</tree>
+					</field>
+				</page>
+			</xpath>
+		</field>
+	</record>
+</odoo>

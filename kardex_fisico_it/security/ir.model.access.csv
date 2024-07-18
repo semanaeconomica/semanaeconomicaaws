@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tree_view_kardex_fisico,tree.view.kardex.fisico,kardex_fisico_it.model_tree_view_kardex_fisico,stock.group_stock_user,1,1,1,1
+access_tree_view_kardex_fisico,tree.view.kardex.fisico,kardex_fisico_it.model_tree_view_kardex_fisico,account.group_account_invoice,1,1,1,1
+access_type_operation_kardex,type.operation.kardex,kardex_fisico_it.model_type_operation_kardex,stock.group_stock_user,1,1,1,1

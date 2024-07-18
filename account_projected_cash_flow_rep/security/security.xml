@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<record id="account_projected_cash_flow_book_user_report_rule" model="ir.rule">
+			<field name="name">Flujo de Caja Proyectado por Usuario</field>
+			<field ref="model_account_projected_cash_flow_book" name="model_id"/>
+			<field eval="True" name="global"/>
+			<field name="domain_force">[('user_id','=',user.id)]</field>
+		</record>
+
+		<record id="account_data_projected_cash_flow_comp_rule" model="ir.rule">
+			<field name="name">Configuracion de Reporte de Flujo de Caja multi-company</field>
+			<field name="model_id" ref="model_account_data_projected_cash_flow"/>
+			<field name="global" eval="True"/>
+			<field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+		</record>
+
+	</data>
+</odoo>

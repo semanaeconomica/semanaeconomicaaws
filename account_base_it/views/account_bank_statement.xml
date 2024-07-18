@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!--In the enterprise version you need to use menu_accounting as the father view for Accounting dependence from account_accountant module-->
+		<!--In the community version you need to use menu_finance as the father view for Accounting-->
+		<menuitem id="menu_treasury" name="Tesoreria" parent="account_accountant.menu_accounting" sequence="34" groups="account.group_account_manager"/>
+			<menuitem action="account.action_bank_statement_tree" id="menu_bank_statement" name="Extractos Bancarios" parent="menu_treasury" sequence="1" groups="account.group_account_manager"/>
+			<menuitem action="account.action_view_bank_statement_tree" id="menu_view_bank_statement" name="Caja Chica" parent="menu_treasury" sequence="2" groups="account.group_account_manager"/>
+			<menuitem action="account.action_account_payments_payable" id="menu_providers_pays" name="Pagos a Proveedores" parent="menu_treasury" sequence="3" groups="account.group_account_manager"/>
+			<menuitem action="account.action_account_payments" id="menu_customers_pays" name="Pagos a Clientes" parent="menu_treasury" sequence="4" groups="account.group_account_manager"/>
+			<menuitem action="account.action_account_payments_transfer" id="menu_transfers" name="Transferencias" parent="menu_treasury" sequence="5" groups="account.group_account_manager"/>
+	</data>
+</odoo>

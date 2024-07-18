@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_peruecon_sale_config_it,peruecon.sale.config.it,model_peruecon_sale_config_it,perueco_base_it.group_guidelines_admin,1,1,1,1
+access_peruecon_sale_config_email_it,peruecon.sale.config.email.it,model_peruecon_sale_config_email_it,perueco_base_it.group_guidelines_artrecipe,1,1,1,1

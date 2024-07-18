@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="kardex_save_form" model="ir.ui.view">
+            <field name="name">kardex.save.form</field>
+            <field name="model">kardex.save</field>
+            <field name="arch" type="xml">
+                <form string="Guardado Kardex">
+                    <header>
+                        <button string="Procesar Fisico" type="object" name="save_fisico" states="draft" class="oe_highlight" onlyRead="1"/>
+                        <button string="Procesar Valorado" type="object" name="save_valorado" states="first" class="oe_highlight" onlyRead="1"/>
+
+                        <button string="Generar Albaranes Fin Año" type="object" name="crear_saldos" states="done" class="oe_highlight" onlyRead="1"/>  
+                        <button string="Borrar Albaranes Borrador" type="object" name="eliminar_saldos" states="done" class="oe_highlight" onlyRead="1"/>  
+                        <button string="Anular Albaranes Realizados" type="object" name="anular_saldos" states="done" class="oe_highlight" onlyRead="1"/>  
+
+
+                        <button string="Volver Borrador" type="object" name="draft" states="done" class="oe_highlight"/>
+                        <field name="state" widget="statusbar" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <div name="button_box" class="oe_button_box">
+                            <button name="get_albaranes_list"
+                                    class="oe_stat_button"
+                                    icon="fa-truck"
+                                    type="object"
+                                    attrs="{'invisible': [('albaranes_count', '=', 0)]}">
+                                    <field name="albaranes_count" widget="statinfo" string="Albaranes"/>  
+                            </button>
+                        </div>
+                        <group class="oe_title">
+                            <h1>
+                                <field name="name" required="1" readonly="0"/>
+                            </h1>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="date" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="company_id" readonly="1" required="1" groups="base.group_multi_company"/>  
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Detalle">
+                                <group>
+                                    <field name="lineas" nolabel="1" editable="bottom" create="0" delete="0" >
+                                        <tree>
+                                            <field name="almacen" readonly="1" />
+                                            <field name="producto" readonly="1" />
+                                            <field name="categoria" readonly="1" />
+                                            <field name="code" readonly="1" />
+                                            <field name="unidad" readonly="1" />
+                                            <field name="fecha" readonly="1" />
+                                            <field name="stock" readonly="1" />
+                                            <field name="lote" readonly="1" />
+                                            <field name="cprom" readonly="1" />
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_kardex_save_kanban" model="ir.ui.view">
+            <field name="name">kardex.save.kanban</field>
+            <field name="model">kardex.save</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_kardex_save o_emphasize_colors">
+                    <field name="color"/>
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="state"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click #{kanban_color(record.color.raw_value)}">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <center><strong>Kardex Periodo <field name="name"/></strong></center>
+                                    </div>
+                                    <div class="col-12 text-left">
+                                        Fecha Actualización:<span class="badge badge-pill"><t t-esc="record.date.value"/></span>
+                                    </div>
+                                    <div class="col-12 text-left">
+                                        Estado:<span class="badge badge-pill"><t t-esc="record.state.value"/></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="kardex_save_tree" model="ir.ui.view">
+            <field name="name">kardex.save.tree</field>
+            <field name="model">kardex.save</field>
+            <field name="arch" type="xml">
+                <tree string="Guardado Kardex">
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="state" />
+					<field name="company_id" groups="base.group_multi_company"/>  
+                </tree>
+            </field>
+        </record>
+
+        <record id="kardex_save_it_action" model="ir.actions.act_window">
+            <field name="name">Guardado Kardex</field>
+            <field name="res_model">kardex.save</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[]</field>
+			<field name="help" type="html">
+			<p class="o_view_nocontent_smiling_face">
+				Crea tu primer Guardado kardex aqui
+			</p>
+			</field>
+        </record>
+
+        <menuitem action="kardex_save_it_action" 
+				  id="menu_kardex_save" 
+				  parent="account.menu_finance_reports"
+				  sequence="1"/>
+
+
+
+
+
+
+
+
+
+        <record id="kardex_parameter_form" model="ir.ui.view">
+            <field name="name">kardex.parameter.form</field>
+            <field name="model">kardex.parameter</field>
+            <field name="arch" type="xml">
+                <form string="Guardado Kardex">
+                    <sheet>
+                        <group class="oe_title">
+                            <h1>
+                                <field name="company_id" readonly="1"/>
+                            </h1>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="picking_type_salida" required="1"/>
+                            </group>
+                            <group>
+                                <field name="picking_type_ingreso" required="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Inicio de Operaciones">
+                                <group>
+                                    <field name="anio_ids" nolabel="1" editable="bottom">
+                                        <tree>
+                                            <field name="name" required="1" />
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="kardex_parameter_tree" model="ir.ui.view">
+            <field name="name">kardex.parameter.tree</field>
+            <field name="model">kardex.parameter</field>
+            <field name="arch" type="xml">
+                <tree string="Guardado Kardex">
+                    <field name="company_id" />
+                    <field name="picking_type_salida" />
+                    <field name="picking_type_ingreso" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="kardex_parameter_it_action" model="ir.actions.act_window">
+            <field name="name">Kardex Parameter</field>
+            <field name="res_model">kardex.parameter</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crea tu primer Parametro de Kardex
+            </p>
+            </field>
+        </record>
+
+        <menuitem action="kardex_parameter_it_action" 
+                  id="menu_kardex_parameter" 
+                  parent="account.menu_finance_reports"
+                  sequence="1"/>
+	</data>
+</odoo>

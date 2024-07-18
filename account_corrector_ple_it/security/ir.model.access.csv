@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_ple_purchase_book_group_user,account.ple.purchase.book.group.user,account_corrector_ple_it.model_account_ple_purchase_book,account_base_it.group_account_tables_user,1,1,1,1
+access_account_ple_sale_book_group_user,account.ple.sale.book.group.user,account_corrector_ple_it.model_account_ple_sale_book,account_base_it.group_account_tables_user,1,1,1,1

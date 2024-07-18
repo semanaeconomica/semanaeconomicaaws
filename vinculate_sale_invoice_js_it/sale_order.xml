@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="group_vinculate_invoice_sale" model="res.groups">
+        <field name="name">VINCULAR FACTURAS CON VENTAS</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+
+
+
+    <record id="sale_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
+                    <field name="invoice_lines" optional="show"
+                           groups="vinculate_sale_invoice_js_it.group_vinculate_invoice_sale"
+                           widget="many2many_tags"
+                    />
+                </xpath>
+            </field>
+    </record>
+</odoo>

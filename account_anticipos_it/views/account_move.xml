@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record model="ir.actions.server" id="action_send_to_wizard_balance_period">
+		<field name="name">Aplicar Anticipo</field>
+		<field name="model_id" ref="account.model_account_move"/>
+		<field name="binding_model_id" ref="account.model_account_move" />
+		<field name="state">code</field>
+		<field name="code">action = model.action_account_anticipos_wizard()</field>
+	</record>
+</odoo>

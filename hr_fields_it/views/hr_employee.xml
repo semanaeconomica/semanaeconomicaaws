@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="hr_employee_form_inherit" model="ir.ui.view">
+		<field name="name">hr.employee.form.inherit</field>
+		<field name="model">hr.employee</field>
+		<field name="inherit_id" ref="hr.view_employee_form"/>
+		<field name="arch" type="xml">
+			<field name="leave_manager_id" position="attributes">
+				<attribute name="invisible">1</attribute>
+			</field>
+			<field name="address_home_id" position="attributes">
+				<attribute name="string">Partner Asociado</attribute>
+			</field>
+			<field name="country_id" position="after">
+				<field name="type_document_id"/>
+			</field>
+			<field name="name" position="attributes">
+				<attribute name="invisible">1</attribute>
+				<attribute name="required">0</attribute>
+			</field>
+			<field name="leave_manager_id" position="after">
+				<field name="is_manager"/>
+			</field>
+			<field name="km_home_work" position="after">
+				<field name="condition"/>
+			</field>
+			<field name="children" position="after">
+				<field name="men"/>
+				<field name="women"/>
+			</field>
+			<field name="name" position="after">
+				<h1>
+					<field name="names" placeholder="Nombres" required="True"/>
+				</h1>
+				<h1>
+					<field name="last_name" placeholder="Apellido Paterno" required="True"/>
+				</h1>
+				<h1>
+					<field name="m_last_name" placeholder="Apellido Materno" required="True"/>
+				</h1>
+			</field>
+			<field name="country_of_birth" position="after">
+				<field name="address"/>
+			</field>
+			<xpath expr="//page[@name='hr_settings']" position="before">
+				<page name="bank_accounts" string="Cuentas Bancarias">
+					<group string="Cuentas">
+						<group>
+							<field name="wage_bank_account_id"/>
+						</group>
+						<group>
+							<field name="cts_bank_account_id"/>
+						</group>
+					</group>
+				</page>
+			</xpath>
+		</field>
+	</record>
+</odoo>

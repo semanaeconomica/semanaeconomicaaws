@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_delete_account_move_import_form">
+			<field name="name">delete.account.move.import.form</field>
+			<field name="model">delete.account.move.import</field>
+			<field name="arch" type="xml">
+				<form string="Registro Facturas Importadas" create="false" edit="false">
+					<sheet>
+						<div class="oe_button_box" name="button_box">
+							<button class="oe_stat_button" string="Facturas Importadas" name="open_entries"  type="object" icon="fa-list"/>
+						</div>
+						<div class="oe_title">
+                            <h1>
+                                <field name="name" class="oe_inline" readonly="1"/>
+                            </h1>
+                        </div>
+						<group>
+							<group>
+								<field name="date" readonly="1"/>
+								<field name="nro_entrega" readonly="1"/>
+								<field name="nro_caja" readonly="1"/>
+							</group>
+							<group>
+								<field name="company_id" readonly="1" required="1" groups="base.group_multi_company"/>
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="delete_account_move_import_tree" model="ir.ui.view">
+            <field name="name">delete.account.move.import.tree</field>
+            <field name="model">delete.account.move.import</field>
+            <field name="arch" type="xml">
+                <tree string="Registro Facturas Importadas" create="false">
+                   <field name="name"/>
+                   <field name="nro_entrega"/>
+                   <field name="nro_caja"/>
+                   <field name="date"/>
+				   <field name="company_id" groups="base.group_multi_company"/>  
+                </tree>
+            </field>
+        </record>
+
+		<record id="delete_account_move_import_action" model="ir.actions.act_window">
+			<field name="name">Registro Facturas Importadas</field>
+			<field name="res_model">delete.account.move.import</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+			<p class="o_view_nocontent_smiling_face">
+				No existe ninguna importacion de Factur
+			</p>
+			</field>
+		</record>
+		
+		<menuitem action="delete_account_move_import_action" 
+				  id="menu_delete_account_move_import" 
+				  parent="import_journal_entry_it.menu_account_import_master" 
+				  sequence="4"/>
+
+	</data>
+</odoo>

@@ -1,0 +1,35 @@
+<odoo>
+	<record id="view_account_move_form_rca" model="ir.ui.view">
+		<field name="name">view.account.move.form.rca</field>
+		<field name="model">account.move</field>
+		<field name="inherit_id" ref="account.view_move_form" />
+		<field name="arch" type="xml">
+			<field name="company_id" position="before">
+				<field name="company_branch_address_id" groups="company_branch_address.group_multi_company_branch_address" domain="[('company_id','=',company_id)]"/>
+			</field>
+		</field>
+	</record>
+
+	<record id="view_account_move_tree_rca" model="ir.ui.view">
+		<field name="name">view.account.move.tree.rca</field>
+		<field name="model">account.move</field>
+		<field name="inherit_id" ref="account.view_invoice_tree" />
+		<field name="arch" type="xml">
+			<field name="invoice_date_due" position="after">
+				<field name="company_branch_address_id" groups="company_branch_address.group_multi_company_branch_address"/>
+			</field>
+		</field>
+	</record>
+
+	<record id="view_account_journal_form_rca" model="ir.ui.view">
+		<field name="name">view.account.journal.form.rca</field>
+		<field name="model">account.journal</field>
+		<field name="inherit_id" ref="account.view_account_journal_form" />
+		<field name="arch" type="xml">
+			<field name="company_id" position="after">
+				<field name="company_branch_address_id" groups="company_branch_address.group_multi_company_branch_address" domain="[('company_id','=',company_id)]"/>
+			</field>
+		</field>
+	</record>
+
+</odoo>

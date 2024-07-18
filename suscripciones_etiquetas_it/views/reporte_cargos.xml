@@ -1,0 +1,63 @@
+<odoo>
+    <record id="paperformat_id_test2" model="report.paperformat">
+            <field name="name">Purchase Order Report</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">25</field>
+            <field name="margin_bottom">50</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">20</field>
+            <field name="dpi">90</field>
+    </record>
+
+    <report
+        id="report_etiquetas_it"
+        model="route.yaros"
+        string="Imprimir Cargos"
+        name="suscripciones_etiquetas_it.report_cargos_new"
+        report_type="qweb-pdf"
+        paperformat="suscripciones_etiquetas_it.paperformat_id_test2"
+    />
+
+    <template id="report_cargos_new">
+       <t t-call="web.html_container">
+         <t t-foreach="docs" t-as="doc" >
+             <div class="header" >
+             </div>
+             <div class="footer" >
+
+             </div>
+
+             <div class="page border">
+                     <div style="width: 900px; font-size: 12px">
+                         <t t-foreach="doc.etiquetas" t-as="et" t-as_index="i">
+                             <div class="border p-2 mb-4 pb-4" style="width: 280px ; height : 240px ; float:left ; margin:10px 10px 0px 0px ;line-height: 80%; border: 1px solid white">
+                                 <p><span t-esc="et_index + 1"/>-<span t-field="doc.name"/></p>
+                                 <p>CANT:1-<span t-field="et.codproduct"/>-<span t-field="et.codproduct"/>-<span t-field="et.formaentrega"/></p>
+                                 <p>Sres.Vence: <span t-field="et.fecha_fin"/></p>
+                                 <p><span t-field="et.cargo"/></p>
+                                 <p><span t-field="et.nombre"/>  <span t-field="et.apellido"/></p>
+                                 <p style="line-height : 20px;"><span t-field="et.direccion"/>, <span t-field="et.distrito.name"/> ,
+                                          <span t-field="et.provincia.name"/> , <span t-field="et.pais.name"/></p>
+                                 <p/>
+                                 <p style="margin-top:7px">Firma....................................... Hora...........................</p>
+
+                             </div>
+                             <p/>
+                         </t>
+
+                     </div>
+             </div>
+
+
+
+         </t>
+       </t>
+      </template>
+
+</odoo>

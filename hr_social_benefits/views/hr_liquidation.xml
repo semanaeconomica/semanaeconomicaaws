@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="hr_liquidation_vacation_line_tree" model="ir.ui.view">
+		<field name="name">hr.liquidation.vacation.line.tree</field>
+		<field name="model">hr.liquidation.vacation.line</field>
+		<field name="arch" type="xml">
+			<tree edit="0" create="0" delete="0">
+				<field name="identification_id" optional="show" readonly="1"/>
+				<field name="last_name" optional="show" readonly="1"/>
+				<field name="m_last_name" optional="show" readonly="1"/>
+				<field name="names" optional="show" readonly="1"/>
+				<field name="admission_date" optional="show" readonly="1"/>
+				<field name="compute_date" optional="hide" readonly="1"/>
+				<field name="cessation_date" optional="hide" readonly="1"/>
+				<field name="membership_id" optional="show" readonly="1"/>
+				<field name="distribution_id" optional="show"/>
+				<field name="months" optional="show" readonly="1"/>
+				<field name="days" optional="show" readonly="1"/>
+				<field name="lacks" optional="show" readonly="1"/>
+				<field name="wage" optional="show" readonly="1"/>
+				<field name="household_allowance" optional="show" readonly="1"/>
+				<field name="commission" optional="show" readonly="1"/>
+				<field name="bonus" optional="show" readonly="1"/>
+				<field name="extra_hours" optional="show" readonly="1"/>
+				<field name="computable_remuneration" optional="show" readonly="1"/>
+				<field name="amount_per_month" optional="show" readonly="1"/>
+				<field name="amount_per_day" optional="show" readonly="1"/>
+				<field name="vacation_per_month" optional="show" readonly="1"/>
+				<field name="vacation_per_day" optional="show" readonly="1"/>
+				<field name="advanced_vacation" optional="show" readonly="0"/>
+				<field name="accrued_vacation" optional="show" readonly="0"/>
+				<field name="truncated_vacation" optional="show" readonly="1"/>
+				<field name="total_vacation" optional="show" force_save="1" readonly="1"/>
+				<field name="onp" optional="show" force_save="1" readonly="1"/>
+				<field name="afp_jub" optional="show" force_save="1" readonly="1"/>
+				<field name="afp_si" optional="show" force_save="1" readonly="1"/>
+				<field name="afp_mixed_com" optional="show" force_save="1" readonly="1"/>
+				<field name="afp_fixed_com" optional="show" force_save="1" readonly="1"/>
+				<field name="total" optional="show" force_save="1" readonly="1"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="hr_compensation_line_tree" model="ir.ui.view">
+		<field name="name">hr.compensation.line.tree</field>
+		<field name="model">hr.compensation.line</field>
+		<field name="arch" type="xml">
+			<tree editable="bottom" create="0" delete="0">
+				<field name="identification_id" optional="show" readonly="1"/>
+				<field name="last_name" optional="show" readonly="1"/>
+				<field name="m_last_name" optional="show" readonly="1"/>
+				<field name="names" optional="show" readonly="1"/>
+				<field name="admission_date" optional="show" readonly="1"/>
+				<field name="cessation_date" optional="show" readonly="1"/>
+				<field name="total" optional="show"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="hr_liquidation_form" model="ir.ui.view">
+		<field name="name">hr.liquidation.form</field>
+		<field name="model">hr.liquidation</field>
+		<field name="arch" type="xml">
+			<form>
+				<header>
+					<button name="get_liquidation" string="Calcular" type="object" class="oe_highlight" states="draft"/>
+					<button name="get_excel_liquidation" string="Generar Excel" type="object" class="oe_highlight"/>
+					<button name="export_liquidation" string="Exportar Liquidacion" type="object" class="oe_highlight" confirm="¿Esta seguro que desea exportar los montos de Liquidacion a su respectivo Lote de Nominas?" states="draft"/>
+					<button name="turn_draft" string="Volver a Borrador" type="object" class="oe_highlight" states="exported"/>
+					<field name="state" widget="statusbar"/>
+				</header>
+				<sheet>
+					<div class="oe_button_box" name="button_box">
+						<button name="get_liquidation_employees" class="oe_stat_button" icon="fa-users" type="object" help="Empleados a Liquidar" attrs="{'invisible': [('employee_count', '=', 0)]}">
+							<div class="o_field_widget o_stat_info">
+								<span class="o_stat_value"><field name="employee_count"/></span>
+								<span class="o_stat_text">Empleados</span>
+							 </div>
+						</button>
+					</div>
+					<group>
+						<group>
+							<field name="name" invisible="1"/>
+							<field name="fiscal_year_id"/>
+							<field name="with_bonus"/>
+							<field name="months_and_days"/>
+							<field name="exchange_type"/>
+						</group>
+						<group>
+							<field name="gratification_type" readonly="1" force_save="1"/>
+							<field name="cts_type" readonly="1" force_save="1"/>
+							<field name="payslip_run_id"/>
+							<field name="company_id" groups="base.group_multi_company"/>
+						</group>
+					</group>
+					<notebook>
+						<page string="Gratificacion">
+							<field name="gratification_line_ids" context="{'tree_view_ref':'hr_social_benefits.hr_gratification_line_tree'}"/>
+						</page>
+						<page string="CTS">
+							<field name="cts_line_ids" context="{'tree_view_ref':'hr_social_benefits.hr_cts_line_tree'}"/>
+						</page>
+						<page string="Vacaciones">
+							<field name="vacation_line_ids" context="{'tree_view_ref': 'hr_social_benefits.hr_liquidation_vacation_line_tree'}"/>
+						</page>
+						<page string="Indemnizacion">
+							<field name="compensation_line_ids" context="{'tree_view_ref': 'hr_social_benefits.hr_compensation_line_tree'}"/>
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="hr_liquidation_tree" model="ir.ui.view">
+		<field name="name">hr.liquidation.tree</field>
+		<field name="model">hr.liquidation</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="fiscal_year_id" optional="show"/>
+				<field name="payslip_run_id" optional="show"/>
+				<field name="gratification_type" optional="show"/>
+				<field name="cts_type" optional="show"/>
+				<field name="with_bonus" optional="show"/>
+				<field name="months_and_days" optional="show"/>
+				<field name="exchange_type" optional="show"/>
+				<field name="state" optional="show"/>
+				<field name="company_id" groups="base.group_multi_company" optional="show"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="action_hr_liquidation" model="ir.actions.act_window">
+		<field name="name">Liquidacion</field>
+		<field name="res_model">hr.liquidation</field>
+		<field name="view_mode">tree,form</field>
+		<field name="help" type="html">
+			<p class="o_view_nocontent_smiling_face">
+				Crea tu primera tabla de Liquidacion aqui
+			</p>
+		</field>
+	</record>
+</odoo>

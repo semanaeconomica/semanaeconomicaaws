@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="view_account_letras_payment_manual_form_receivables" model="ir.ui.view">
+			<field name="name">account.letras.payment.manual.form</field>
+			<field name="model">account.letras.payment.manual</field>
+			<field name="arch" type="xml">
+				<form string="Letras">
+					<group>
+						<group>
+							<field name="partner_id" required="1" string="Cliente" domain="[('customer_rank','>',0)]"/>
+							<field name="letra_user_id"/>
+                            <field name="date_exchange"/>
+							<field name="tipo_cambio"/>
+                            <field name="nro_letra"/>
+                            <field name="currency_id"/>
+                            <field name="account_id" readonly="1"/>
+                            <field name="account_id" invisible="1"/>
+                            <field name="expiration_date"/>
+                            <field name="imp_div"/>
+                            <field name="debit" readonly="1"/>
+                            <field name="debit" invisible="1"/>
+                            <field name="credit" readonly="1"/>
+                            <field name="credit" invisible="1"/>
+                            <field name="company_id" readonly="1" required="1" groups="base.group_multi_company"/>  
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+		
+		<record id="view_account_letras_payment_manual_form" model="ir.ui.view">
+			<field name="name">account.letras.payment.manual.form</field>
+			<field name="model">account.letras.payment.manual</field>
+			<field name="arch" type="xml">
+				<form string="Letras">
+					<group>
+						<group>                            
+							<field name="partner_id" required="1" string="Proveedor" domain="[('supplier_rank','>',0)]"/>
+							<field name="letra_user_id"/>
+                            <field name="date_exchange"/>
+							<field name="tipo_cambio"/>
+                            <field name="nro_letra"/>
+                            <field name="currency_id"/>
+                            <field name="account_id" readonly="1"/>
+                            <field name="account_id" invisible="1"/>
+                            <field name="expiration_date"/>
+                            <field name="imp_div"/>
+                            <field name="debit" readonly="1"/>
+                            <field name="debit" invisible="1"/>
+                            <field name="credit" readonly="1"/>
+                            <field name="credit" invisible="1"/>
+                            <field name="company_id" readonly="1" required="1" groups="base.group_multi_company"/>  
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_account_letras_payment_manual_tree" model="ir.ui.view">
+			<field name="name">account.letras.payment.manual.tree</field>
+			<field name="model">account.letras.payment.manual</field>
+			<field name="arch" type="xml">
+				<tree string="Letras" >
+					<field name="letra_user_id"/>
+					<field name="partner_id"/>
+					<field name="nro_letra" />
+					<field name="currency_id"/>
+					<field name="imp_div" />
+					<field name="debit"/>
+                    <field name="credit"/>
+					<field name="company_id" groups="base.group_multi_company"/>  
+				</tree>
+			</field>
+		</record>
+
+		<record id="action_account_letras_payment_manual_receivables" model="ir.actions.act_window">
+			<field name="name">Letras</field>
+			<field name="res_model">account.letras.payment.manual</field>
+			<field name="view_ids" eval="[(5, 0, 0),
+				(0, 0, {'view_mode': 'tree', 'view_id': ref('view_account_letras_payment_manual_tree')}),
+				(0, 0, {'view_mode': 'form', 'view_id': ref('view_account_letras_payment_manual_form_receivables')})]"/>
+			<field name="domain">[('type','=','out')]</field>
+			<field name="context">{'default_type':'out'}</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+
+
+		<record id="action_account_letras_payment_manual_payables" model="ir.actions.act_window">
+			<field name="name">Letras</field>
+			<field name="res_model">account.letras.payment.manual</field>
+			<field name="view_ids" eval="[(5, 0, 0),
+				(0, 0, {'view_mode': 'tree', 'view_id': ref('view_account_letras_payment_manual_tree')}),
+				(0, 0, {'view_mode': 'form', 'view_id': ref('view_account_letras_payment_manual_form')})]"/>
+			<field name="domain">[('type','=','in')]</field>
+			<field name="context">{'default_type':'in'}</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem id="menu_account_letras_payment_manual_receivables" name="Letras"
+				  parent="account.menu_finance_receivables"
+				  action="action_account_letras_payment_manual_receivables"
+				  sequence="2"/>
+
+
+		<menuitem id="menu_account_letras_payment_manual_payables" name="Letras"
+				  parent="account.menu_finance_payables"
+				  action="action_account_letras_payment_manual_payables"
+				  sequence="2"/>
+	</data>
+</odoo>

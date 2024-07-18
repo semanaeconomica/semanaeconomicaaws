@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+        <record id="peruecon_sale_config_it_rule" model="ir.rule">
+            <field name="name">email arte config peruecon</field>
+            <field name="model_id" ref="model_peruecon_sale_config_it"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+        </record>
+    </data>
+	<data>
+		<record model="ir.ui.view" id="view_peruecon_sale_config_it_form">
+			<field name="name">peruecon.sale.config.it.form</field>
+			<field name="model">peruecon.sale.config.it</field>
+			<field name="arch" type="xml">
+				<form string="Email de Arte">
+					<sheet>
+						<group>
+							<field name="text_email"/>
+						</group>
+						<notebook name="nb1">
+							<page name="pg1" string="Correos electrónicos">
+								<field name="email_ids">
+									<tree name="emailss" string="emailsss" editable="top">
+										<field name="email" />
+									</tree>
+								</field>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+
+		<record model="ir.ui.view" id="view_peruecon_sale_config_it_tree">
+			<field name="name">peruecon.sale.config.it.tree</field>
+			<field name="model">peruecon.sale.config.it</field>
+			<field name="arch" type="xml">
+				<tree string="Email de Arte">
+					<field name="text_email"/>
+				</tree>
+			</field>
+		</record>
+
+
+		<record id="peruecon_sale_config_it_action" model="ir.actions.act_window">
+			<field name="name">Email de Arte</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">peruecon.sale.config.it</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem action="peruecon_sale_config_it_action" 
+			id="menu_peruecon_sale_config_it" 
+			parent="perueco_base_it.menu_guidelines_config" sequence="99" />
+
+	
+
+
+
+
+
+
+
+
+		<record model="ir.ui.view" id="view_sale_order_line_it_tree">
+			<field name="name">sale.order.line.it.tree</field>
+			<field name="model">sale.order.line</field>
+			<field name="arch" type="xml">
+				<tree string="Recepción de Artes" editable="top" create="0">
+					<field name="edition_id" readonly="1"/>
+					<field name="product_id" readonly="1"/>
+					<field name="salesman_id" readonly="1"/>
+					<field name="order_id" readonly="1"/>
+					<field name="order_partner_id" readonly="1"/>
+					<field name="date_recep"/>
+					<field name="user_recep" readonly="1"/>
+					<field name="state" readonly="1"/>
+				</tree>
+			</field>
+		</record>
+
+
+		<record id="sale_order_line_it_search" model="ir.ui.view">
+            <field name="name">sale.order.line.it.search</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <search string="Recepción de Artes">
+                	<field name="edition_id"/>
+					<field name="product_id"/>
+					<field name="salesman_id"/>
+					<field name="order_id"/>
+					<field name="order_partner_id"/>
+                    <separator/>
+                    <group expand="1" string="Group By...">
+                        <filter string="Edición" name="edition_id" icon="terp-partner" context="{'group_by':'edition_id'}"/>
+                        <filter string="Producto" name="product_id" icon="terp-partner" context="{'group_by':'product_id'}"/>
+                        <filter string="Vendedor" name="salesman_id" icon="terp-partner" context="{'group_by':'salesman_id'}"/>
+                        <filter string="Pedido" name="order_id" icon="terp-partner" context="{'group_by':'order_id'}"/>
+                        <filter string="Cliente" name="order_partner_id" icon="terp-partner" context="{'group_by':'order_partner_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+
+		<record id="sale_order_line_it_action" model="ir.actions.act_window">
+			<field name="name">Control de Artes</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">sale.order.line</field>
+			<field name="view_mode">tree</field>
+			<field name="domain">[('state','=','sale'),('edition_id','!=', [])]</field>
+			<field name="search_view_id" ref="sale_order_line_it_search"/>
+		</record>
+
+		<menuitem action="sale_order_line_it_action" id="menu_sale_order_line_art_it" parent="perueco_base_it.menu_guidelines_operations" sequence="1" groups="perueco_base_it.group_guidelines_artrecipe"/>
+
+		<record model="ir.ui.menu" id="menu_sale_order_line_art_it">
+          <field name="groups_id" eval="[(6,0, [ref('perueco_base_it.group_guidelines_artrecipe')])]"/>
+        </record>
+
+
+		 <record id="send_art_email_action" model="ir.actions.server">
+		        <field name="name">Email - Arte Faltante</field>
+		        <field name="model_id" ref="model_sale_order_line"/>
+		        <field name="binding_model_id" ref="model_sale_order_line"/>
+		        <field name="state">code</field>
+		        <field name="code">action = records.sendemailart()</field>
+		</record>
+
+	</data>
+</odoo>

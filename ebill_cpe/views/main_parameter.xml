@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="main_parameter_inherit" model="ir.ui.view">
+		<field name="name">main.parameter.inherit</field>
+		<field name="model">main.parameter</field>
+		<field name="inherit_id" ref="ebill.view_main_parameter_form_inherit"/>
+		<field name="arch" type="xml">
+            <field name="catalog_51_advance_ids" position="after">
+				<field name="discounts_products_ids"
+					   groups="ebill.group_electronic_billing"
+					   widget="many2many_tags"
+				/>
+			</field>
+        </field>
+	</record>
+
+</odoo>

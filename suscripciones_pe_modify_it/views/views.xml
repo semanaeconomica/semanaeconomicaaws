@@ -1,0 +1,67 @@
+<odoo>
+  <data>
+      <record id="herencia_ventas" model="ir.ui.view">
+            <field name="name">herencias.suscripcion</field>
+            <field name="model">suscription.sale.order</field>
+            <field name="inherit_id" ref="sales_subscriptions.view_sale_suscription_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="replace">
+                     <field name="name" class="oe_inline" />
+                </xpath>
+            </field>
+      </record>
+
+      <record id="herencia_oportunidades" model="ir.ui.view">
+          <field name="name">crm.lead</field>
+          <field name="model">crm.lead</field>
+          <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+          <field name="arch" type="xml">
+             <xpath expr="//field[@name='partner_id']" position="after">
+                 <field name="tipo_doc"  />
+                 <field name="num_doc"  />
+             </xpath>
+          </field>
+      </record>
+
+      <record id="herencia_cotizaciones_form" model="ir.ui.view">
+          <field name="name">sale.order</field>
+          <field name="model">sale.order</field>
+          <field name="inherit_id" ref="sale.view_order_form"/>
+          <field name="arch" type="xml">
+              <xpath expr="//field[@name='user_id']" position="after">
+                  <field name="edit_encargado"  invisible="1"/>
+                  <field name="salesman_id" attrs="{'readonly':[('edit_encargado','!=',True)]}" />
+              </xpath>
+          </field>
+      </record>
+
+
+      <record id="herencia_cotizaciones_tree" model="ir.ui.view">
+          <field name="name">sale.order</field>
+          <field name="model">sale.order</field>
+          <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+          <field name="arch" type="xml">
+              <xpath expr="//field[@name='user_id']" position="after">
+                  <field name="salesman_id"  />
+              </xpath>
+          </field>
+      </record>
+
+      <record id="herencia_pedidos_tree" model="ir.ui.view">
+          <field name="name">sale.order</field>
+          <field name="model">sale.order</field>
+          <field name="inherit_id" ref="sale.view_order_tree"/>
+          <field name="arch" type="xml">
+              <xpath expr="//field[@name='user_id']" position="after">
+                  <field name="salesman_id"  />
+              </xpath>
+          </field>
+      </record>
+
+
+
+
+
+
+  </data>
+</odoo>

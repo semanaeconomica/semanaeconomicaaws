@@ -1,0 +1,13 @@
+<odoo>
+	<data noupdate="1">
+		<record model='einvoice.catalog.20'><field name='name'>VENTA</field><field name='code'>01</field></record>
+		<record model='einvoice.catalog.20'><field name='name'>VENTA SUJETA A CONFIRMACION DEL COMPRADOR</field><field name='code'>14</field></record>
+		<record model='einvoice.catalog.20'><field name='name'>COMPRA</field><field name='code'>02</field></record>
+		<record model='einvoice.catalog.20'><field name='name'>TRASLADO ENTRE ESTABLECIMIENTOS DE LA MISMA EMPRESA</field><field name='code'>04</field></record>
+		<record model='einvoice.catalog.20'><field name='name'>TRASLADO EMISOR ITINERANTE CP</field><field name='code'>18</field></record>
+		<record model='einvoice.catalog.20'><field name='name'>IMPORTACION</field><field name='code'>08</field></record>
+		<record model='einvoice.catalog.20'><field name='name'>EXPORTACION</field><field name='code'>09</field></record>
+		<record model='einvoice.catalog.20'><field name='name'>TRASLADO A ZONA PRIMARIA</field><field name='code'>19</field></record>
+		<record model='einvoice.catalog.20'><field name='name'>OTROS</field><field name='code'>13</field></record>
+	</data>
+</odoo>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="group_edit_invoice" model="res.groups">
+        <field name="name">PERMITIR EDITAR VINCULO DE VENTA</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+
+
+
+    <record id="sale_order_form_boolean" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="vinculate_sale_invoice_js_it.sale_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="can_edit_field" optional="show" invisible="1" />
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='invoice_lines']" position="attributes">
+                    <attribute name="force_save">1</attribute>
+                    <attribute name="attrs">{'readonly': [('parent.can_edit_field','=',False)]}</attribute>
+                </xpath>
+            </field>
+    </record>
+
+</odoo>

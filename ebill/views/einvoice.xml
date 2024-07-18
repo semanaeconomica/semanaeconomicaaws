@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_einvoice_form" model="ir.ui.view">
+		<field name="name">einvoice.form</field>
+		<field name="model">einvoice</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group>
+						<group>
+							<field name="total_saved"/>
+							<field name="total_inafect"/>
+							<field name="total_exonerate"/>
+							<field name="total_free"/>
+							<field name="total_export"/>
+							<field name="total_another_charges"/>
+							<field name="global_discount"/>
+							<field name="total_discount"/>
+							<field name="total_advance"/>
+							<field name="save_changes"/>
+						</group>
+						<group>
+							<field name="total_igv"/>
+							<field name="total_icbper"/>
+							<field name="total_voucher"/>
+							<field name="perception_type"/>
+							<field name="perception_tax_base"/>
+							<field name="total_perception"/>
+							<field name="total_included_perception"/>
+							<field name="have_detraction"/>
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<record id="view_einvoice_list" model="ir.ui.view">
+		<field name="name">einvoice.list</field>
+		<field name="model">einvoice</field>
+		<field name="arch" type="xml">
+			<tree create="0" edit="0" delete="0">
+				<field name="related_ref"/>
+				<field name="total_saved"/>
+				<field name="total_inafect"/>
+				<field name="total_exonerate"/>
+				<field name="total_igv"/>
+				<field name="total_voucher"/>
+				<field name="total_perception"/>
+				<field name="total_included_perception"/>
+				<field name="have_detraction"/>
+			</tree>
+		</field>
+	</record>
+	<record id="action_einvoice_form" model="ir.actions.act_window">
+		<field name="name">Facturacion Electronica</field>
+		<field name="res_model">einvoice</field>
+		<field name="view_mode">tree,form</field>
+		<field name="help" type="html">
+		  <p class="o_view_nocontent_smiling_face">
+			Crea tu primera tabla aqui
+		  </p>
+		</field>
+	</record>
+	<menuitem action="action_einvoice_form"
+
+			  id="menu_action_einvoice_form" parent="account_base_it.menu_account_base_it" sequence="16" groups="group_electronic_billing"/>
+</odoo>

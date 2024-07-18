@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="rutas tree" model="ir.ui.view">
+           <field name="name">rutas</field>
+           <field name="model">route.yaros</field>
+           <field name="inherit_id" ref="sales_subscriptions.view_route_yaros_tree"/>
+           <field name="arch" type="xml">
+              <xpath expr="//field[@name='name']" position="before">
+                   <field name="route_type"  />
+              </xpath>
+              <xpath expr="//field[@name='name']" position="after">
+                   <field name="cantidad"  />
+              </xpath>
+               <xpath expr="//field[@name='district_ids']" position="after">
+                   <field name="count_etique"  />
+              </xpath>
+
+           </field>
+    </record>
+
+   <record id="pedidos_tree_etiquetas" model="ir.ui.view">
+           <field name="name">Etiquetas Pedidos</field>
+           <field name="model">sync.se.sesi.etiquetas</field>
+           <field name="arch" type="xml">
+              <tree string="Suscripciones Lima" editable="bottom">
+                  <field name="orden_entrega" />
+                  <field name="ruta"/>
+                  <field name="formaentrega" readonly="1" />
+                  <field name="distrito" readonly="1"  />
+                  <field name="direccion"  readonly="1" />
+                  <field name="cargo"  readonly="1" />
+                  <field name="partner_id"  readonly="1" />
+                  <field name="nombre"  readonly="1" />
+                  <field name="apellido"  readonly="1" />
+                  <field name="codproduct" readonly="1"  />
+                  <field name="product"  readonly="1"  />
+                  <field name="cantidad"  readonly="1" />
+                  <field name="fecha_inicio"  readonly="1" />
+                  <field name="state"  readonly="1" />
+              </tree>
+           </field>
+    </record>
+
+
+   <record id="search_forma" model="ir.ui.view">
+        <field name="name">sync.se.sesi.etiquetas</field>
+        <field name="model">sync.se.sesi.etiquetas</field>
+        <field name="arch" type="xml">
+            <search>
+                    <group string="Group By">
+                        <filter name="by_forma" string="Forma de Entrega"
+                                context="{'group_by': 'formaentrega'}"/>
+                    </group>
+            </search>
+        </field>
+   </record>
+
+
+   <record model="ir.actions.act_window" id="action_etiquetas_lima">
+            <field name="name">Etiquetas Lima</field>
+            <field name="res_model">sync.se.sesi.etiquetas</field>
+            <field name="view_mode">tree</field>
+            <field name="domain">[('product.no_generar_etiqueta','=',False),('state','in',('open','pending')),('ruta.route_type','=', 'lima')]</field>
+            <field name="context">{'search_default_by_forma': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Crea tu primera Etiqueta</p>
+            </field>
+   </record>
+
+   <record model="ir.actions.act_window" id="action_etiquetas_externas">
+            <field name="name">Etiquetas Externas</field>
+            <field name="res_model">sync.se.sesi.etiquetas</field>
+            <field name="view_mode">tree</field>
+            <field name="domain">[('product.no_generar_etiqueta','=',False),('state','in',('open','pending')),'|',('ruta.route_type','!=', 'lima'),('ruta','=',False)]</field>
+            <field name="context">{'search_default_by_forma': 1 }</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Crea tu primera Etiqueta</p>
+            </field>
+   </record>
+
+
+    <record model="ir.actions.act_window" id="action_rutas">
+            <field name="name">Rutas</field>
+            <field name="res_model">route.yaros</field>
+            <field name="view_mode">tree</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Crea tu primera Ruta</p>
+            </field>
+   </record>
+
+   <menuitem  id="menu_delivery_main"  name ="Delivery"
+              parent="sale.sale_menu_root" />
+
+       <menuitem  id="menu_etiquetas_main"  name ="Etiquetas"
+              parent="suscripciones_etiquetas_it.menu_delivery_main" />
+            <menuitem action="action_etiquetas_lima" id="menu_plantilla_reporte"
+             parent="suscripciones_etiquetas_it.menu_etiquetas_main" />
+            <menuitem action="action_etiquetas_externas" id="menu_plantilla_reporte_externo"
+                      groups="suscripciones_etiquetas_it.group_etiquetas_externas"
+             parent="suscripciones_etiquetas_it.menu_etiquetas_main" />
+
+       <menuitem  id="menu_rutas_main"  name ="Gestion de Rutas"
+              parent="suscripciones_etiquetas_it.menu_delivery_main" />
+             <menuitem action="suscripciones_etiquetas_it.action_rutas" id="menu_ruta"
+             parent="suscripciones_etiquetas_it.menu_rutas_main" />
+
+</odoo>

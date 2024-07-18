@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+        <record id="view_partners_form_website_extended" model="ir.ui.view">
+            <field name="name">view.res.partner.form.website</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook[last()]" position="inside">
+                    <page string="Culqi" name='culqi'>
+                        <group>
+                            <field name="id_culqi" />
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

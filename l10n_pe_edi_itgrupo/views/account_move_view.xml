@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_move_form" model="ir.ui.view">
+            <field name="model">account.move</field>
+            <field name="name">account.move.form.l10n_pe_edi</field>
+            <field name="inherit_id" ref="account.view_move_form" />
+            <field name="arch" type="xml">
+                <field name="l10n_pe_dte_operation_type" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="l10n_pe_dte_credit_note_type" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="l10n_pe_dte_debit_note_type" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="l10n_pe_dte_rectification_ref_type" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="l10n_pe_dte_rectification_ref_number" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <page name="pe_electronic_invoice" position="inside">
+                    <group>
+                        <field name="detraction_payment_id"/>
+                        <field name="detraction_type_id"/>
+                        <field name="detraction_amount"/>
+                    </group>
+                    <group string="Guias de Remision">
+						<field name="guide_line_ids" nolabel="True">
+							<tree editable="bottom">
+								<field name="numberg"/>
+							</tree>
+						</field>
+					</group>
+                </page>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,67 @@
+<odoo>
+
+    <record id="paperformat_id_test" model="report.paperformat">
+            <field name="name">Purchase Order Report</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">3.60</field>
+            <field name="margin_left">3.5</field>
+            <field name="margin_right">3.5</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">20</field>
+            <field name="dpi">90</field>
+    </record>
+
+    <report
+        id="report_cargos_it"
+        model="route.yaros"
+        string="Imprimir Etiquetas"
+        name="suscripciones_etiquetas_it.report_etiquetas_new"
+        report_type="qweb-pdf"
+        paperformat="suscripciones_etiquetas_it.paperformat_id_test"
+    />
+
+     <template id="report_etiquetas_new">
+       <t t-call="web.html_container">
+         <t t-foreach="docs" t-as="doc" >
+             <div class="header" >
+             </div>
+             <div class="footer" >
+
+             </div>
+
+             <div class="page border">
+                     <div style="width: 900px ; font-size: 10px">
+                         <t t-foreach="doc.etiquetas" t-as="et" t-as_index="i">
+                             <div style="width: 292px ; height : 128px ; float:left;                                          border: 1px solid black">
+                                 <div style="margin-top:13px; border-top: 1px solid black">
+                                     <div style="padding:10px ">
+                                      <div>
+                                          <div style="float:left ; width: 125px "><span t-field="doc.name"/>-<span t-field="et.codproduct"/></div>
+                                           <div style="float:left ; width: 125px; text-align: right;">Vence: <span t-field="et.fecha_fin"/></div>
+                                      </div>
+                                         <br/>
+                                      <div style="line-height : 0px;">
+                                          <p style="line-height : 11px; margin: 2px 0px 0px 0px ; padding:0px" ><span t-field="et.nombre"/> <span style="padding: 0px 0px 0px 3px" t-field="et.apellido"/></p>
+                                          <p style="line-height : 11px; margin:2px 0px 0px 0px ; padding:0px"><t t-if="et.partner_id.vat"> [<span t-field="et.partner_id.vat"/>]</t><span style="padding: 0px 0px 0px 3px" t-field="et.partner_id.name"/></p>
+                                          <p style="line-height : 11px; margin:2px 0px 0px 0px ; padding:0px"><span t-field="et.direccion"/>, <span t-field="et.distrito.name"  /> ,
+                                          <span t-field="et.provincia.name" /> , <span t-field="et.pais.name" /></p>
+                                      </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </t>
+                     </div>
+             </div>
+         </t>
+       </t>
+      </template>
+
+
+
+
+</odoo>

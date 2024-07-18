@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">	
+		<record model='einvoice.catalog.05'><field name='description'>IGV Impuesto General a las Ventas</field><field name='code'>1000</field><field name='international_code'>VAT</field><field name='name'>IGV</field></record>
+		<record model='einvoice.catalog.05'><field name='description'>Impuesto a la Venta Arroz Pilado</field><field name='code'>1016</field><field name='international_code'>VAT</field><field name='name'>IVAP</field></record>
+		<record model='einvoice.catalog.05'><field name='description'>ISC Impuesto Selectivo al Consumo</field><field name='code'>2000</field><field name='international_code'>EXC</field><field name='name'>ISC</field></record>
+		<record model='einvoice.catalog.05'><field name='description'>Impuesto a la bolsa plastica</field><field name='code'>7152</field><field name='international_code'>OTH</field><field name='name'>ICBPER</field></record>
+		<record model='einvoice.catalog.05'><field name='description'>Exportación</field><field name='code'>9995</field><field name='international_code'>FRE</field><field name='name'>EXP</field></record>
+		<record model='einvoice.catalog.05'><field name='description'>Gratuito</field><field name='code'>9996</field><field name='international_code'>FRE</field><field name='name'>GRA</field></record>
+		<record model='einvoice.catalog.05'><field name='description'>Exonerado</field><field name='code'>9997</field><field name='international_code'>VAT</field><field name='name'>EXO</field></record>
+		<record model='einvoice.catalog.05'><field name='description'>Inafecto</field><field name='code'>9998</field><field name='international_code'>FRE</field><field name='name'>INA</field></record>
+		<record model='einvoice.catalog.05'><field name='description'>Otros tributos</field><field name='code'>9999</field><field name='international_code'>OTH</field><field name='name'>OTROS</field></record>
+	</data>
+</odoo>

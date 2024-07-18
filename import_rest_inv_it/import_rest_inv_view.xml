@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_import_restinv1_form" model="ir.ui.view">
+        <field name="name">import.rest.inv1.form</field>
+        <field name="model">import.rest.inv1</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string="Importar" type="object" name="create_inv" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group string="Datos de Importación">
+                        <group>
+                            <field name="file_inv"/>
+                            <field name="location_id"/>
+                            <field name="location_dest_id"/>
+                            <field name="picking_type_id"/>
+                            <field name="operation_type"/>
+                        </group>
+                        <group>
+                            <field name="mistakes" readonly="1"/>
+                            <field name="date_inv"/>
+                            <field name="limit"/>
+                            <field name="separator"/>
+                            <field name="check_company"/>
+                            <field name="company_id" readonly="1" required="1" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group> 
+                        <button string="Obtener líneas" type="object" name="load_lines" class="oe_highlight"/>
+                    </group>
+                    <notebook>
+                        <page string="Datos a importar">
+                            <field name="lines" readonly="0">
+                                <tree string="valores">
+                                    <field name="product_id"/>
+                                    <field name="product_qty"/>
+                                    <field name="price_unit"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_import_restinv1_tree" model="ir.ui.view">
+        <field name="name">import.rest.inv1.tree</field>
+        <field name="model">import.rest.inv1</field>
+        <field name="arch" type="xml">
+            <tree string="Importacion Inventario Inicial">
+                <field name="name"/>
+                <field name="company_id" groups="base.group_multi_company"/>  
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_import_restinv_view" model="ir.actions.act_window">
+        <field name="name">Importar Inventario Inicial</field>
+        <field name="res_model">import.rest.inv1</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+            Crea tu primera tabla de Importacion de Inventario Inicial aqui
+        </p>
+        </field>
+    </record>
+    
+    <menuitem 
+        name="Importar Inventario Inicial"
+        action="action_import_restinv_view"
+        id="menu_import_restinv"
+        parent="stock.menu_stock_config_settings"
+        groups="stock.group_stock_manager"
+    />
+</odoo>

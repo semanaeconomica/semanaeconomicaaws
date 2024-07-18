@@ -1,0 +1,89 @@
+<odoo>
+
+	<record model="ir.actions.server" id="action_approve_multi">
+		<field name="name">Enviar a Planilla</field>
+		<field name="model_id" ref="model_hr_comission"/>
+		<field name="binding_model_id" ref="model_hr_comission" />
+		<field name="state">code</field>
+		<field name="code">
+			if records:
+				records.send_payslip()
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="hr_comission_form">
+		<field name="name">hr.comission.form</field>
+		<field name="model">hr.comission</field>
+		<field name="arch" type="xml">
+			<form>
+				<header>
+					<button name="make_wait" string="Confirmar" type="object" class="oe_highlight" states="draft"/>
+					<button name="make_cancel" string="Cancelar" type="object" class="oe_highlight" states="draft,wait,refuse,approve"/>
+					<button name="action_approve" string="Aprobar" type="object" class="oe_highlight" states="wait"/>
+					<button name="action_approve2" string="Aprobar" type="object" class="oe_highlight" states="secondapprove"/>
+					<button name="refuse" string="Rechazar" type="object" class="oe_highlight" states="wait,secondapprove"/>
+					<button name="send_payslip" string="Enviar a Planilla" type="object" class="oe_highlight" states="approve"/>
+					<button name="send_to_draft" string="Volver a Borrador" type="object" class="oe_highlight" states="cancel"/>
+					<field name="state" widget="statusbar"/>
+				</header>
+				<sheet>
+					<group>
+						<group>
+							<field name="name"/>
+							<field name="company_id"/>
+							<field name="employee_id"/>
+							<field name="payslip_id"/>
+						</group>
+						<group>
+							<field name="input_id"/>
+							<field name="amount"/>
+						</group>
+					</group>
+					<notebook invisible="1">
+						<page name="aprobaciones" string="Aprobaciones">
+							<group>
+								<field name="user_approve_id"/>
+								<field name="date_approve"/>
+							</group>
+							<group>
+								<field name="user_refuse_id"/>
+								<field name="date_refuse"/>
+							</group>
+						</page>
+						<page name="coment" string="Comentarios">
+							<field name="motive"/>
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="hr_comission_tree">
+		<field name="name">hr.comission.tree</field>
+		<field name="model">hr.comission</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name"/>
+				<field name="company_id"/>
+				<field name="employee_id"/>
+				<field name="payslip_id"/>
+				<field name="input_id"/>
+				<field name="amount"/>
+				<field name="state"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="action_hr_comission_it" model="ir.actions.act_window">
+		<field name="name">Ingresos Variables</field>
+		<field name="res_model">hr.comission</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<menuitem id="menu_hr_comission_it"
+		name="Ingresos Variables"
+		parent="hr_payroll.menu_hr_payroll_payslips"
+		action="action_hr_comission_it"
+		sequence="99"/>
+</odoo>

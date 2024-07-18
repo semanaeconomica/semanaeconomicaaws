@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_account_journal_rep_form">
+			<field name="name">account.journal.rep.form</field>
+			<field name="model">account.journal.rep</field>
+			<field name="arch" type="xml">
+				<form string="Libro Diario">
+						<group>
+							<group>
+                                <field name="company_id"/>
+                                <field name="exercise"/>
+								<field name="date_ini"/>
+								<field name="date_end"/>
+							</group>
+							<group>
+								<field name="type_show"/>
+								<field name="currency"/>
+							</group>
+						</group>
+                        <group string="Libros">
+                            <field name="libros"/>
+                        </group>
+						<footer>
+							<button string="Mostrar" name="get_journals" type="object" class="oe_highlight"/>
+                            <button string="Mostrar Todo" name="get_all" type="object" class="oe_highlight"/>
+                            or
+							<button string="Cancel" class="oe_link" special="cancel"/>
+						</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="account_journal_rep_action" model="ir.actions.act_window">
+			<field name="name">Libro Diario</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">account.journal.rep</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+
+		<menuitem action="account_journal_rep_it.account_journal_rep_action" 
+				id="menu_action_account_journal_rep" 
+				parent="account_report_menu_it.menu_account_report_it" 
+				sequence="1" 
+				groups="account_base_it.group_account_tables_user"/>
+	</data>
+</odoo>

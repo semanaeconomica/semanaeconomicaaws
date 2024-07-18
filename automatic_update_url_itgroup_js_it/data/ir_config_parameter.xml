@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="url_itgroup" model="ir.config_parameter">
+            <field name="key">url_itgroup</field>
+            <field name="value">https://itgrupo.net/verify_url_instance</field>
+        </record>
+        <data noupdate="1">
+          <record id="url_main" model="ir.config_parameter">
+            <field name="key">url_main</field>
+            <field name="value"></field>
+          </record>
+        </data>
+
+        <record id="url_validated" model="ir.config_parameter">
+            <field name="key">url_validated</field>
+            <field name="value">False</field>
+        </record>
+</odoo>

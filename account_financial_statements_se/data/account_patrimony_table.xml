@@ -1,0 +1,17 @@
+<odoo>
+	<data noupdate="1">
+		<record model='account.patrimony.table'><field name='code'>00</field><field name='name'>Saldos Apertura</field></record>
+		<record model='account.patrimony.table'><field name='code'>01</field><field name='name'>Efecto acumulado de los cambios en las políticas contables y la corrección de errores sustanciales</field></record>
+		<record model='account.patrimony.table'><field name='code'>02</field><field name='name'>Distribuciones o asignaciones de utilidades efectuadas en el período</field></record>
+		<record model='account.patrimony.table'><field name='code'>03</field><field name='name'>Dividendos y participaciones acordados durante el período</field></record>
+		<record model='account.patrimony.table'><field name='code'>04</field><field name='name'>Nuevos aportes de accionistas</field></record>
+		<record model='account.patrimony.table'><field name='code'>05</field><field name='name'>Movimiento de prima en la colocación de aportes y donaciones</field></record>
+		<record model='account.patrimony.table'><field name='code'>06</field><field name='name'>Incrementos o disminuciones por fusiones o escisiones</field></record>
+		<record model='account.patrimony.table'><field name='code'>07</field><field name='name'>Revaluación de activos</field></record>
+		<record model='account.patrimony.table'><field name='code'>08</field><field name='name'>Capitalización de partidas patrimoniales</field></record>
+		<record model='account.patrimony.table'><field name='code'>09</field><field name='name'>Redención de Acciones de Inversión o reducción de capital</field></record>
+		<record model='account.patrimony.table'><field name='code'>10</field><field name='name'>Utilidad (pérdida) Neta del ejercicio</field></record>
+		<record model='account.patrimony.table'><field name='code'>11</field><field name='name'>Otros incrementos o disminuciones de las partidas patrimoniales</field></record>
+		<record model='account.patrimony.table'><field name='code'>12</field><field name='name'>Devoluciones de Prestamos</field></record>
+	</data>
+</odoo>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+        <record id="view_landed_invoice_book_tree" model="ir.ui.view">
+            <field name="name">landed.invoice.book.tree</field>
+            <field name="model">landed.invoice.book</field>
+            <field eval="1" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Gastos Vinculados - Facturas" create="false">
+                    <field name="invoice_date"/>
+                    <field name="type_document_id"/>
+                    <field name="nro_comp"/>
+                    <field name="date"/>
+                    <field name="partner_id"/>
+                    <field name="product_id"/>
+                    <field name="debit" sum="debit"/>
+                    <field name="amount_currency" sum="amount_currency"/>
+                    <field name="tc"/>
+                    <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="landed_invoice_book_search" model="ir.ui.view">
+            <field name="name">landed.invoice.book.search</field>
+            <field name="model">landed.invoice.book</field>
+            <field name="arch" type="xml">
+                <search string="Gastos Vinculados - Facturas">
+                    <field name="type_document_id"/>
+                    <field name="nro_comp"/>
+                    <field name="partner_id"/>
+                    <field name="product_id"/>
+                    <separator/>
+                    <group expand="1" string="Group By...">
+                        <filter string="Producto" name="product_id" icon="terp-partner" context="{'group_by':'product_id'}"/>
+                        <filter string="Partner" name="partner_id" icon="terp-partner" context="{'group_by':'partner_id'}"/>
+                        <filter string="Tipo de Documento" name="type_document_id" icon="terp-partner" context="{'group_by':'type_document_id'}"/>
+                        <filter string="Número Comprobante" name="nro_comp" icon="terp-partner" context="{'group_by':'nro_comp'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="action_landed_invoice_book_it" model="ir.actions.act_window">
+            <field name="name">Gastos Vinculados - Facturas</field>
+            <field name="res_model">landed.invoice.book</field>
+            <field name="view_id" ref="view_landed_invoice_book_tree"/>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree</field>
+            <field name="search_view_id" ref="landed_invoice_book_search"/>
+        </record>
+
+    </data>
+</odoo>

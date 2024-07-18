@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="hr_contract_form_inherit" model="ir.ui.view">
+		<field name="name">hr.contract.form.inherit</field>
+		<field name="model">hr.contract</field>
+		<field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+		<field name="arch" type="xml">
+			<group name="afp_net" position="after">
+				<group name="fifth_category" string="Quinta Categoria">
+					<group>
+						<field name="fifth_rem_proyected"/>
+					</group>
+					<group>
+						<field name="grat_july_proyected"/>
+						<field name="grat_december_proyected"/>
+					</group>
+				</group>
+			</group>
+		</field>
+	</record>
+</odoo>

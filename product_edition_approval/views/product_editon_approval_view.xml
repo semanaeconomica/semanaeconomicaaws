@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+        <record id="product_editon_approval_it_rule" model="ir.rule">
+            <field name="name">Aprobaciones company</field>
+            <field name="model_id" ref="model_product_edition_approval_it"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+        </record>
+    </data>
+	<data>
+
+
+		<record model="ir.ui.view" id="view_edition_aprov_level_it">
+			<field name="name">edition.aprov.level.it.form</field>
+			<field name="model">edition.aprov.level.it</field>
+			<field name="arch" type="xml">
+				<form string="Conf. Aprobaciones">
+					<sheet>
+						<group>
+							<field name="name" invisible="1"/>
+							<field name="order" invisible="1"/>
+							<field name="user_id"/>
+							<field name="active"/>
+						</group>
+
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+
+		<record model="ir.ui.view" id="view_edition_aprov_level_it_tree">
+			<field name="name">edition.aprov.level.it.tree</field>
+			<field name="model">edition.aprov.level.it</field>
+			<field name="arch" type="xml">
+				<tree string="Conf. de Aprobaciones">
+					<field name="user_id"/>
+				</tree>
+			</field>
+		</record>
+
+
+		<record id="edition_aprov_level_it_action" model="ir.actions.act_window">
+			<field name="name">Conf. de Aprobaciones</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">edition.aprov.level.it</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem action="edition_aprov_level_it_action" id="menu_edition_aprov_level_it" parent="perueco_base_it.menu_guidelines_config" sequence="99" groups="perueco_base_it.group_guidelines_admin"/>
+
+
+
+	</data>
+</odoo>

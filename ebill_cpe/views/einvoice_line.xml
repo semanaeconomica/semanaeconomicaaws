@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="ebill.view_einvoice_line_form" model="ir.ui.view">
+		<field name="name">einvoice.line.form</field>
+		<field name="model">einvoice.line</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group>
+						<group>
+							<field name="code" readonly="1"/>
+							<field name="uom" readonly="1"/>
+							<field name="unit_value"/>
+							<field name="unit_price"/>
+							<field name="discount_value"/>
+							<field name="percentage_discount" readonly="1"/>
+							<field name="sunat_product_code" readonly="1"/>
+							<field name="igv_type" readonly="1"/>
+							<field name="save_changes"/>
+							<field name="isc_type"/>
+							<field name="isc"/>
+						</group>
+						<group>
+							<field name="subtotal_origin" readonly="1" />
+							<field name="subtotal"/>
+							<field name="igv_origin" readonly="1" />
+							<field name="igv"/>
+							<field name="icbper"/>
+							<field name="total_origin" readonly="1"/>
+							<field name="total"/>
+							<field name="advance_regularization" readonly="1"/>
+							<field name="advance_document_serie" readonly="1"/>
+							<field name="advance_document_number" readonly="1"/>
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+</odoo>

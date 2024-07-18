@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="firma_res_users" model="ir.ui.view">
+           <field name="name">res.users</field>
+           <field name="model">res.users</field>
+           <field name="inherit_id" ref="base.view_users_form"/>
+           <field name="arch" type="xml">
+               <xpath expr="//field[@name='digital_signature']" position="before">
+                   <field name="signature_up"  widget="image"  />
+               </xpath>
+           </field>
+    </record>
+
+    <record id="firma_venta" model="ir.ui.view">
+           <field name="name">sale.order</field>
+           <field name="model">sale.order</field>
+           <field name="inherit_id" ref="sale.view_order_form"/>
+           <field name="arch" type="xml">
+               <xpath expr="//field[@name='user_id']" position="after">
+                   <field name="digital_signature"  widget="image"   />
+               </xpath>
+           </field>
+    </record>
+
+</odoo>

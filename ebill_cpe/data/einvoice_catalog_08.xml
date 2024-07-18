@@ -1,0 +1,5 @@
+<odoo>
+		<record id="einvoice_catalog_08_01" model='einvoice.catalog.08'><field name='name'>Sistema al valor (Apèndice IV , lit. A - T.U.O IGV e ISC ) </field><field name='code'>01</field><field name='code_fact'>1</field></record>
+		<record id="einvoice_catalog_08_02" model='einvoice.catalog.08'><field name='name'>Aplicacion del Monto Fijo</field><field name='code'>02</field><field name='code_fact'>2</field></record>
+		<record id="einvoice_catalog_08_03" model='einvoice.catalog.08'><field name='name'>Sistema de Precios de Venta al Pùblico</field><field name='code'>03</field><field name='code_fact'>3</field></record>
+</odoo>

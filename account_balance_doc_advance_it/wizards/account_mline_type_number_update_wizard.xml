@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_account_mline_type_number_update_wizard_form">
+			<field name="name">account.mline.type.number.update.wizard.form</field>
+			<field name="model">account.mline.type.number.update.wizard</field>
+			<field name="arch" type="xml">
+				<form string="Fusionar Comprobantes">
+					<group>
+						<group>
+							<field name="type_document_id" required="1"/>
+							<field name="nro_comp" required="1"/>
+						</group>
+					</group>
+					<footer>
+						<button string="Aplicar" name="update_type_number" type="object" class="oe_highlight"/>
+						or
+						<button string="Cancel" class="oe_link" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_account_mline_type_number_update_wizard_form_saldos">
+			<field name="name">account.mline.type.number.update.wizard.form.saldos</field>
+			<field name="model">account.mline.type.number.update.wizard</field>
+			<field name="arch" type="xml">
+				<form string="Fusionar Comprobantes">
+					<group>
+						<group>
+							<field name="type_document_id" required="1"/>
+							<field name="nro_comp" required="1"/>
+						</group>
+					</group>
+					<footer>
+						<button string="Aplicar" name="update_type_number_saldos" type="object" class="oe_highlight"/>
+						or
+						<button string="Cancel" class="oe_link" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="account_mline_type_number_update_wizard_action" model="ir.actions.act_window">
+			<field name="name">Fusionar Comprobantes</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">account.mline.type.number.update.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+	</data>
+</odoo>

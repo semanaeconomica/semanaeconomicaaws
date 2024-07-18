@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_main_parameter_warehouse_user,main.parameter.warehouse.user,stock_picking_note.model_main_parameter_warehouse,stock_picking_note.group_stock_picking_manager,1,1,1,1
+access_main_parameter_warehouse_user_read,main.parameter.warehouse.user.read,stock_picking_note.model_main_parameter_warehouse,stock.group_stock_user,1,0,0,0
+access_stock_picking_anulation_line_user,stock.picking.anulation.line.user,stock_picking_note.model_stock_picking_anulation_line,stock.group_stock_manager,1,1,1,1
+access_einvoice_catalog_20_user,einvoice.catalog.20.user,stock_picking_note.model_einvoice_catalog_20,account_base_it.group_account_tables_user,1,1,1,1
+access_einvoice_catalog_20_read,einvoice.catalog.20.read,stock_picking_note.model_einvoice_catalog_20,stock.group_stock_user,1,0,0,0
+access_main_parameter_inv_user,access.main.parameter.inv.user,account_base_it.model_main_parameter,stock.group_stock_user,1,0,0,0
+access_main_parameter_sale_user,access.main.parameter.sale.user,account_base_it.model_main_parameter,sales_team.group_sale_salesman,1,0,0,0
+access_main_parameter_purchase_user,access.main.parameter.purchase.user,account_base_it.model_main_parameter,purchase.group_purchase_user,1,0,0,0
+access_sale_main_parameter_stock,sale.main.parameter.stock,sale_parameter.model_sale_main_parameter,stock.group_stock_user,1,0,0,0
+access_sale_main_parameter_sale,sale.main.parameter.sale,sale_parameter.model_sale_main_parameter,sales_team.group_sale_salesman,1,0,0,0
+access_sale_main_parameter_purchase,sale.main.parameter.purchase,sale_parameter.model_sale_main_parameter,purchase.group_purchase_user,1,0,0,0
+access_stock_picking_anulation_line_sale,stock.picking.anulation.line.sale,stock_picking_note.model_stock_picking_anulation_line,sales_team.group_sale_salesman,1,0,0,0

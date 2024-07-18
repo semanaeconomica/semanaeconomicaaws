@@ -1,0 +1,9 @@
+.mercadopago-response-row label {
+    text-align: left;
+    font-weight: bold;
+}
+.mercadopago-response-row
+{
+    padding-top: 10px;
+    border-bottom: 1px dashed #ddd;
+}

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+	   <record id="view_picking_form" model="ir.ui.view">
+			<field name="name">stock.picking.form</field>
+			<field name="model">stock.picking</field>
+			<field name="inherit_id" ref="stock.view_picking_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//header" position="inside">
+					<field name="can_anulated" invisible="1"></field>
+                    <button name="get_wizard" type="object" string="Anular Guia Remision" class="oe_highlight" attrs="{'invisible':['|','|',('can_anulated','=',False),('state','not in',['done']),('picking_type_code', 'not in', ['outgoing','internal'])]}"/>
+                </xpath>
+				<field name="origin" position="after">
+					<field name="related_location" invisible="1"/>
+                    <field name="related_location_dest" invisible="1"/>
+					<field name="is_manager" invisible="1"></field>
+					<field name="serie_guia" attrs="{'readonly': [('state','in', ['cancel','done']),('is_manager','=',False)]}"/>
+					<field name="campo_temp" invisible="1"></field>
+					<label for="numberg" string="# Guía de remision"/>
+						<div class="o_row">
+							<field name="numberg" nolabel="1" attrs="{'readonly': [('state','in', ['cancel','done']),('is_manager','=',False)]}"/>
+							<button name="refres_numg" states="draft,waiting,confirmed,assigned" string="Actualizar" type="object" class="oe_link" attrs="{'invisible':['|',('campo_temp','=',False),('state','in', ['cancel','done'])]}"/>
+						</div>
+					<field name="canceled_guide" readonly="1"/>
+				</field>
+				<xpath expr="//notebook/page[@name='extra']" position="before">
+					<page string="Transporte" name="transport">
+						<group>
+							<group>
+								<field name="carrier_id_it" attrs="{'readonly': [('state','in', ['cancel','done'])]}"/>
+								<field name="vehicle_id" attrs="{'readonly': [('state','in', ['cancel','done'])]}"/>
+								<field name="driver_id" attrs="{'readonly': [('state','in', ['cancel','done'])]}"/>
+								<field name="type_of_transport" attrs="{'readonly': [('state','in', ['cancel','done'])]}"/>
+							</group>
+							<group>
+								<field name="reason_transfer" attrs="{'readonly': [('state','in', ['cancel','done'])]}"/>
+								<field name="starting_point" attrs="{'readonly': [('state','in', ['cancel','done'])], 'required':[('picking_type_code','in',['outgoing','internal']),('numberg','!=',False)]}"/>
+								<field name="ending_point" attrs="{'readonly': [('state','in', ['cancel','done'])], 'required':[('picking_type_code','in',['outgoing','internal']),('numberg','!=',False)]}"/>
+								<field name="transfer_date" attrs="{'readonly': [('state','in', ['cancel','done'])]}"/>
+							</group>
+						</group>
+					</page>
+					<page string="Historial" attrs="{'invisible':[('numberg','=','')]}">
+                        <field name="anulation_line_ids" readonly="1">
+                            <tree create="0" delete="0">
+                                <field name="guide_number"/>
+                                <field name="cancel_reason"/>
+                                <field name="cancel_date"/>
+                                <field name="res_user_id"/>
+                            </tree>
+                        </field>
+                    </page>
+				</xpath>
+			</field>
+		</record>
+		<record id="stock_picking_tree_inherit" model="ir.ui.view">
+			<field name="name">stock.picking.tree.inherit</field>
+			<field name="inherit_id" ref="stock.vpicktree"/>
+			<field name="model">stock.picking</field>
+			<field name="arch" type="xml">
+				<field name="backorder_id" position="after">
+					<field name="numberg" optional="show"/>
+					<field name="canceled_guide" optional="show"/>
+				</field>
+			</field>
+		</record>
+		<record id="view_picking_internal_search_inherit" model="ir.ui.view">
+			<field name="name">stock.picking.internal.search.inherit</field>
+			<field name="inherit_id" ref="stock.view_picking_internal_search"/>
+			<field name="model">stock.picking</field>
+			<field name="arch" type="xml">
+				<xpath expr="/search/filter[@name='late']" position="before">
+					<filter name="anulated" string="Guias Anuladas" domain="[('canceled_guide', '=', True)]" help="Anulados"/>
+					<separator/>
+				</xpath>
+				<field name="name" position="after">
+					<field name="numberg" string="# Guía"/>
+				</field>
+			</field>
+		</record>
+		<record model="ir.actions.server" id="action_print_remision_stock_picking">
+			<field name="name">Imprimir Guia de Remision</field>
+			<field name="model_id" ref="stock.model_stock_picking"/>
+			<field name="binding_model_id" ref="stock.model_stock_picking" />
+			<field name="state">code</field>
+			<field name="code">action = records.print_remision()</field>
+		</record>
+	</data>
+</odoo>

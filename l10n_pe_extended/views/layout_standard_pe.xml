@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="styles_company_report" inherit_id="web.styles_company_report">
+        <xpath expr="//t[contains(@t-if, 'layout')]" position="after">
+            <t
+                t-elif="layout == 'l10n_pe_extended.external_layout_standard_pe_template'"
+            >
+            &amp;.layout_standard_pe {
+                .page {
+                    font-size: 8pt;
+                    line-height: 2;
+                }
+                h2 {
+                    color: <t t-esc='primary' />;
+                    border:1.5px solid #000000;
+                    padding:15px;
+                    font-size:18px;
+                    text-align:center;
+                    font-weight:bold;
+                    border-radius: 10px;
+                    width:350px;
+                    float:right;
+                }
+                .table-pe{
+                    width:100%;
+                    border-collapse: collapse;
+                    height:100%;
+                }
+                .table-pe tbody{
+                    width:100%;
+                    border-collapse: collapse;
+                    height: 100%;
+                }
+                .table-pe > thead{
+                    border-top:1px solid #000000;
+                    border-bottom:1px solid #000000;
+                }
+                .table-pe > tfoot{
+                    border-bottom:1px solid #000000;
+                }
+                .table-pe > thead > tr > th{
+                    padding:5px;
+                    border-right:1px solid #000000;
+                }
+                .table-pe > thead > tr > th:first-child{
+                    border-left:1px solid #000000;
+                }
+                .table-pe > tbody > tr > td{
+                    padding:3px 5px 3px 5px;
+                }
+                .table-pe > tbody > tr > td:first-child{
+                    border-left:1px solid #000000;
+                }
+                .table-pe > tbody > tr > td:last-child{
+                    border-right:1px solid #000000;
+                }
+                .table-pe > tbody > tr:last-child > td{
+                    border-right:1px solid #000000;
+                    border-bottom:1px solid #000000;
+                }
+                .table-pe > tfoot > tr > td:first-child{
+                    border-left:1px solid #000000;
+                }
+                .table-pe  td.border-top{
+                    border-top: 1px solid #000000;
+                }
+                .table-pe  td.border-bottom{
+                    border-bottom: 1px solid #000000;
+                }
+                .table-it tr.table-remaining-height td{
+                    height:100%;
+                }
+            }
+        </t>
+        </xpath>
+    </template>
+    <template id="external_layout_standard_pe_template">
+        <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
+            <div class="o_boxed_header">
+            <div class="row mb8">
+                <div class="col-6">
+                    
+                </div>
+                <div class="col-6 text-right mb4">
+                    <h4 class="mt0" t-field="company.report_header"/>
+                    
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div t-attf-class="article layout_standard_pe o_company_#{company.id}_layout" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <t t-raw="0"/>
+        </div>
+
+        <div t-attf-class="footer o_boxed_footer o_company_#{company.id}_layout">
+            <div class="text-center">
+                <ul class="list-inline">
+                    <li t-if="company.phone" class="list-inline-item">Tel: <span class="o_force_ltr" t-field="company.phone"/></li>
+                    <li t-if="company.email" class="list-inline-item">Mail: <span t-field="company.email"/></li>
+                    <li t-if="company.website" class="list-inline-item">Web: <span t-field="company.website"/></li>
+                    <li t-if="company.vat" class="list-inline-item"><t t-esc="company.country_id.vat_label or 'Tax ID'"/>: <span t-field="company.vat"/></li>
+                </ul>
+                <div t-field="company.report_footer"/>
+                <div t-if="report_type == 'pdf'">
+                    Page: <span class="page"/> / <span class="topage"/>
+                </div>
+            </div>
+        </div>
+    </template>
+</odoo>

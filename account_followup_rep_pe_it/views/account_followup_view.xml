@@ -1,0 +1,39 @@
+<odoo>
+	<data>
+		<record id="customer_statements_extradata_form_view" model="ir.ui.view">
+			<field name="name">customer.statements.extradata.followup</field>
+			<field name="inherit_id" ref="account_followup.customer_statements_form_view"/>
+			<field name="model">res.partner</field>
+			<field name="arch" type="xml">
+				<xpath expr="//form/sheet/followup" position="after">
+					<group name="receiver" string="Seguimiento de Pago">
+						<group>
+							<field name="receiver_contact"/>
+							<field name="responsible_followup_id"/>
+						</group>
+						<group>
+							<field name="date_next_action"/>
+							<field name="text_next_action"/>
+							<field name="partner_pay_promise"/>
+						</group>
+					</group>
+				</xpath>
+			</field>
+		</record>
+
+		<record id="customer_statements_extradata_tree_view" model="ir.ui.view">
+			<field name="name">customer.statements.extradata.tree</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="account_followup.customer_statements_tree_view"/>
+			<field name="arch" type="xml">
+				<field name="name" position="after">
+					<field name="receiver_contact" optional="hide"/>
+					<field name="responsible_followup_id" optional="hide"/>
+					<field name="date_next_action" optional="hide"/>
+					<field name="text_next_action" optional="hide"/>
+					<field name="partner_pay_promise" optional="hide"/>
+				</field>
+			</field>
+		</record> 
+	</data>
+</odoo>

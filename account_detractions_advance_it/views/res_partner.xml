@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_partner_form_inherit_detractions" model="ir.ui.view">
+			<field name="name">res.partner.form.inherit.detractions</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="account_fields_it.view_partner_form_inherit"/>
+			<field name="arch" type="xml">
+				<data>
+					<label for="p_detraction" position="replace">
+                	</label>
+					<div name="p_detraction" position="replace">
+                	</div>
+				</data>
+			</field>
+		</record>
+	</data>
+</odoo>

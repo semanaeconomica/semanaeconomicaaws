@@ -1,0 +1,54 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="hr_vacation_rest_wizard_form">
+			<field name="name">hr_vacation_rest_wizard_form</field>
+			<field name="model">hr.vacation.rest.wizard</field>
+			<field name="arch" type="xml">
+				<form>
+					<h1>Control de Vacaciones</h1>
+					<group>
+						<field name="year"/>
+						<field name="employee_id" readonly="1"/>
+						<field name="showall" readonly="1"/>
+					</group>
+					<footer>
+						<button string="Mostrar" name="make_vacation_rest" type="object" class="oe_highlight"/>
+						<button string="Cancel" class="oe_link" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+
+		<record model="ir.ui.view" id="hr_vacation_rest_wizard_current_form">
+			<field name="name">hr_vacation_rest_wizard_current_form</field>
+			<field name="model">hr.vacation.rest.wizard</field>
+			<field name="inherit_id" ref="hr_vacation_rest_wizard_form"/>
+			<field name="groups_id" eval="[(6,0,[ref('hr_vacations.group_hr_vacation_root')])]"/>
+			<field name="arch" type="xml">
+				<field name="employee_id" position="attributes">
+					<attribute name="readonly">0</attribute>
+				</field>
+				<field name="showall" position="attributes">
+					<attribute name="readonly">0</attribute>
+				</field>
+			</field>
+		</record>		
+
+
+		<record id="action_hr_vacation_rest_wizard" model="ir.actions.act_window">
+			<field name="name">Control de Vacaciones</field>
+			<field name="res_model">hr.vacation.rest.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+		<menuitem
+			id="menu_hr_vacation_rest_wizard"
+			parent="hr_vacations.menu_hr_vacation"
+			action="action_hr_vacation_rest_wizard"
+			sequence="2"
+			groups="hr_vacations.group_hr_vacation_root"
+		/>
+
+	</data>
+</odoo>

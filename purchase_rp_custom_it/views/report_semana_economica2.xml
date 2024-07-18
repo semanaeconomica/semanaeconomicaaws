@@ -1,0 +1,130 @@
+
+<odoo>
+   <report
+        id="report_it_group2"
+        model="sale.order"
+        string="Pedido de Venta Semana Economica"
+        name="purchase_rp_custom_it.report_itgroup_new2"
+        report_type="qweb-pdf"
+        paperformat="purchase_rp_custom_it.paperformat_id_test"
+    />
+
+    <template id="report_itgroup_new2">
+       <t t-call="web.html_container">
+         <t t-foreach="docs" t-as="doc" >
+                   <div class="header" style="font-size: 12px;">
+
+				   </div>
+
+                   <div class="footer" align="center" style="font-size: 12px;">
+
+                   </div>
+                   <t t-call="web.external_layout">
+
+                     <div class="page" style="font-size: 12px;">
+
+
+                        <div class="" style="font-size: 12px;">
+					        <div class="row">
+							    <div class="col-4 "  >
+                                   <img t-if="doc.company_id.logo" t-att-src="image_data_uri(doc.company_id.logo)"
+                                     alt="Logo" style="max-height: 100px; max-width: 200px; vertical-align: baseline;"/>
+							    </div>
+							    <div class="col-4 text-center" style="font-size:12px;">
+								   <span class="text-right" t-field="doc.company_id.partner_id.contact_address"/><br/>
+                                   <span class="text-right" ></span> <span class="text-right" t-field="doc.company_id.phone"/><br/>
+                                   <span class="text-right" ></span> <span class="text-right" t-field="doc.company_id.email"/><br/>
+                                   <span class="text-right" ></span> <span class="text-right" t-field="doc.company_id.website"/><br/>
+                                </div>
+							    <div class="col-4 float-left text-right" style="font-size:16px;">
+                                  <div class="border mt-4 pt-2 pb-2 text-center" >
+                                     R.U.C. <span t-field="doc.company_id.vat"/><br/>
+                                  </div>
+							    </div>
+					        </div>
+				        </div>
+
+
+                        <div class="container-fluid  ">
+                          <div class="text-center mb-4 pt-4">
+                               <span class="h2" >Pedido de Venta: </span> <span class="h1"  t-field="doc.name"/><br/>
+                          </div>
+
+		                  <table class="table table-bordered" >
+                                 <thead class="thead-dark ">
+                                      <tr>
+                                        <td class="bg-danger text-center font-weight-bold">DESCRIPCION</td>
+                                        <td class="bg-danger text-center font-weight-bold">CANT.</td>
+                                        <td class="bg-danger text-center font-weight-bold">PRECIO DE LISTA</td>
+                                        <td class="bg-danger text-center font-weight-bold">DESC. ESPECIAL(%)</td>
+                                        <td class="bg-danger text-center font-weight-bold">NETO</td>
+                                      </tr>
+                                  </thead>
+
+
+                                  <tbody >
+                                     <t t-foreach="doc.order_line" t-as="line" t-as_index="i">
+                                         <tr>
+                                            <td >
+                                                <span t-field="line.product_id.name"/>
+                                                <span t-field="line.name"/>
+                                            </td>
+                                            <td class="text-right"><span t-field="line.product_uom_qty"
+                                            t-options='{"widget": "float", "precision": 0}' /></td>
+                                            <td class="text-right"><span t-field="doc.currency_id.symbol" class="mr-1"/> <span t-field="line.price_unit"  t-options='{"widget": "float", "precision": 2}' /></td>
+                                            <td class="text-right"><span t-field="line.discount"/></td>
+                                            <td class="text-right"><span t-field="doc.currency_id.symbol" class="mr-1"/><span t-field="line.price_subtotal"  t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </tr>
+                                     </t>
+                                      <tr>
+                                        <td colspan="3"  rowspan="3"></td>
+                                        <td><strong>SUBTOTAL</strong></td>
+                                        <td  class="text-right"><span t-field="doc.amount_untaxed"/></td>
+                                      </tr>
+                                      <tr>
+                                        <td ><strong>IGV (18%)</strong></td>
+                                        <td  class="text-right"><span t-field="doc.amount_tax"/></td>
+                                      </tr>
+                                      <tr class="bg-danger font-weight-bold" >
+                                        <td ><strong>TOTAL</strong></td>
+                                        <td  class="text-right"><span t-field="doc.amount_total"/></td>
+                                      </tr>
+
+                                  </tbody>
+                          </table>
+                          <p><strong>TÉRMINOS Y CONDICIONES:</strong></p>
+                          <p><span t-field="doc.note"/></p>
+                        </div>
+
+                        <div class="container pt-4">
+                            <div class="row">
+                               <div class="col-6">
+                                   <center>
+                                       <div style="height: 100px; width: 250px; vertical-align: baseline;">
+
+                                       </div>
+                                       <hr/>
+                                       <span class="text-right text-uppercase" t-field="doc.partner_id.name"/>
+                                   </center>
+                               </div>
+                               <div class="col-6">
+                                   <center>
+                                       <div style="height: 125px" class="mb-2">
+                                           <img t-if="doc.digital_signature" t-att-src="image_data_uri(doc.digital_signature)"
+                                     alt="Logo" style="max-height: 130px; width: 250px;"/>
+                                       </div>
+                                   <span class="text-right mt-1 text-uppercase" t-field="doc.user_id"/>
+                                   </center>
+                               </div>
+                            </div>
+                        </div>
+
+                         <t t-raw="doc.plantilla_reporte_rem"/>
+                      </div>
+
+                   </t>
+         </t>
+       </t>
+</template>
+
+</odoo>

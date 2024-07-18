@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_edition_it,product.edition.it,model_product_edition_it,sales_team.group_sale_manager,1,1,1,1
+access_product_edition_line_it,product.edition.line.it,model_product_edition_line_it,sales_team.group_sale_manager,1,1,1,1
+access_edition_title_it,edition.title.it,model_edition_title_it,sales_team.group_sale_manager,1,1,1,1

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+		<data>
+
+				<!-- Top menu item -->
+				<menuitem name="Estados Financieros SE"
+						id="financial_statements_se"
+						action="mail.action_discuss"
+						groups="account_financial_statements_se.group_account_financial_statements_se_menu"
+						web_icon="account_financial_statements_se,static/description/icon.png"
+						sequence="60"/>
+
+				<menuitem id="financial_statements_se_budget" 
+									name="Presupuestos" 
+									parent="financial_statements_se" 
+									sequence="3"/>
+
+				<menuitem parent="financial_statements_se_budget"
+									id="menu_act_crossovered_budget_financial_statements_se"
+									name="Presupuestos"
+									action="account_budget.act_crossovered_budget_view" 
+									sequence="3"/>
+				
+				<menuitem id="financial_statements_se_reports" 
+									name="Informes" 
+									parent="financial_statements_se" 
+									sequence="5"/>
+						
+				<menuitem parent="financial_statements_se_reports"
+									id="menu_act_crossovered_budget_lines_se"
+									name="Gastos"
+									action="account_budget.act_crossovered_budget_lines_view" 
+									sequence="8"/>
+
+				<menuitem id="financial_statements_se_settings" 
+									name="Configuración" 
+									parent="financial_statements_se" 
+									sequence="30"/>
+
+				<menuitem action="account_budget.open_budget_post_form" 
+									id="menu_budget_post_financial_statements_se"
+									parent="financial_statements_se_settings" 
+									name="Posiciones Presupuestarias"
+									sequence="2"/>
+
+				<menuitem action="analytic.action_account_analytic_account_form" 
+						      id="account_analytic_def_account_financial_statements_se"
+									parent="financial_statements_se_settings" 
+									name="Cuentas analíticas"
+									sequence="4"/>
+
+				<menuitem action="account.action_account_form" 
+									id="menu_action_account_form_se" 
+									name="Plan Contable"
+									parent="financial_statements_se_settings" 
+									sequence="6"/>
+
+				<menuitem action="account_base_it.action_account_type_it_form" 
+									id="menu_action_account_type_it_form_se"
+									parent="financial_statements_se_settings" 
+									sequence="8"/>
+
+				<menuitem
+									id="menu_chart_of_account_se"
+									action="bi_import_chart_of_accounts.bi_act_chart_of_account"
+									name="Importar Plan Contable"
+									parent="financial_statements_se_settings"
+									sequence="10"/>
+				
+				<menuitem id="financial_statements_se_settings_table" 
+									name="Tablas" 
+									parent="financial_statements_se_settings" 
+									sequence="12"/>
+
+		</data>
+</odoo>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_account_move_form_it" model="ir.ui.view">
+			<field name="name">account.move.form.it</field>
+			<field name="model">account.move</field>
+			<field name="arch" type="xml">
+				<form>
+					<header>
+						<button name="ver_account_move" string="Ver Vista Completa" class="oe_highlight"
+                                type="object"/>
+					</header>
+					<sheet>
+						<h1 class="mt0">
+							<field name="name" readonly="True" attrs="{'invisible':[('name', '=', '/')]}"/>
+						</h1>
+						<group>
+							<group>
+								<field name="ref"/>
+							</group>
+							<group>
+								<field name="invoice_date" string="Fecha factura"/>
+								<field name="state" invisible="1"/>
+								<field name="date" string="Fecha contable"/>
+								<field name="journal_id" readonly="True"/>
+								<field name="company_id" groups="base.group_multi_company"/>
+							</group>
+						</group>
+						<notebook>
+							<page id="aml_tab_it" string="Apuntes Contables">
+								<field name="line_ids">
+									<tree editable="bottom" string="Apuntes Contables">
+										<field name="account_id"/>
+										<field name="partner_id"/>
+										<field name="type_document_id"/>
+										<field name="nro_comp"/>
+										<field name="name" widget="section_and_note_text" optional="show"/>
+										<field name="analytic_account_id"
+                                               optional="hide"/>
+										<field name="analytic_tag_ids"
+                                               optional="show"
+                                               widget="many2many_tags"/>
+										<field name="debit"
+                                               sum="debit"/>
+                                        <field name="credit"
+                                               sum="credit"/>
+										<field name="tax_amount_it"/>
+										<field name="tc"/>
+										<field name="cuo"/>
+										<field name="tag_ids" widget="many2many_tags" optional="show"/>
+									</tree>
+								</field>
+							</page>
+							<page id="other_tab_entry_it" string="Otra Informacion" name="other_info_it">
+								<group id="other_tab_entry_group_it">
+									<group>
+										<field name="auto_post"/>
+										<field name="to_check"/>
+										<field name="is_opening_close"/>
+										<field name="td_payment_id"/>
+										<field name="ple_state"/>
+										<field name="date_corre_ple"/>
+									</group>
+									<group>
+										<field name="inalterable_hash"/>
+										<field name="petty_cash_id"/>
+										<field name="glosa"/>
+									</group>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		
+		<record id="view_account_move_tree_it" model="ir.ui.view">
+			<field name="name">account.move.tree.it</field>
+			<field name="model">account.move</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="date"/>
+					<field name="name"/>
+					<field name="partner_id" optional="show"/>
+					<field name="ref" optional="show"/>
+					<field name="journal_id"/>
+					<field name="company_id" optional="show"/>
+					<field name="amount_total_signed" sum="amount_total_signed"/>
+					<field name="state"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="action_account_move_it" model="ir.actions.act_window">
+			<field name="name">Solo Asientos Contables</field>
+			<field name="res_model">account.move</field>
+			<field name="view_ids"
+                   eval="
+                            [
+                            (5, 0, 0),
+                            (0, 0, {'view_mode': 'tree', 'view_id': ref('view_account_move_tree_it')}),
+                            (0, 0, {'view_mode': 'form', 'view_id': ref('view_account_move_form_it')}),
+							(0, 0, {'view_mode': 'kanban'})
+                          ]"
+            />
+			<field name="help" type="html">
+			  <p class="o_view_nocontent_smiling_face">
+				Crear asiento contable
+			  </p><p>
+				Un asiento contable está compuesto de entradas de diario, cada una de las cuales es una transacción de débito o crédito.
+			  </p>
+			</field>
+		</record>
+
+		<menuitem
+			id="menu_action_account_move_it"
+			action="action_account_move_it"
+			parent="account.menu_finance_entries_accounting_miscellaneous"
+			groups="account_base_it.group_account_tables_user"
+			sequence="90"/>
+	</data>
+</odoo>

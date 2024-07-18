@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="update_format_action" model="ir.ui.view">
+        <field name="name">Actualziar formatos en ventas</field>
+        <field name="model">sale.update.format</field>
+        <field name="arch" type="xml">
+            <form>
+                <div>Está seguro de actualizar los formatos en las lineas de venta?</div>
+                <footer>
+                    <button name="update_format" string="Actualziar" type="object"/>
+                    <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="update_formats_action" model="ir.actions.act_window">
+        <field name="name">Sale Update Formats</field>
+        <field name="res_model">sale.update.format</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="update_formats_menu"
+        action="update_formats_action"
+        parent="sale.sale_order_menu"
+        sequence="160"/>
+
+
+</odoo>

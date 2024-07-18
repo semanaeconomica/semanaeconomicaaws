@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_account_analytic_account_form_inherit" model="ir.ui.view">
+			<field name="name">account.analytic.account.form.inherit</field>
+			<field name="model">account.analytic.account</field>
+			<field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+			<field name="arch" type="xml">
+				<data>
+					<field name="partner_id" position="after">
+						<field name="a_debit" domain="[('company_id', '=', company_id)]"/>
+					</field>
+					<field name="currency_id" position="after">
+						<field name="a_credit" domain="[('company_id', '=', company_id)]"/>
+					</field>
+					<field name="group_id" position="attributes">
+						<attribute name="domain">[('company_id', '=', company_id)]</attribute>
+					</field>
+				</data>
+			</field>
+		</record>
+		<record id="view_account_analytic_group_form_inherit" model="ir.ui.view">
+			<field name="name">account.analytic.group.form.inherit</field>
+			<field name="model">account.analytic.group</field>
+			<field name="inherit_id" ref="analytic.account_analytic_group_form_view"/>
+			<field name="arch" type="xml">
+				<data>
+					<field name="company_id" position="attributes">
+						<attribute name="readonly">1</attribute>
+						<attribute name="required">1</attribute>
+					</field>
+				</data>
+			</field>
+		</record>
+	</data>
+</odoo>

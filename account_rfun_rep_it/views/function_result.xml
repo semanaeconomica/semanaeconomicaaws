@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_dynamic_function_result_form" model="ir.ui.view">
+		<field name="name">dynamic_function_result_form</field>
+		<field name="model">dynamic.function.result</field>
+		<field name="arch" type="xml">
+			<form string="Resultado por Funcion" create="0" edit="0" delete="0">
+				<sheet>
+					<group id="function_result" colspan="4">
+					</group>
+				</sheet>
+				<script>
+					$(".o_td_label").css("width","50%");
+				</script>
+			</form>
+		</field>
+	</record>
+</odoo>

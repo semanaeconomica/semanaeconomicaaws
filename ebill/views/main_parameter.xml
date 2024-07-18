@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_main_parameter_form_inherit" model="ir.ui.view">
+		<field name="name">main.parameter.form.inherit</field>
+		<field name="model">main.parameter</field>
+		<field name="inherit_id" ref="account_base_it.view_main_parameter_form"/>
+		<field name="arch" type="xml">
+			<xpath expr="//notebook" position="inside">
+				<page string="Facturacion Electronica" groups="ebill.group_electronic_billing" >
+					<group string="Facturacion Electronica">
+						<group>
+							<field name="resolution"/>
+							<field name="igv_tax_id"/>
+							<field name="doc_origin_customer_check"/>
+							<field name="invoice_origin_check"/>
+							<field name="comment_add_check"/>
+							<field name="bank_numbers"/>
+						</group>
+						<group>
+							<field name="web_query"/>
+							<field name="external_download_url"/>
+							<field name="billing_type"/>
+							<field name="catalog_51_detraction_ids" widget="many2many_tags"/>
+							<field name="catalog_51_advance_ids" widget="many2many_tags"/>
+						</group>
+					</group>
+					<notebook>
+						<page string="Credenciales">
+							<field name="serial_nubefact_lines">
+								<tree editable="bottom">
+									<field name="serie_id" optional="show" required="1"/>
+									<field name="nubefact_token" optional="show" required="1"/>
+									<field name="nubefact_path" optional="show" required="1"/>
+									<field name="billing_type" optional="show" required="1"/>
+									<field name="is_einvoice" optional="show"/>
+								</tree>
+							</field>
+						</page>
+						<page string="Productos Anticipo">
+							<field name="advance_product_ids">
+								<tree editable="bottom">
+									<field name="product_id" required="1"/>
+								</tree>
+							</field>
+						</page>
+					</notebook>
+				</page>
+			</xpath>
+		</field>
+	</record>
+</odoo>

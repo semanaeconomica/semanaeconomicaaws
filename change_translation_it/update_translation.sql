@@ -1,0 +1,1 @@
+update ir_translation set value = 'Anular Asiento' where src= 'Cancel Entry' and lang = 'es_PE' and module = 'account';

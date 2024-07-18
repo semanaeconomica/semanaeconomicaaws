@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<menuitem id="menu_account_base_it" name="Tablas" parent="account.account_account_menu" sequence="101" groups="account_base_it.group_account_tables_user"/>
+		<!--ACCOUNTING TABLES-->
+		<menuitem action="account_base_it.action_account_register_values_it_form" id="menu_action_account_register_values_it_form" parent="account.menu_finance_entries_management" sequence="101" groups="account_base_it.group_account_tables_user"/>
+		<menuitem action="account_base_it.action_account_cash_flow_form" id="menu_action_account_cash_flow_form" parent="menu_account_base_it" sequence="1" groups="account_base_it.group_account_tables_user"/>
+		<menuitem action="account_base_it.action_account_efective_type_form" id="menu_action_account_efective_type_form" parent="menu_account_base_it" sequence="2" groups="account_base_it.group_account_tables_user"/>
+		<menuitem action="account.actions_account_fiscal_year" name="Año Fiscal" id="menu_action_account_fiscal_year_form" parent="menu_account_base_it" sequence="3" groups="account_base_it.group_account_tables_user"/>
+		<menuitem action="account_base_it.action_account_patrimony_type_form" id="menu_action_account_patrimony_type_form" parent="menu_account_base_it" sequence="4" groups="account_base_it.group_account_tables_user"/>
+		<menuitem action="account_base_it.action_account_period_form" id="menu_action_account_period_form" parent="menu_account_base_it" sequence="5" groups="account_base_it.group_account_tables_user"/>
+		<menuitem action="account_base_it.action_account_type_it_form" id="menu_action_account_type_it_form" parent="menu_account_base_it" sequence="8" groups="account_base_it.group_account_tables_user"/>
+		<menuitem action="account_base_it.action_einvoice_catalog_01_form" id="menu_action_einvoice_catalog_01_form" parent="menu_account_base_it" sequence="9" groups="account_base_it.group_account_tables_user"/>
+		<menuitem action="action_einvoice_catalog_05_form" id="menu_action_einvoice_catalog_05_form" parent="menu_account_base_it" sequence="9" groups="account_base_it.group_account_tables_user"/>
+		<menuitem action="account_base_it.action_einvoice_catalog_06_form" id="menu_action_einvoice_catalog_06_form" parent="menu_account_base_it" sequence="10" groups="account_base_it.group_account_tables_user"/>
+		<menuitem action="action_einvoice_catalog_07_form" id="menu_action_einvoice_catalog_07_form" parent="menu_account_base_it" sequence="10" groups="account_base_it.group_account_tables_user"/>
+		<menuitem action="action_einvoice_catalog_09_form" id="menu_action_einvoice_catalog_09_form" parent="menu_account_base_it" sequence="10" groups="account_base_it.group_account_tables_user"/>
+		<menuitem action="action_einvoice_catalog_10_form" id="menu_action_einvoice_catalog_10_form" parent="menu_account_base_it" sequence="10" groups="account_base_it.group_account_tables_user"/>
+		<menuitem action="action_einvoice_catalog_13_form" id="menu_action_einvoice_catalog_13_form" parent="menu_account_base_it" sequence="10" groups="account_base_it.group_account_tables_user"/>
+		<menuitem action="action_einvoice_catalog_17_form" id="menu_action_einvoice_catalog_17_form" parent="menu_account_base_it" sequence="10" groups="account_base_it.group_account_tables_user"/>
+		<menuitem action="action_einvoice_catalog_25_form" id="menu_action_einvoice_catalog_25_form" parent="menu_account_base_it" sequence="10" groups="account_base_it.group_account_tables_user"/>
+		<menuitem action="action_einvoice_catalog_51_form" id="menu_action_einvoice_catalog_51_form" parent="menu_account_base_it" sequence="10" groups="account_base_it.group_account_tables_user"/>
+		<menuitem action="action_einvoice_catalog_54_form" id="menu_action_einvoice_catalog_54_form" parent="menu_account_base_it" sequence="10" groups="account_base_it.group_account_tables_user"/>
+		<menuitem action="account_base_it.action_einvoice_catalog_payment_form" id="menu_action_einvoice_catalog_payment_form" parent="menu_account_base_it" sequence="11" groups="account_base_it.group_account_tables_user"/>
+		<menuitem action="account_base_it.action_it_invoice_serie_form" id="menu_action_it_invoice_serie_form" parent="menu_account_base_it" sequence="12" groups="account_base_it.group_account_tables_user"/>
+		<menuitem action="account.action_account_type_form" id="menu_action_account_type" name="Tipos Contables" parent="menu_account_base_it" sequence="13" groups="account_base_it.group_account_tables_user"/>
+		<menuitem action="account_base_it.action_existence_type_form" id="menu_action_existence_type" parent="menu_account_base_it" sequence="14" groups="account_base_it.group_account_tables_user"/>
+		<menuitem action="account_base_it.action_main_parameter_form" id="menu_action_main_parameter_form" parent="menu_account_base_it" sequence="15" groups="account_base_it.group_account_tables_user"/>
+		<!---->
+		<menuitem action="account.action_account_group_tree" id="menu_account_group" name="Grupos de Cuentas" parent="account.account_account_menu" sequence="2" groups="account_base_it.group_account_tables_user"/>
+	</data>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_journal_ingreso_se_book_group_user,account.journal.ingreso.se.book.group.user,model_account_journal_ingreso_se_book,base.group_user,1,1,1,1
+access_account_patrimony_table_group_user,account.patrimony.table.group.user,model_account_patrimony_table,base.group_user,1,1,1,1

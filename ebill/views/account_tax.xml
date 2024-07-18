@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_account_tax_form_inherit" model="ir.ui.view">
+		<field name="name">account.tax.form.inherit</field>
+		<field name="model">account.tax</field>
+		<field name="inherit_id" ref="account.view_tax_form"/>
+		<field name="arch" type="xml">
+			<field name="analytic" position="after">
+				<field name="eb_afect_igv_id" groups="ebill.group_electronic_billing" />
+				<field name="eb_tributes_type_id" groups="ebill.group_electronic_billing" />
+			</field>
+		</field>
+	</record>
+</odoo>

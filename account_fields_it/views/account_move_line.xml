@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_move_line_tree_form_inherit" model="ir.ui.view">
+		<field name="name">move.line.tree.inherit</field>
+		<field name="model">account.move.line</field>
+		<field name="inherit_id" ref="account.view_move_line_tree_grouped"/>
+		<field name="arch" type="xml">
+			<data>
+				<field name="move_id" position="after">
+					<field name="type_document_id" optional="show"/>
+					<field name="nro_comp" optional="show"/>
+				</field>
+				<field name="amount_currency" position="after">
+					<field name="tc" optional="show"/>
+					<field name="cuo" optional="show"/>
+					<field name="tax_amount_it" optional="show"/>
+					<field name="cash_flow_id" optional="show"/>
+				</field>
+			</data>
+		</field>
+	</record>
+</odoo>

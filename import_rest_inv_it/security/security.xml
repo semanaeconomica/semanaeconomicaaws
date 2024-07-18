@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="import_rest_inv1_comp_rule" model="ir.rule">
+			<field name="name">Importador Inventario multi-company</field>
+			<field name="model_id" ref="model_import_rest_inv1"/>
+			<field name="global" eval="True"/>
+			<field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+		</record>
+	</data>
+</odoo>

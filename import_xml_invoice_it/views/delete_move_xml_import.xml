@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_delete_move_xml_import_form">
+			<field name="name">delete.move.xml.import.form</field>
+			<field name="model">delete.move.xml.import</field>
+			<field name="arch" type="xml">
+				<form string="Registro Facturas XML Importadas" create="false" edit="false">
+					<sheet>
+						<div class="oe_button_box" name="button_box">
+							<button class="oe_stat_button" string="Asientos Importados" name="open_entries"  type="object" icon="fa-list"/>
+							<button class="oe_stat_button" string="Lineas Importadas" name="open_line_entries"  type="object" icon="fa-list"/>
+						</div>
+						<div class="oe_title">
+                            <h1>
+                                <field name="name" class="oe_inline" readonly="1"/>
+                            </h1>
+                        </div>
+						<group>
+							<group>
+								<field name="date" readonly="1"/>
+							</group>
+							<group>
+								<field name="company_id" readonly="1" required="1" groups="base.group_multi_company"/>
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="delete_move_xml_import_tree" model="ir.ui.view">
+            <field name="name">delete.move.xml.import.tree</field>
+            <field name="model">delete.move.xml.import</field>
+            <field name="arch" type="xml">
+                <tree string="Registro Facturas XML Importadas" create="false">
+                   <field name="name"/>
+                   <field name="date"/>
+				   <field name="company_id" groups="base.group_multi_company"/>  
+                </tree>
+            </field>
+        </record>
+
+		<record id="delete_move_xml_import_action" model="ir.actions.act_window">
+			<field name="name">Registro Facturas XML Importadas</field>
+			<field name="res_model">delete.move.xml.import</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+			<p class="o_view_nocontent_smiling_face">
+				No existe ninguna importacion de Facturas XML
+			</p>
+			</field>
+		</record>
+		
+		<menuitem action="delete_move_xml_import_action" 
+				  id="menu_delete_move_xml_import" 
+				  parent="import_journal_entry_it.menu_account_import_master" 
+				  sequence="8"/>
+
+	</data>
+</odoo>

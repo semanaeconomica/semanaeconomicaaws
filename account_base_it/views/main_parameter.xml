@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_main_parameter_form" model="ir.ui.view">
+		<field name="name">main.parameter.form</field>
+		<field name="model">main.parameter</field>
+		<field name="arch" type="xml">
+			<form string="Main Parameter">
+				<sheet>
+					<group>
+						<field name="company_id" readonly="1" required="1" groups="base.group_multi_company"/>
+					</group>
+					<notebook>
+						<page string="Asistentes">
+							<group string="Cuentas para Asistentes">
+								<group>
+									<field name="surrender_nc"/>
+									<field name="surrender_fc"/>
+									<field name="supplier_advance_account_nc"/>
+									<field name="supplier_advance_account_fc"/>
+									<field name="free_transer_account_id"/>
+								</group>
+								<group>
+									<field name="customer_advance_account_nc"/>
+									<field name="customer_advance_account_fc"/>
+									<field name="detractions_account"/>
+									<field name="customer_account_detractions"/>
+									<field name="profit_account_ed"/>
+									<field name="loss_account_ed"/>
+								</group>
+							</group>
+							<group string="Diarios para Asistentes">
+								<group>
+									<field name="surrender_journal_nc"/>
+									<field name="surrender_journal_fc"/>
+									<field name="free_transfer_journal_id"/>
+									<field name="miscellaneous_journal"/>
+								</group>
+								<group>
+									<field name="destination_journal"/>
+									<field name="detraction_journal"/>
+									<field name="credit_journal"/>
+								</group>
+							</group>
+							<group string="Secuencias para Asistentes">
+								<group>
+									<field name="supplier_advance_sequence"/>
+								</group>
+							</group>
+							<group string="Nota de Credito Nacional">
+								<group>
+									<field name="dt_national_credit_note"/>
+								</group>
+								<group>
+									<field name="td_recibos_hon"/>
+								</group>
+							</group>
+							<group string="Impuestos para Asistentes">
+								<group>
+									<field name="free_transer_tax_ids" widget="many2many_tags"/>
+								</group>
+							</group>
+						</page>
+						<page string="Leasing">
+							<group string="Leasing">
+								<group>
+									<field name="capital_account"/>
+									<field name="expenses_account"/>
+									<field name="comission_account"/>
+									<field name="insurance_account"/>
+									<field name="interest_account_leasing"/>
+									<field name="accrual_charge_account"/>
+									<field name="accrual_suscription_account"/>
+									<field name="monetary_interest_charge_account"/>
+									<field name="accrue_seat_journal_leasing"/>
+								</group>
+								<group>
+									<field name="capital_tax"/>
+									<field name="expenses_tax"/>
+									<field name="comission_tax"/>
+									<field name="insurance_tax"/>
+									<field name="interest_tax"/>
+									<field name="accrual_charge_tax"/>
+									<field name="accrual_suscription_tax"/>
+									<field name="monetary_interest_charge_tax"/>
+									<field name="proof_fees_type"/>
+								</group>
+							</group>
+						</page>
+						<page string="Prestamos">
+							<group string="Prestamos">
+								<group>
+									<field name="capital_amortization_account"/>
+									<field name="interest_account_loan"/>
+									<field name="itf_account"/>
+									<field name="debt_account"/>
+								</group>
+								<group>
+									<field name="accrue_seat_journal_loan"/>
+									<field name="payment_proof_type"/>
+									<field name="accrue_charge_account"/>
+									<field name="accrue_suscription_account"/>
+								</group>
+							</group>
+						</page>
+						<page string="SUNAT">
+							<group string="Exportacion">
+								<group>
+									<field name="exportation_document"/>
+									<field name="proff_payment_wa"/>
+								</group>
+								<group>
+									<field name="debit_note_wa"/>
+									<field name="credit_note_wa"/>
+								</group>
+							</group>
+							<group string="Documentos SUNAT">
+								<group>
+									<field name="dt_sunat_ruc"/>
+									<field name="ruc_size"/>
+								</group>
+								<group>
+									<field name="dt_sunat_dni"/>
+									<field name="dni_size"/>
+								</group>
+							</group>
+							<group string="SUNAT">
+								<group>
+									<field name="account_plan_code"/>
+									<field name="uit_value"/>
+								</group>
+								<group>
+									<field name="cash_account_prefix"/>
+									<field name="bank_account_prefix"/>
+								</group>
+							</group>
+							<group string="SUNAT">
+								<group>
+									<field name="cancelation_partner"/>
+									<field name="cancelation_product"/>
+								</group>
+								<group>
+									<field name="sale_ticket_partner"/>
+								</group>
+							</group>
+						</page>
+						<page string="Configuracion">
+							<group string="Configuracion">
+								<group>
+									<field name="dir_create_file"/>
+									<field name="dir_ple_create_file"/>
+									<field name="dir_download"/>
+								</group>
+								<group>
+									<field name="dir_download_url"/>
+									<field name="fiscal_year"/>
+									<field name="invoice_payment_term"/>
+								</group>
+							</group>
+						</page>
+						<page string="Percepcion">
+							<group string="Percepcion">
+								<group>
+									<field name="tax_account"/>
+								</group>
+								<group>
+									<field name="dt_perception"/>
+								</group>
+							</group>
+						</page>
+						<page string="Letras">
+							<group string="Cuentas de Letras">
+								<group>
+									<field name="customer_invoice_account_nc"/>
+									<field name="customer_invoice_account_fc"/>
+									<field name="customer_letter_account_nc"/>
+									<field name="customer_letter_account_fc"/>
+									<field name="rounding_gain_account"/>
+								</group>
+								<group>
+									<field name="supplier_invoice_account_nc"/>
+									<field name="supplier_invoice_account_fc"/>
+									<field name="supplier_letter_account_nc"/>
+									<field name="supplier_letter_account_fc"/>
+									<field name="rounding_loss_account"/>
+								</group>
+							</group>
+						</page>
+						<page string="Asiento de Diferencia">
+							<group string="Asiento de Diferencia">
+								<group>
+									<field name="exchange_difference"/>
+								</group>
+							</group>
+						</page>
+						<page string="Transito">
+							<group string="Transito">
+								<group>
+									<field name="transit_merchandise"/>
+								</group>
+							</group>
+						</page>
+						<page string="Monedas">
+							<group string="Monedas">
+							</group>
+							<field name="currency_parameter_lines">
+								<tree editable="bottom">
+									<field name="currency_id" required="1"/>
+									<field name="singular_name" required="1"/>
+									<field name="plural_name" required="1"/>
+									<field name="debit_account_id"/>
+									<field name="credit_account_id"/>
+								</tree>
+							</field>
+						</page>
+						<page string="Cierre Contable">
+							<group string="Cierre Contable">
+								<group>
+									<field name="balance_sheet_account"/>
+									<field name="lost_sheet_account"/>
+								</group>
+								<group>
+									<field name="profit_result_account"/>
+									<field name="lost_result_account"/>
+								</group>
+							</group>
+						</page>
+						<page string="Kardex">
+							<group string="Kardex">
+								<group>
+									<field name="analytic_tag_kardex"/>
+								</group>
+							</group>
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<record id="view_main_parameter_list" model="ir.ui.view">
+		<field name="name">main.parameter.list</field>
+		<field name="model">main.parameter</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name"/>
+				<field name="company_id"/>
+			</tree>
+		</field>
+	</record>
+	<record id="action_main_parameter_form" model="ir.actions.act_window">
+		<field name="name">Parametros Principales</field>
+		<field name="res_model">main.parameter</field>
+		<field name="view_mode">tree,form</field>
+		<field name="view_id" ref="view_main_parameter_list"/>
+		<field name="domain">[]</field>
+		<field name="help" type="html">
+		  <p class="o_view_nocontent_smiling_face">
+			Crea tu primera tabla de Parametros Principales aqui
+		  </p>
+		</field>
+	</record>
+</odoo>

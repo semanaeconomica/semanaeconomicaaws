@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_account_ecpn_rep_form">
+			<field name="name">account.ecpn.rep.form</field>
+			<field name="model">account.ecpn.rep</field>
+			<field name="arch" type="xml">
+				<form string="Patrimonio Neto">
+					<group>
+						<group>
+							<field name="company_id"/>
+							<field name="fiscal_year_id"/>
+							<field name="period_id" domain="[('fiscal_year_id','=',fiscal_year_id),('is_opening_close','=',False)]" required="1"/>
+						</group>
+					</group>
+					<footer>
+						<button string="Mostrar" name="get_report" type="object" class="oe_highlight"/>
+						or
+						<button string="Cancel" class="oe_link" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="account_ecpn_rep_action" model="ir.actions.act_window">
+			<field name="name">Patrimonio Neto</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">account.ecpn.rep</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+
+		<menuitem action="account_ecpn_rep_action" 
+				  id="menu_action_account_ecpn_rep" 
+				  parent="account_financial_statements_se.financial_statements_se_reports" 
+				  sequence="20"/>
+	</data>
+</odoo>

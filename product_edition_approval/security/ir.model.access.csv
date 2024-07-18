@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_edition_approval_it,product.edition.approval.it,model_product_edition_approval_it,perueco_base_it.group_guidelines_aproval,1,1,1,1
+access_edition_aprov_level_it,edition.aprov.level.it,model_edition_aprov_level_it,perueco_base_it.group_guidelines_aproval,1,1,1,1
+

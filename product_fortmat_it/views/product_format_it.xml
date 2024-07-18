@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+        <record id="product_format_it_rule" model="ir.rule">
+            <field name="name">Maestro de Formatos</field>
+            <field name="model_id" ref="model_product_format_it"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+        </record>
+    </data>
+	<data>
+
+
+		<record model="ir.ui.view" id="view_product_format_it_form">
+			<field name="name">product.format.it.form</field>
+			<field name="model">product.format.it</field>
+			<field name="arch" type="xml">
+				<form string="Maestro de Formatos">
+					<sheet>
+						<div> <h2>Código</h2></div>
+						<field name="code" readonly="1"/>
+						<group>
+							<group>
+								<field name="name" required="1"/>
+								<field name="acron" required="1"/>
+								<field name="type_format_id" required="1"/>
+								<field name="percent" />
+								<field name="formato" required="1"/>
+							</group>
+							<group>
+								<field name="color_rot"/>
+								<field name="color_text"/>
+								<field name="sangria" widget="boolean_toggle"/>
+								<field name="pub_inf" widget="boolean_toggle"/>
+								<field name="encarte" widget="boolean_toggle"/>
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+
+		<record model="ir.ui.view" id="view_product_format_it_tree">
+			<field name="name">product.format.it.tree</field>
+			<field name="model">product.format.it</field>
+			<field name="arch" type="xml">
+				<tree string="Maestro de Formatos">
+					<field name="code"/>
+					<field name="name"/>
+					<field name="acron"/>
+					<field name="type_format_id"/>
+					<field name="percent" />
+					<field name="formato"/>
+					<field name="color_rot"/>
+					<field name="color_text"/>
+					<field name="sangria" widget="boolean_toggle"/>
+					<field name="pub_inf" widget="boolean_toggle"/>
+					<field name="encarte" widget="boolean_toggle"/>
+				</tree>
+			</field>
+		</record>
+
+
+		<record id="product_format_it_search" model="ir.ui.view">
+            <field name="name">product.format.it.search</field>
+            <field name="model">product.format.it</field>
+            <field name="arch" type="xml">
+                <search string="Maestro de Formatos">
+					<field name="code"/>
+					<field name="name"/>
+					<field name="acron"/>
+
+                    <separator/>
+                    <group expand="1" string="Group By...">
+                        <filter string="Tipo" name="type_format_id" icon="terp-partner" context="{'group_by':'type_format_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+
+		<record id="product_format_it_action" model="ir.actions.act_window">
+			<field name="name">Maestro de Formatos</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">product.format.it</field>
+			<field name="view_mode">tree,form</field>
+			<field name="search_view_id" ref="product_format_it_search"/>
+		</record>
+
+		<menuitem action="product_format_it_action" id="menu_product_format_it" parent="perueco_base_it.menu_guidelines_config" sequence="99" groups="perueco_base_it.group_guidelines_admin"/>
+		
+
+
+
+	</data>
+</odoo>

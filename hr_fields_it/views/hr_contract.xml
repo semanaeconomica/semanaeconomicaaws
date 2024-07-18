@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="hr_contract_form_inherit" model="ir.ui.view">
+		<field name="name">hr.contract.form.inherit</field>
+		<field name="model">hr.contract</field>
+		<field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+		<field name="arch" type="xml">
+			<field name="department_id" position="after">
+				<field name="worker_type_id"/>
+			</field>
+			<field name="structure_type_id" position="after">
+				<field name="structure_id" domain="[('type_id', '=', structure_type_id)]"/>
+			</field>
+			<xpath expr="//page[@name='information']" position="after">
+				<page name="labor_data" string="Datos Laborales">
+					<group name="data" string="Datos">
+						<group>
+							<field name="membership_id"/>
+							<field name="social_insurance_id"/>
+							<field name="commision_type"/>
+							<field name="distribution_id"/>
+							<field name="cuspp"/>
+							<field name="workday_id"/>
+						</group>
+						<group>
+							<field name="situation_id"/>
+							<field name="situation_code" invisible="1"/>
+							<field name="situation_reason" attrs="{'invisible': [('situation_code', '!=', '0')]}"/>
+							<field name="labor_regime"/>
+							<field name="less_than_four"/>
+							<field name="other_employers"/>
+							<field name="sctr_id"/>
+						</group>
+					</group>
+					<group name="afp_net" string="AFP NET">
+						<group>
+							<field name="exception"/>
+						</group>
+						<group>
+							<field name="work_type"/>
+						</group>
+					</group>
+				</page>
+				<page name="work_suspension" string="Suspension Laboral">
+					<field name="work_suspension_ids">
+						<tree editable="bottom">
+							<field name="suspension_type_id"/>
+							<field name="reason"/>
+							<field name="days"/>
+							<field name="payslip_run_id"/>
+						</tree>
+					</field>
+				</page>
+			</xpath>
+		</field>
+	</record>
+</odoo>

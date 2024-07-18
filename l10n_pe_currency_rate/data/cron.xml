@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>  
+        <!--record id="ir_cron_currency_update_every_day" model="ir.cron">
+            <field name="name">Peruvian Currency Rate Update</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="state">code</field>
+            <field name="model_id"  ref="l10n_pe_currency_rate.model_pe_currency_rate_update_service" />
+            <field name="code">model._run_currency_update()</field>
+            <field name="active" eval="True"/>
+        </record-->
+        <record id="sunat_exchange_rate_res_currency_cron" model="ir.cron">
+            <field name="name">SUNAT - Exchange Rate</field>
+            <field name="model_id" ref="model_res_currency"/>
+            <field name="state">code</field>
+            <field name="code">model._action_sunat_exchange_rate()</field>
+            <field name='interval_number'>1</field>
+            <field name='interval_type'>days</field>
+            <field name="active" eval="True"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="True"/>
+            <field name="nextcall" eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d 00:00:00')"/>
+		</record>
+    </data>
+</odoo>

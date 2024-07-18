@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record model="ir.actions.server" id="action_update_type_number_it">
+		<field name="name">Fusionar Comprobantes</field>
+		<field name="model_id" ref="account.model_account_move_line"/>
+		<field name="binding_model_id" ref="account.model_account_move_line" />
+		<field name='groups_id' eval="[(4, ref('account_balance_doc_advance_it.group_update_account_mline_it_user'))]"/>
+		<field name="state">code</field>
+		<field name="code">action = model.action_update_type_number_it()</field>
+	</record>
+
+	<record model="ir.actions.server" id="action_update_expected_date_it">
+		<field name="name">Actualizar Fecha Prevista de Pago</field>
+		<field name="model_id" ref="account.model_account_move_line"/>
+		<field name="binding_model_id" ref="account.model_account_move_line" />
+		<field name='groups_id' eval="[(4, ref('account_balance_doc_advance_it.group_update_account_mline_it_user'))]"/>
+		<field name="state">code</field>
+		<field name="code">action = model.action_update_expected_date_it()</field>
+	</record>
+</odoo>

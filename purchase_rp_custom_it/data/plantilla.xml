@@ -1,0 +1,7 @@
+<odoo>
+    <data>
+        <record model="plantilla.reporte" id="plantilla_default_reporte_ventas">
+            <field name="name">Plantilla por defecto</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_import_rest,import.rest,model_import_rest_inv1,stock.group_stock_manager,1,1,1,1
+access_import_rest_deta1,import.rest.deta1,model_import_rest_inv_deta1,stock.group_stock_manager,1,1,1,1

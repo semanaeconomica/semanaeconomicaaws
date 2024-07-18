@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="view_main_parameter_form_remission" model="ir.ui.view">
+            <field name="name">main.parameter.form.remission</field>
+            <field name="model">main.parameter</field>
+            <field name="inherit_id" ref="account_base_it.view_main_parameter_form"/>
+            <field name='arch' type='xml'>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Guía de remisión Electrónica">
+                        <group>
+                            <field name="web_guides_query"/>
+                            <field name="billing_type"/>
+                        </group>
+                        <notebook>
+                            <page string="Series">
+                                <field name="guide_series_ids" nolabel="1">
+                                    <tree string = 'Series' editable="bottom">
+                                        <field name="series_id" required="1"/>
+                                        <field name="token" required="1"/>
+                                        <field name="path" required="1"/>
+                                        <field name="billing_type" required="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

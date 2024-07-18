@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="group_stock_picking_manager" model="res.groups">
+			<field name="name">Guias Manager</field>
+			<field name="category_id" ref="base.module_category_hidden"/>
+		</record>
+		<record id="group_anulated_picking_it" model="res.groups">
+			<field name="name">Anular Guias Remision</field>
+			<field name="category_id" ref="base.module_category_hidden"/>
+		</record>
+	</data>
+</odoo>

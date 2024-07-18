@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+	   <record id="view_picking_form_remission" model="ir.ui.view">
+			<field name="name">stock.picking.form.remission</field>
+			<field name="model">stock.picking</field>
+			<field name="inherit_id" ref="stock.view_picking_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//header" position="inside">
+                    <button name="get_preview_remission_guide" type="object" string="Vista de Guia" class="oe_highlight" attrs="{'invisible':[('state','not in',['done'])]}"/>
+                </xpath>
+				<xpath expr="//notebook/page[@name='transport']" position="before">
+					<page string="Guia Electronica" name="remission_guide_page" attrs="{'invisible':[('electronic_guide','=',False)]}">
+						<group>
+							<group string="Guia Electronica">
+								<field name="electronic_guide" readonly="1"/>
+								<field name="electronic_guide" invisible="1"/>
+								<field name="hash_code" readonly="1"/>
+								<field name="json_post" groups="remission_guide_it.group_stock_picking_super_manager"/>
+								<field name="json_get" groups="remission_guide_it.group_stock_picking_super_manager"/>
+							</group>
+							<group string="Necesarios para Guia Electronica">
+								<label for="total_gross_weight"/>
+								<div class="o_row">
+									<field name="total_gross_weight"/>
+									<span>kg</span>
+								</div>
+								<label for="number_of_packages"/>
+								<div class="o_row">
+									<field name="number_of_packages"/>
+									<span>Unidad(es)</span>
+								</div>
+							</group>
+							<group string="Enlaces">
+								<field name="print_web_version_pdf" widget="url" readonly="1"/>
+								<field name="print_web_version_xml" widget="url" readonly="1"/>
+							</group>
+							<group string="Archivos">
+								<field name="file_name_pdf" invisible="1"/>
+								<field name="binary_version_pdf" filename="file_name_pdf" widget="binary" readonly="1"/>
+								<field name="file_name_xml" invisible="1"/>
+								<field name="binary_version_xml" filename="file_name_xml" widget="binary" readonly="1"/>
+							</group>
+						</group>
+					</page>
+				</xpath>
+			</field>
+		</record>
+		<record id="stock_picking_tree_remission" model="ir.ui.view">
+			<field name="name">stock.picking.tree.remission</field>
+			<field name="inherit_id" ref="stock.vpicktree"/>
+			<field name="model">stock.picking</field>
+			<field name="arch" type="xml">
+				<field name="state" position="after">
+					<field name="sunat_state" optional="show"/>
+				</field>
+			</field>
+		</record>
+		<record id="view_picking_internal_search_remission" model="ir.ui.view">
+			<field name="name">stock.picking.internal.search.remission</field>
+			<field name="inherit_id" ref="stock.view_picking_internal_search"/>
+			<field name="model">stock.picking</field>
+			<field name="arch" type="xml">
+				<xpath expr="/search/filter[@name='anulated']" position="before">
+					<filter name="electronic" string="Guias Electronicas" domain="[('electronic_guide', '=', True)]" help="Solo muestra guias Electronicas"/>
+					<separator/>
+				</xpath>
+				<xpath expr="/search/group/filter[@name='picking_type']" position="before">
+					<filter name="sunat_state" string="Estado de Guias Electronicas" domain="[]"  context="{'group_by':'sunat_state'}"/>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

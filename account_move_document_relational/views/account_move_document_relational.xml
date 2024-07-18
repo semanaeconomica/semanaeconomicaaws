@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_account_move_document_relational_form_it" model="ir.ui.view">
+			<field name="name">account.move.document.relational.form.it</field>
+			<field name="model">document.relational</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+							<group string='Documentos Relacionados'>
+								<field name="move_id" width="4"/>
+								<field name="journal_id" width="4"/>
+								<field name="type_document_id" width="2"/>
+								<field name="date" width="3"/>
+								<field name="nro_comprobante" width="3"/>
+							</group>
+							<group>
+								<field name="amount_currency" width="2"/>
+								<field name="amount" width="2"/>
+								<field name="bas_amount" width="2"/>
+								<field name="tax_amount" width="2"/>
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		
+		<record id="view_account_move_document_relational_tree_it" model="ir.ui.view">
+			<field name="name">account.move.document.relational.tree.it</field>
+			<field name="model">document.relational</field>
+			<field eval="1" name="priority"/>
+			<field name="arch" type="xml">
+				<tree string="Documentos Relacionados" create="false">
+					<field name="move_id" width="4"/>
+					<field name="journal_id" width="4"/>
+					<field name="type_document_id" width="2"/>
+					<field name="date" width="3"/>
+					<field name="nro_comprobante" width="3"/>
+					<field name="amount_currency" width="2"/>
+					<field name="amount" width="2"/>
+
+					<field name="bas_amount" width="2"/>
+					<field name="tax_amount" width="2"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="action_account_move_document_relational" model="ir.actions.act_window">
+			<field name="name">Documentos Relacionados</field>
+			<field name="res_model">document.relational</field>
+			<field name="view_ids"
+                   eval="
+                            [
+                            (5, 0, 0),
+                            (0, 0, {'view_mode': 'tree', 'view_id': ref('view_account_move_document_relational_tree_it')}),
+							(0, 0, {'view_mode': 'form', 'view_id': ref('view_account_move_document_relational_form_it')}),
+							(0, 0, {'view_mode': 'kanban'})
+                          ]"
+            />
+			<field name="help" type="html">
+			  <p class="o_view_nocontent_smiling_face">
+				Crear documentos relacionados
+			  </p>
+			</field>
+		</record>
+
+		<menuitem
+			id="menu_action_account_move_document_relational"
+			action="action_account_move_document_relational"
+			parent="account.menu_finance_entries_accounting_miscellaneous"
+			groups="account.group_account_invoice"
+			sequence="91"/>
+	</data>
+</odoo>

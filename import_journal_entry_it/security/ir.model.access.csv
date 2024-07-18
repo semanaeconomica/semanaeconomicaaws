@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_delete_journal_entry_import_group_manager,delete.journal.entry.import.group.user,model_delete_journal_entry_import,account_base_it.group_account_tables_user,1,1,1,1

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_move_semaeco_form" model="ir.ui.view">
+        <field name="name">account.move.semaeco.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='accounting_info_group']/field[@name='invoice_cash_rounding_id']" position="after">
+                <field name="date_aprox_payment" attrs="{'invisible': [('type', 'in', ['out_receipt','in_receipt','entry'])]}"/>
+                <field name="manage_comment" attrs="{'invisible': [('type', 'in', ['out_receipt','in_receipt','entry'])]}"/>
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="view_account_move_semaeco_tree" model="ir.ui.view">
+        <field name="name">account.move.semaeco.tree</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree"/>
+        <field name="arch" type="xml">
+            <field name="invoice_date_due" position="after">
+                <field name="responsible_followup_id"/>
+                <field name="date_aprox_payment"/>
+                <field name="manage_comment"/>
+            </field>
+        </field>
+    </record>    
+
+    <record id="account_balance_doc_advance_it.action_update_expected_date_it" model="ir.actions.server">
+		<field name="name">Actualizar Fecha Canc. Aprox.</field>
+	</record>
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_dynamic_efective_flow_form" model="ir.ui.view">
+		<field name="name">dynamic_efective_flow_form</field>
+		<field name="model">dynamic.efective.flow</field>
+		<field name="arch" type="xml">
+			<form string="Flujo Efectivo" create="0" edit="0" delete="0">
+				<sheet>
+					<group id="E1" colspan="4" string="ACTIVIDADES DE OPERACION">
+					</group>
+					<group id="E2" colspan="4" string="Menos:">
+					</group>
+					<group id="E3" colspan="4" string="ACTIVIDADES DE INVERSION">
+					</group>
+					<group id="E4" colspan="4" string="Menos:">
+					</group>
+					<group id="E5" colspan="4" string="ACTIVIDADES DE FINANCIAMIENTO">
+					</group>
+					<group id="E6" colspan="4" string="Menos:">
+					</group>
+					<group id="totales" colspan="4">
+					</group>
+				</sheet>
+				<script>
+					$(".o_td_label").css("width","70%");
+				</script>
+			</form>
+		</field>
+	</record>
+</odoo>

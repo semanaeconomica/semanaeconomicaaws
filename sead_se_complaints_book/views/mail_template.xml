@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+    <!-- 1. Correo nuevo ticket -->
+	<record id="new_ticket_acomplims_book" model="mail.template">
+		<field name="name">Ticket: Libro de reclamaciones</field>
+		<field name="model_id" ref="helpdesk.model_helpdesk_ticket" />
+		<field name="subject">Libro de reclamaciones: Ticket #${object.id}</field>
+		<field name="email_from">${(object.user_id.email_formatted or user.email_formatted) | safe}</field>
+		<field name="email_to">${(object.partner_email if not object.sudo().partner_id.email or object.sudo().partner_id.email != object.partner_email else '') | safe}</field>
+		<field name="partner_to">${object.partner_id.id if object.sudo().partner_id.email and object.sudo().partner_id.email == object.partner_email else ''}</field>
+		<field name="body_html" type="xml">
+            <center>
+                <table width="640" cellspacing="0" cellpadding="0" border="0" align="center" style="max-width:640px; width:100%;" bgcolor="#F2F2F2">
+                    
+                    <tr>
+                      <td align="center" valign="top" style="padding:10px;">
+                        <table width="600" cellspacing="0" cellpadding="0" border="0" align="center" style="max-width:600px; width:100%;">
+                            <tr>
+                                <td align="center" valign="top" style="padding:10px;">Estimado cliente estamos enviadole una copia del reclamo efectuada el día$ ${object.create_date.strftime('%d/%m/%Y')} </td>
+                            </tr>
+                            <tr>
+                                <td align="center" valign="top" style="padding:10px;"><h2>LIBRO DE RECLAMACIONES</h2></td>
+                            </tr>
+                          </table>
+                        
+                        <table width="600" cellspacing="0" cellpadding="0" border="0" align="center" style="max-width:600px; width:100%;">
+                          <tr>
+                            <td width="300" valign="top" style="padding:10px;">
+                                Nro. Reclamo: ${object.id}
+                            </td>
+                            <td width="300" valign="top" style="padding:10px;">
+                                FECHA: ${object.create_date.strftime('%d/%m/%Y')}
+                            </td>
+                          </tr>
+                        </table>
+                        <table width="600" cellspacing="0" cellpadding="0" border="0" align="center" style="max-width:600px; width:100%;">
+                            <tr>
+                                <td  valign="top" style="padding:10px;">${object.company_id.name} - RUC ${object.company_id.vat}</td>
+                            </tr>
+                            <tr>
+                                <td valign="top" style="padding:10px;">${object.company_id.street}</td>
+                            </tr>
+                            <tr>
+                                <td align="center" valign="top" style="padding:10px;"><h4>1. IDENTIFICACION DEL CONSUMIDOR RECLAMANTE</h4></td>
+                            </tr>
+                        </table>
+                        <table width="600" cellspacing="0" cellpadding="0" border="0" align="center" style="max-width:600px; width:100%;">
+                            <tr>
+                              <td width="300" valign="top" style="padding:10px;">
+                                NOMBRE: ${object.partner_id.name}
+                              </td>
+                              <td width="300" valign="top" style="padding:10px;">
+                                DOMICILIO: ${object.partner_address}
+                              </td>
+                            </tr>
+                          </table>
+                
+                         
+                        <table width="600" cellspacing="0" cellpadding="0" border="0" align="center" style="max-width:600px; width:100%;">
+                            <tr>
+                                <td width="200" valign="top" style="padding:10px;">
+                                    DNI/CE: ${object.partner_document_number}
+                                </td>
+                                <td width="200" valign="top" style="padding:10px;">
+                                    TELÉFONO: ${object.partner_phone}
+                                </td>
+                                <td width="200" valign="top" style="padding:10px;">
+                                    E-MAIL: ${object.partner_email}
+                                </td>
+                              </tr>
+                        
+                        </table>
+                        <table width="600" cellspacing="0" cellpadding="0" border="0" align="center" style="max-width:600px; width:100%;">
+                            <tr>
+                                <td align="center" valign="top" style="padding:10px;"><h4>2. IDENTIFICACION DEL BIEN CONTRATADO</h4></td>
+                            </tr>
+                        </table>
+                        <table width="600" cellspacing="0" cellpadding="0" border="0" align="center" style="max-width:600px; width:100%;">
+                            <tr>
+                              <td width="300" valign="top" style="padding:10px;">
+                                PRODUCTO: 
+                                % if object.partner_product_service =='producto':
+                                    X
+                                % endif
+                              </td>
+                              <td width="300" valign="top" style="padding:10px;">
+                                MONTO RECLAMO: ${object.partner_amount}
+                              </td>
+                            </tr>
+                            <tr>
+                                <td width="300" valign="top" style="padding:10px;">
+                                    SERVICIO:
+                                    % if object.partner_product_service =='servicio':
+                                        X
+                                    % endif
+                                </td>
+                            </tr>
+                        </table>
+                        <table width="600" cellspacing="0" cellpadding="0" border="0" align="center" style="max-width:600px; width:100%;">
+                            <tr>
+                                <td align="center" valign="top" style="padding:10px;"><h4>3. DETALLE DE LA RECLAMACIÓN Y PEDIDO DEL CONSUMIDOR</h4></td>
+                            </tr>
+                        </table>
+                        <table width="600" cellspacing="0" cellpadding="0" border="0" align="center" style="max-width:600px; width:100%;">
+                            <tr>
+                              <td width="300" valign="top" style="padding:10px;">
+                                RECLAMO: 
+                                % if object.ticket_type_id.name =='Reclamo':
+                                    X
+                                % endif
+                              </td>
+                              <td width="300" valign="top" style="padding:10px;">
+                                QUEJA: 
+                                % if object.ticket_type_id.name =='Queja':
+                                    X
+                                % endif
+                              </td>
+                            </tr>
+                        </table>
+                        <table width="600" cellspacing="0" cellpadding="0" border="0" align="center" style="max-width:600px; width:100%;">
+                            <tr>
+                                <td  valign="top" style="padding:10px;">Detalle: ${object.description}</td>
+                            </tr>
+                            <tr>
+                                <td  valign="top" style="padding:10px;">Pedido: ${object.partner_order}</td>
+                            </tr>
+                        </table>
+                        <table width="600" cellspacing="0" cellpadding="0" border="0" align="center" style="max-width:600px; width:100%;">
+                            <tr>
+                                <td valign="top" style="padding:10px;">${object.company_id.name}, con RUC ${object.company_id.vat}, con domicilio ${object.company_id.stree_name}, es el titular del banco de datos personales de Clientes.
+                                    ${object.company_id.name} declara que el tratamiento de sus datos personales en este portal tiene por finalidad gestionar de manera correcta su reclamo o queja conforme las disposiciones legales sobre la materia. ${object.company_id.name} declara que sus datos personales serán almacenados en nuestro Banco de Datos Personales de Clientes, por el tiempo necesario para atender su reclamo o queja.
+                                    * ${object.company_id.name} declara que para el ejercicio de sus derechos puede presentar su solicitud a: Correo electrónico: ${object.company_id.email} Sede Central: ${object.company_id.stree_name}
+                                    * Sede Central: ${object.company_id.stree_name}
+                                    * La formulación del reclamo no impide acudir a otras vías de solución de controversias ni es requisito previo para interponer una denuncia ante el INDECOPI
+                                    * El proveedor deberá dar respuesta al reclamo en un plazo no mayor a treinta (30) días calendario, pudiendo ampliar el plazo hasta por treinta (30) días más, previa comunicación al consumidor
+                                    * Esta cuenta de correo es usada solo para el envío de constancias de recepción de reclamos. No es un medio de recepción de los mismos, por favor sírvase no enviar ningún mensaje a esta cuenta. En caso de requerirlo por favor sírvase contactarnos en la siguiente dirección de correo: ${object.company_id.email}</td>
+                            </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </center>
+		</field>
+
+		<field name="auto_delete" eval="False" />
+	</record>
+
+    <!-- 2. Correo ticket resuelto -->
+    <record id="new_ticket_acomplims_book_resolve" model="mail.template">
+		<field name="name">Ticket: Libro de reclamaciones - Resuelto</field>
+		<field name="model_id" ref="helpdesk.model_helpdesk_ticket" />
+		<field name="subject">Libro de reclamaciones: Ticket #${object.id}</field>
+		<field name="email_from">${(object.user_id.email_formatted or user.email_formatted) | safe}</field>
+		<field name="email_to">${(object.partner_email if not object.sudo().partner_id.email or object.sudo().partner_id.email != object.partner_email else '') | safe}</field>
+		<field name="partner_to">${object.partner_id.id if object.sudo().partner_id.email and object.sudo().partner_id.email == object.partner_email else ''}</field>
+		<field name="body_html" type="xml">
+            <center>
+
+                <table width="640" cellspacing="0" cellpadding="0" border="0" align="center" style="max-width:640px; width:100%;"
+                    bgcolor="#F2F2F2">
+            
+                    <tr>
+                        <td align="center" valign="top" style="padding:10px;">
+                            <table width="600" cellspacing="0" cellpadding="0" border="0" align="center"
+                                style="max-width:600px; width:100%;">
+                                <tr>
+                                    <td align="center" valign="top" style="padding:10px;">Estimado cliente estamos enviadole una
+                                        copia del reclamo efectuada el día$ ${object.create_date.strftime('%d/%m/%Y')} </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" valign="top" style="padding:10px;">
+                                        <h2>LIBRO DE RECLAMACIONES</h2>
+                                    </td>
+                                </tr>
+                            </table>
+            
+                            <table width="600" cellspacing="0" cellpadding="0" border="0" align="center"
+                                style="max-width:600px; width:100%;">
+                                <tr>
+                                    <td width="300" valign="top" style="padding:10px;">
+                                        Nro. Reclamo: ${object.id}
+                                    </td>
+                                    <td width="300" valign="top" style="padding:10px;">
+                                        FECHA: ${object.create_date.strftime('%d/%m/%Y')}
+                                    </td>
+                                </tr>
+                            </table>
+                            <table width="600" cellspacing="0" cellpadding="0" border="0" align="center"
+                                style="max-width:600px; width:100%;">
+                                <tr>
+                                    <td valign="top" style="padding:10px;">${object.company_id.name} - RUC
+                                        ${object.company_id.vat}</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" style="padding:10px;">${object.company_id.street}</td>
+                                </tr>
+                                <tr>
+                                    <td align="center" valign="top" style="padding:10px;">
+                                        <h4>1. IDENTIFICACION DEL CONSUMIDOR RECLAMANTE</h4>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table width="600" cellspacing="0" cellpadding="0" border="0" align="center"
+                                style="max-width:600px; width:100%;">
+                                <tr>
+                                    <td width="300" valign="top" style="padding:10px;">
+                                        NOMBRE: ${object.partner_id.name}
+                                    </td>
+                                    <td width="300" valign="top" style="padding:10px;">
+                                        DOMICILIO: ${object.partner_address}
+                                    </td>
+                                </tr>
+                            </table>
+            
+            
+                            <table width="600" cellspacing="0" cellpadding="0" border="0" align="center"
+                                style="max-width:600px; width:100%;">
+                                <tr>
+                                    <td width="200" valign="top" style="padding:10px;">
+                                        DNI/CE: ${object.partner_document_number}
+                                    </td>
+                                    <td width="200" valign="top" style="padding:10px;">
+                                        TELÉFONO: ${object.partner_phone}
+                                    </td>
+                                    <td width="200" valign="top" style="padding:10px;">
+                                        E-MAIL: ${object.partner_email}
+                                    </td>
+                                </tr>
+            
+                            </table>
+                            <table width="600" cellspacing="0" cellpadding="0" border="0" align="center"
+                                style="max-width:600px; width:100%;">
+                                <tr>
+                                    <td align="center" valign="top" style="padding:10px;">
+                                        <h4>2. IDENTIFICACION DEL BIEN CONTRATADO</h4>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table width="600" cellspacing="0" cellpadding="0" border="0" align="center"
+                                style="max-width:600px; width:100%;">
+                                <tr>
+                                    <td width="300" valign="top" style="padding:10px;">
+                                        PRODUCTO:
+                                        % if object.partner_product_service =='producto':
+                                        X
+                                        % endif
+                                    </td>
+                                    <td width="300" valign="top" style="padding:10px;">
+                                        MONTO RECLAMO: ${object.partner_amount}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="300" valign="top" style="padding:10px;">
+                                        SERVICIO:
+                                        % if object.partner_product_service =='servicio':
+                                        X
+                                        % endif
+                                    </td>
+                                </tr>
+                            </table>
+                            <table width="600" cellspacing="0" cellpadding="0" border="0" align="center"
+                                style="max-width:600px; width:100%;">
+                                <tr>
+                                    <td align="center" valign="top" style="padding:10px;">
+                                        <h4>3. DETALLE DE LA RECLAMACIÓN Y PEDIDO DEL CONSUMIDOR</h4>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table width="600" cellspacing="0" cellpadding="0" border="0" align="center"
+                                style="max-width:600px; width:100%;">
+                                <tr>
+                                    <td width="300" valign="top" style="padding:10px;">
+                                        RECLAMO:
+                                        % if object.ticket_type_id.name =='Reclamo':
+                                        X
+                                        % endif
+                                    </td>
+                                    <td width="300" valign="top" style="padding:10px;">
+                                        QUEJA:
+                                        % if object.ticket_type_id.name =='Queja':
+                                        X
+                                        % endif
+                                    </td>
+                                </tr>
+                            </table>
+                            <table width="600" cellspacing="0" cellpadding="0" border="0" align="center"
+                                style="max-width:600px; width:100%;">
+                                <tr>
+                                    <td valign="top" style="padding:10px;">Detalle: ${object.description}</td>
+                                </tr>
+                                <tr>
+                                    <td  valign="top" style="padding:10px;">Pedido: ${object.partner_order}</td>
+                                </tr>
+                            </table>
+                            <table width="600" cellspacing="0" cellpadding="0" border="0" align="center"
+                                style="max-width:600px; width:100%;">
+                                <tr>
+                                    <td align="center" valign="top" style="padding:10px;">
+                                        <h4>4. TIPO DE RESPUESTA</h4>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table width="600" cellspacing="0" cellpadding="0" border="0" align="center"
+                                style="max-width:600px; width:100%;">
+                                <tr>
+                                    <td width="300" valign="top" style="padding:10px;">
+                                        Carta Domiciliaria:
+                                        % if object.partner_response_type =='carta':
+                                        X
+                                        % endif
+                                    </td>
+                                    <td width="300" valign="top" style="padding:10px;">
+                                        E-Mail:
+                                        % if object.partner_response_type =='email':
+                                        X
+                                        % endif
+                                    </td>
+                                </tr>
+                            </table>
+                            <table width="600" cellspacing="0" cellpadding="0" border="0" align="center"
+                                style="max-width:600px; width:100%;">
+                                <tr>
+                                    <td align="center" valign="top" style="padding:10px;">
+                                        <h4>4. TIPO DE RESPUESTA</h4>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table width="600" cellspacing="0" cellpadding="0" border="0" align="center"
+                                style="max-width:600px; width:100%;">
+                                <tr>
+                                    <td  valign="top" style="padding:10px;">Respuesta: ${object.response}</td>
+                                </tr>
+                            </table>
+                            <table width="600" cellspacing="0" cellpadding="0" border="0" align="center"
+                                style="max-width:600px; width:100%;">
+                                <tr>
+                                    <td align="center" valign="top" style="padding:10px;">
+                                        <h4>5. OBSERVACIONES Y ACCIONES ADOPTADAS POR EL PROVEEDOR: El plazo máximo de atención de su reclamo es de 30 días</h4>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table width="600" cellspacing="0" cellpadding="0" border="0" align="center"
+                                style="max-width:600px; width:100%;">
+                                <tr>
+                                    <td  valign="top" style="padding:10px;">${object.company_id.name}, con RUC ${object.company_id.vat}, con domicilio ${object.company_id.stree_name}, es el titular del banco de datos personales de Clientes.
+                                        ${object.company_id.name} declara que el tratamiento de sus datos personales en este portal tiene por finalidad gestionar de manera correcta su reclamo o queja conforme las disposiciones legales sobre la materia. ${object.company_id.name} declara que sus datos personales serán almacenados en nuestro Banco de Datos Personales de Clientes, por el tiempo necesario para atender su reclamo o queja.
+                                        * ${object.company_id.name} declara que para el ejercicio de sus derechos puede presentar su solicitud a: Correo electrónico: ${object.company_id.email} Sede Central: ${object.company_id.stree_name}
+                                        * Sede Central: ${object.company_id.stree_name}
+                                        * La formulación del reclamo no impide acudir a otras vías de solución de controversias ni es requisito previo para interponer una denuncia ante el INDECOPI
+                                        * El proveedor deberá dar respuesta al reclamo en un plazo no mayor a treinta (30) días calendario, pudiendo ampliar el plazo hasta por treinta (30) días más, previa comunicación al consumidor
+                                        * Esta cuenta de correo es usada solo para el envío de constancias de recepción de reclamos. No es un medio de recepción de los mismos, por favor sírvase no enviar ningún mensaje a esta cuenta. En caso de requerirlo por favor sírvase contactarnos en la siguiente dirección de correo: ${object.company_id.email}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </center>
+		</field>
+
+		<field name="auto_delete" eval="False" />
+	</record>
+    </data>
+</odoo>

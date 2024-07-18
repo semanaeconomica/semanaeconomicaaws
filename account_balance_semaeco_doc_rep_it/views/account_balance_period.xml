@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="view_account_balance_period_book_semaeco_tree" model="ir.ui.view">
+		<field name="name">account.balance.period.book.semaeco.tree</field>
+		<field name="model">account.balance.period.book</field>
+		<field name="inherit_id" ref="account_balance_doc_advance_it.view_account_balance_period_book_tree_advance"/>
+		<field name="arch" type="xml">
+			<field name="cuenta" position="after">
+				<field name="manage_comment"/>
+			</field>
+			<field name="expected_pay_date" position="attributes">
+				<attribute name="string">Fecha Canc. Aprox.</attribute>
+			</field>
+		</field>
+	</record>
+
+	<record id="account_balance_doc_advance_it.action_update_expected_date_it_saldos" model="ir.actions.server">
+		<field name="name">Actualizar Fecha Canc. Aprox.</field>
+	</record>
+</odoo>

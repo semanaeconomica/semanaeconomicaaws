@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="view_stock_costo_promedio" model="ir.ui.view">
+            <field name="name">stock.costo.promedio.form</field>
+            <field name="model">stock.costo.promedio</field>
+            <field name="arch" type="xml">
+                <form string="Costo Promedio Producto" version="7.0">
+                    <group>
+                        <h1>
+                            Desea Actualizar los Costos Promedios de Todos los Productos?
+                        </h1>
+                    </group>
+                    <footer>
+                        <button name="do_rebuild" string="Actualizar" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancelar" class="oe_link" special="cancel"/>
+                    </footer>
+                 </form>
+             </field>
+        </record>
+
+        <record id="action_stock_costo_promedio" model="ir.actions.act_window">
+            <field name="name">Costo Promedio Producto</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.costo.promedio</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem name="Actualizar Costo Promedio Producto" id="menu_stock_costo_promedio"
+                 parent="kardex_fisico_it.kardex_main_menu" action="action_stock_costo_promedio"
+                 sequence="3" />
+
+    </data>
+</odoo>

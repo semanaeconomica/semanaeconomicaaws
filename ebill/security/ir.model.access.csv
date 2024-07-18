@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_serial_nubefact_line_user,serial.nubefact.line.user,ebill.model_serial_nubefact_line,account_base_it.group_account_tables_user,1,1,1,1
+access_advance_product_line_user,advance.product.line.user,ebill.model_advance_product_line,account_base_it.group_account_tables_user,1,1,1,1
+access_einvoice_user,einvoice.user,ebill.model_einvoice,group_electronic_billing,1,1,1,1
+access_einvoice_account_manager,einvoice.account.manager,ebill.model_einvoice,account.group_account_manager,1,1,1,1
+access_move_advance_line_user,move.advance.line.user,ebill.model_move_advance_line,group_electronic_billing,1,1,1,1
+access_move_advance_line_account_manager,move.advance.line.account.manager,ebill.model_move_advance_line,account.group_account_manager,1,1,1,1
+access_move_guide_line_user,move.guide.line.user,ebill.model_move_guide_line,group_electronic_billing,1,1,1,1
+access_move_guide_line_account_manager,move.guide.line.account.manager,ebill.model_move_guide_line,account.group_account_manager,1,1,1,1
+access_einvoice_line_user,einvoice.line.user,ebill.model_einvoice_line,group_electronic_billing,1,1,1,1
+access_einvoice_line_account_manager,einvoice.line.account.manager,ebill.model_einvoice_line,account.group_account_manager,1,1,1,1

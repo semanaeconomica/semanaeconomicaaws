@@ -1,0 +1,17 @@
+<odoo>
+	<!--
+	<record model='einvoice.catalog.09' id="account_base_it.catalogo_09_code_13">
+		<field name='name'>Corrección del monto neto pendiente de pago y/o la(s) fechas(s) de vencimiento del pago
+           único o de las cuotas y/o los montos correspondientes a cada cuota, de ser el caso. </field>
+		<field name='code'>13</field>
+	</record>
+	-->
+	<record model='einvoice.catalog.09' id="catalogo_09_code_11_nubefact">
+		<field name='name'>AJUSTES AFECTOS AL IVAP (NUBEFACT)</field>
+		<field name='code'>11</field>
+	</record>
+	<record model='einvoice.catalog.09' id="catalogo_09_code_12_nubefact">
+		<field name='name'> AJUSTES DE OPERACIONES DE EXPORTACIÓN(NUBEFACT)</field>
+		<field name='code'>12</field>
+	</record>
+</odoo>

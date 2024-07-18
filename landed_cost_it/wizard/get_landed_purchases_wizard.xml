@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_get_landed_purchases_wizard" model="ir.ui.view">
+            <field name="name">get.landed.purchases.wizard.form</field>
+            <field name="model">get.landed.purchases.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Get Landed Purchases">
+                    <group>
+                        <group>
+                            <field name="company_id" readonly="1" required="1" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="purchases" nolabel="1" options="{'no_create': True}" 
+							domain="[('company_id','=',company_id)]">
+                            <tree editable="bottom">
+                                <field name="purchase_date"/>
+                                <field name="name"/>
+                                <field name="partner_id"/>
+                                <field name="product_id"/>
+                                <field name="price_total_signed"/>
+                                <field name="tc"/>
+                                <field name="currency_id"/>
+                                <field name="price_total"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <footer>
+                        <button string="Obtener Compras" name="insert" type="object" class="oe_highlight"/>
+                        <button string="Cancelar" class="btn btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

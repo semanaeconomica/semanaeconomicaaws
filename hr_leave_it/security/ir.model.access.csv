@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_leave_type_it,hr_leave_type_it,hr_leave_it.model_hr_leave_type_it,,1,1,1,1
+access_hr_leave_motive_it,hr_leave_motive_it,hr_leave_it.model_hr_leave_motive_it,,1,1,1,1
+access_hr_leave_validator,hr_leave_validator,hr_leave_it.model_hr_leave_validator,,1,1,1,1
+access_hr_payslip_run_leave,hr_payslip_run_leave,hr_payroll.model_hr_payslip_run,,1,1,1,1
+access_hr_contract,hr_contract_leave,hr_contract.model_hr_contract,,1,1,1,1
+access_hr_employee,hr_employee_leave,hr.model_hr_employee,,1,1,1,1
+access_hr_suspension_type,hr_suspension_type_leave,hr_base_it.model_hr_suspension_type,,1,1,1,1

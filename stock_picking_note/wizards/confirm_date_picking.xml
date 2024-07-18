@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_confirm_date_picking_form">
+			<field name="name">confirm.date.picking.form</field>
+			<field name="model">confirm.date.picking</field>
+			<field name="arch" type="xml">
+				<form string="Cambiar Fecha de Kardex">
+					<group>
+						<field name="date" string="Fecha"/>
+					</group>
+					<footer>
+						<button name="changed_date_pincking" string="Aceptar" type="object" class="oe_highlight" />
+						<button string="Cancelar" class="oe_highlight" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+	</data>
+</odoo>

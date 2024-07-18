@@ -1,0 +1,1 @@
+delete from ir_translation where value ='El número de identificación de impuesto. Complételo si el contacto está sujeto a los impuestos del gobierno. Utilizado en algunas declaraciones legales.';

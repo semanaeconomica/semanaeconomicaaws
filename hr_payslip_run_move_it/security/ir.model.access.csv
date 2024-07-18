@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_payslip_run_move,hr_payslip_run_move_root,hr_payslip_run_move_it.model_hr_payslip_run_move,hr_payroll.group_hr_payroll_manager,1,1,1,1

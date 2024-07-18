@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+
+        <record id="view_move_line_tree_multipayment_inherit" model="ir.ui.view">
+            <field name="name">account.move.line.tree.multipayment.inherit</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account_multipayment_advance_it.view_move_line_tree_multipayment"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="currency_id_book" position="after">
+                        <field name="invoice_payment_term_id_book" string="Plazos de Pago" optional="show"/>
+                    </field>
+                </data>
+            </field>
+        </record>
+
+    </data>
+</odoo>

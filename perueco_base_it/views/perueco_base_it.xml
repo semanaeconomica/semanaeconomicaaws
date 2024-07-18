@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!-- <menuitem id="menu_product_perueco" parent="sale.menu_sale_config" sequence="99" groups="sales_team.group_sale_manager" name="Ediciones y Catálogos"/> -->
+
+		<menuitem name="Pautas"
+            id="menu_guidelines_root"
+			action="mail.action_discuss"
+            groups="group_guidelines_user"
+            web_icon="perueco_base_it,static/description/icon.png"
+            sequence="41"/>
+
+		<menuitem id="menu_guidelines_operations" 
+				name="Operaciones" 
+				parent="menu_guidelines_root" 
+				groups="group_guidelines_user"
+				sequence="1"/>
+
+		<menuitem id="menu_guidelines_config" 
+				name="Configuración" 
+				parent="menu_guidelines_root" 
+				groups="group_guidelines_admin"
+				sequence="2"/>
+	</data>
+</odoo>

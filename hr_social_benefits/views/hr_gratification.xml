@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="hr_gratification_line_tree" model="ir.ui.view">
+		<field name="name">hr.gratification.line.tree</field>
+		<field name="model">hr.gratification.line</field>
+		<field name="arch" type="xml">
+			<tree edit="0" create="0" delete="0">
+				<field name="identification_id" optional="show"/>
+				<field name="last_name" optional="show"/>
+				<field name="m_last_name" optional="show"/>
+				<field name="names" optional="show"/>
+				<field name="admission_date" optional="show"/>
+				<field name="compute_date" optional="hide"/>
+				<field name="cessation_date" optional="hide"/>
+				<field name="labor_regime" optional="show"/>
+				<field name="social_insurance_id" optional="show"/>
+				<field name="distribution_id" optional="show"/>
+				<field name="months" optional="show"/>
+				<field name="days" optional="show"/>
+				<field name="lacks" optional="show"/>
+				<field name="wage" optional="show"/>
+				<field name="household_allowance" optional="show"/>
+				<field name="commission" optional="show"/>
+				<field name="bonus" optional="show"/>
+				<field name="extra_hours" optional="show"/>
+				<field name="computable_remuneration" optional="show"/>
+				<field name="amount_per_month" optional="show"/>
+				<field name="amount_per_day" optional="show"/>
+				<field name="grat_per_month" optional="show"/>
+				<field name="grat_per_day" optional="show"/>
+				<field name="amount_per_lack" optional="show"/>
+				<field name="total_grat" optional="show"/>
+				<field name="bonus_essalud" optional="show"/>
+				<field name="total" optional="show"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="hr_gratification_form" model="ir.ui.view">
+		<field name="name">hr.gratification.form</field>
+		<field name="model">hr.gratification</field>
+		<field name="arch" type="xml">
+			<form>
+				<header>
+					<button name="get_gratification" string="Calcular" type="object" class="oe_highlight" states="draft"/>
+					<button name="get_excel_gratification" string="Generar Excel" type="object" class="oe_highlight"/>
+					<button name="export_gratification" string="Exportar Gratificacion" type="object" class="oe_highlight" confirm="¿Esta seguro que desea exportar los montos de Gratificacion a su respectivo Lote de Nominas?" states="draft"/>
+					<button name="turn_draft" string="Volver a Borrador" type="object" class="oe_highlight" states="exported"/>
+					<field name="state" widget="statusbar"/>
+				</header>
+				<sheet>
+					<group>
+						<group>
+							<field name="name" invisible="1"/>
+							<field name="fiscal_year_id"/>
+							<field name="with_bonus"/>
+							<field name="months_and_days"/>
+						</group>
+						<group>
+							<field name="type"/>
+							<field name="payslip_run_id"/>
+							<field name="deposit_date"/>
+							<field name="company_id" groups="base.group_multi_company"/>
+						</group>
+					</group>
+					<notebook>
+						<page string="Empleados">
+							<field name="line_ids" context="{'tree_view_ref':'hr_social_benefits.hr_gratification_line_tree'}"/>
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="hr_gratification_tree" model="ir.ui.view">
+		<field name="name">hr.gratification.tree</field>
+		<field name="model">hr.gratification</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="fiscal_year_id" optional="show"/>
+				<field name="type" optional="show"/>
+				<field name="with_bonus" optional="show"/>
+				<field name="deposit_date" optional="show"/>
+				<field name="state" optional="show"/>
+				<field name="company_id" groups="base.group_multi_company" optional="show"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="action_hr_gratification" model="ir.actions.act_window">
+		<field name="name">Gratificacion</field>
+		<field name="res_model">hr.gratification</field>
+		<field name="view_mode">tree,form</field>
+		<field name="help" type="html">
+			<p class="o_view_nocontent_smiling_face">
+				Crea tu primera tabla de Gratificacion aqui
+			</p>
+		</field>
+	</record>
+</odoo>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_account_mline_expected_date_update_wizard_form">
+			<field name="name">account.mline.expected.date.update.wizard.form</field>
+			<field name="model">account.mline.expected.date.update.wizard</field>
+			<field name="arch" type="xml">
+				<form string="Actualizar Fecha Prevista de Pago">
+					<group>
+						<group>
+							<field name="date" required="1"/>
+						</group>
+					</group>
+					<footer>
+						<button string="Aplicar" name="update_expected_date" type="object" class="oe_highlight"/>
+						or
+						<button string="Cancel" class="oe_link" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_account_mline_expected_date_update_wizard_form_saldos">
+			<field name="name">account.mline.expected.date.update.wizard.form.saldos</field>
+			<field name="model">account.mline.expected.date.update.wizard</field>
+			<field name="arch" type="xml">
+				<form string="Actualizar Fecha Prevista de Pago">
+					<group>
+						<group>
+							<field name="date" required="1"/>
+						</group>
+					</group>
+					<footer>
+						<button string="Aplicar" name="update_expected_date_saldos" type="object" class="oe_highlight"/>
+						or
+						<button string="Cancel" class="oe_link" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="account_mline_expected_date_update_wizard_action" model="ir.actions.act_window">
+			<field name="name">Actualizar Fecha Prevista de Pago</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">account.mline.expected.date.update.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+	</data>
+</odoo>

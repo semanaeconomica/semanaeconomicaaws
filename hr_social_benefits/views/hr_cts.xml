@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="hr_cts_line_tree" model="ir.ui.view">
+		<field name="name">hr.cts.line.tree</field>
+		<field name="model">hr.cts.line</field>
+		<field name="arch" type="xml">
+			<tree edit="0" create="0" delete="0">
+				<field name="identification_id" optional="show" readonly="1"/>
+				<field name="last_name" optional="show" readonly="1"/>
+				<field name="m_last_name" optional="show" readonly="1"/>
+				<field name="names" optional="show" readonly="1"/>
+				<field name="admission_date" optional="show" readonly="1"/>
+				<field name="compute_date" optional="hide" readonly="1"/>
+				<field name="cessation_date" optional="hide" readonly="1"/>
+				<field name="cts_account" optional="show" readonly="1"/>
+				<field name="cts_bank" optional="show" readonly="1"/>
+				<field name="exchange_type" optional="show" readonly="1"/>
+				<field name="distribution_id" optional="show"/>
+				<field name="months" optional="show" readonly="1"/>
+				<field name="days" optional="show" readonly="1"/>
+				<field name="lacks" optional="show" readonly="1"/>
+				<field name="excess_medical_rest" optional="show" readonly="1"/>
+				<field name="wage" optional="show" readonly="1"/>
+				<field name="household_allowance" optional="show" readonly="1"/>
+				<field name="sixth_of_gratification" optional="show" readonly="1"/>
+				<field name="commission" optional="show" readonly="1"/>
+				<field name="bonus" optional="show" readonly="1"/>
+				<field name="extra_hours" optional="show" readonly="1"/>
+				<field name="computable_remuneration" optional="show" readonly="1"/>
+				<field name="amount_per_month" optional="show" readonly="1"/>
+				<field name="amount_per_day" optional="show" readonly="1"/>
+				<field name="amount_per_lack" optional="show" readonly="1"/>
+				<field name="cts_per_month" optional="show" readonly="1"/>
+				<field name="cts_per_day" optional="show" readonly="1"/>
+				<field name="cts_soles" optional="show" readonly="1"/>
+				<field name="cts_interest" optional="show" readonly="0"/>
+				<field name="other_discounts" optional="show" readonly="0"/>
+				<field name="total_cts" optional="show" readonly="1" force_save="1"/>
+				<field name="cts_dollars" optional="show" readonly="1" force_save="1"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="hr_cts_form" model="ir.ui.view">
+		<field name="name">hr.cts.form</field>
+		<field name="model">hr.cts</field>
+		<field name="arch" type="xml">
+			<form>
+				<header>
+					<button name="get_cts" string="Calcular" type="object" class="oe_highlight" states="draft"/>
+					<button name="get_excel_cts" string="Generar Excel" type="object" class="oe_highlight"/>
+					<button name="get_pdf_cts" string="Generar PDF" type="object" class="oe_highlight"/>
+					<button name="export_cts" string="Exportar CTS" type="object" class="oe_highlight" confirm="¿Esta seguro que desea exportar los montos de CTS a su respectivo Lote de Nominas?" states="draft"/>
+					<button name="turn_draft" string="Volver a Borrador" type="object" class="oe_highlight" states="exported"/>
+					<field name="state" widget="statusbar"/>
+				</header>
+				<sheet>
+					<group>
+						<group>
+							<field name="name" invisible="1"/>
+							<field name="fiscal_year_id"/>
+							<field name="exchange_type"/>
+						</group>
+						<group>
+							<field name="type"/>
+							<field name="payslip_run_id"/>
+							<field name="deposit_date"/>
+							<field name="company_id" groups="base.group_multi_company"/>
+						</group>
+					</group>
+					<notebook>
+						<page string="Empleados">
+							<field name="line_ids" context="{'tree_view_ref':'hr_social_benefits.hr_cts_line_tree'}"/>
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="hr_cts_tree" model="ir.ui.view">
+		<field name="name">hr.cts.tree</field>
+		<field name="model">hr.cts</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="fiscal_year_id" optional="show"/>
+				<field name="type" optional="show"/>
+				<field name="exchange_type" optional="show"/>
+				<field name="deposit_date" optional="show"/>
+				<field name="state" optional="show"/>
+				<field name="company_id" groups="base.group_multi_company" optional="show"/>
+			</tree>
+		</field>
+	</record>
+	
+	<record id="action_hr_cts" model="ir.actions.act_window">
+		<field name="name">CTS</field>
+		<field name="res_model">hr.cts</field>
+		<field name="view_mode">tree,form</field>
+		<field name="help" type="html">
+			<p class="o_view_nocontent_smiling_face">
+				Crea tu primera tabla de CTS aqui
+			</p>
+		</field>
+	</record>
+</odoo>

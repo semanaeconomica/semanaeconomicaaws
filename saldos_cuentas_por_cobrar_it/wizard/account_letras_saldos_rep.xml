@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_account_letras_saldos_rep_form">
+			<field name="name">account.letras.saldos.rep.form</field>
+			<field name="model">account.letras.saldos.rep</field>
+			<field name="arch" type="xml">
+				<form string="Cuentas por Cobrar">
+						<group>
+							<group>
+								<field name="company_id"/>
+                                <field name="exercise"/>
+							</group>
+						</group>
+						<footer>
+							<button string="Mostrar" name="get_report" type="object" class="oe_highlight"/>
+                            or
+							<button string="Cancel" class="oe_link" special="cancel"/>
+						</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="account_letras_saldos_rep_action" model="ir.actions.act_window">
+			<field name="name">Cuentas por Cobrar</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">account.letras.saldos.rep</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+
+		<menuitem action="account_letras_saldos_rep_action" id="menu_account_letras_saldos_rep_action" parent="sale.menu_sale_report" sequence="10" groups="account_base_it.group_account_tables_user"/>
+	</data>
+</odoo>

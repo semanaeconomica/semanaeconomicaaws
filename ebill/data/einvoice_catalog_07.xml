@@ -1,0 +1,23 @@
+<odoo>
+	<data noupdate="1">
+		<record model='einvoice.catalog.07'><field name='name'>Gravado - Operación Onerosa</field><field name='code'>10</field><field name='tribute_code'>1000</field><field name="pse_code">1</field></record>
+		<record model='einvoice.catalog.07'><field name='name'>Gravado – Retiro por premio</field><field name='code'>11</field><field name='tribute_code'>9996</field><field name="pse_code">2</field></record>
+		<record model='einvoice.catalog.07'><field name='name'>Gravado – Retiro por donación</field><field name='code'>12</field><field name='tribute_code'>9996</field><field name="pse_code">3</field></record>
+		<record model='einvoice.catalog.07'><field name='name'>Gravado – Retiro </field><field name='code'>13</field><field name='tribute_code'>9996</field><field name="pse_code">4</field></record>
+		<record model='einvoice.catalog.07'><field name='name'>Gravado – Retiro por publicidad</field><field name='code'>14</field><field name='tribute_code'>9996</field><field name="pse_code">5</field></record>
+		<record model='einvoice.catalog.07'><field name='name'>Gravado – Bonificaciones</field><field name='code'>15</field><field name='tribute_code'>9996</field><field name="pse_code">6</field></record>
+		<record model='einvoice.catalog.07'><field name='name'>Gravado – Retiro por entrega a trabajadores</field><field name='code'>16</field><field name='tribute_code'>9996</field><field name="pse_code">7</field></record>
+		<record model='einvoice.catalog.07'><field name='name'>Gravado - IVAP</field><field name='code'>17</field><field name='tribute_code'>1016 o 9996</field></record>
+		<record model='einvoice.catalog.07'><field name='name'>Exonerado - Operación Onerosa</field><field name='code'>20</field><field name='tribute_code'>9997</field><field name="pse_code">8</field></record>
+		<record model='einvoice.catalog.07'><field name='name'>Exonerado - Transferencia gratuita</field><field name='code'>21</field><field name='tribute_code'>9996</field></record>
+		<record model='einvoice.catalog.07'><field name='name'>Inafecto - Operación Onerosa</field><field name='code'>30</field><field name='tribute_code'>9998</field><field name="pse_code">9</field></record>
+		<record model='einvoice.catalog.07'><field name='name'>Inafecto – Retiro por Bonificación</field><field name='code'>31</field><field name='tribute_code'>9996</field><field name="pse_code">10</field></record>
+		<record model='einvoice.catalog.07'><field name='name'>Inafecto – Retiro</field><field name='code'>32</field><field name='tribute_code'>9996</field><field name="pse_code">11</field></record>
+		<record model='einvoice.catalog.07'><field name='name'>Inafecto – Retiro por Muestras Médicas</field><field name='code'>33</field><field name='tribute_code'>9996</field><field name="pse_code">12</field></record>
+		<record model='einvoice.catalog.07'><field name='name'>Inafecto - Retiro por Convenio Colectivo</field><field name='code'>34</field><field name='tribute_code'>9996</field><field name="pse_code">13</field></record>
+		<record model='einvoice.catalog.07'><field name='name'>Inafecto – Retiro por premio</field><field name='code'>35</field><field name='tribute_code'>9996</field><field name="pse_code">14</field></record>
+		<record model='einvoice.catalog.07'><field name='name'>Inafecto - Retiro por publicidad</field><field name='code'>36</field><field name='tribute_code'>9996</field><field name="pse_code">15</field></record>
+		<record model='einvoice.catalog.07'><field name='name'>Inafecto - Transferencia gratuita</field><field name='code'>37</field><field name='tribute_code'>9996</field></record>
+		<record model='einvoice.catalog.07'><field name='name'>Exportación de Bienes o Servicios</field><field name='code'>40</field><field name='tribute_code'>9995 o 9996</field><field name="pse_code">16</field></record>
+	</data>
+</odoo>

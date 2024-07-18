@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="hr_main_parameter_form_inherit" model="ir.ui.view">
+		<field name="name">hr.main.parameter.form.inherit</field>
+		<field name="model">hr.main.parameter</field>
+		<field name="inherit_id" ref="hr_base_it.hr_main_parameter_form"/>
+		<field name="arch" type="xml">
+			<field name="gratification_input_id" position="after">
+				<field name="grat_advance_input_id"/>
+			</field>
+		</field>
+	</record>
+</odoo>

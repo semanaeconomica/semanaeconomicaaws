@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<record id="view_partner_form_inherit" model="ir.ui.view">
+			<field name="name">res.partner.form.inherit</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="arch" type="xml">
+				<field name="vat" position="after">
+					<field name="related_identification" invisible="1"/>
+					<button string="RENIEC" name="verify_dni" type="object" class="oe_highlight" attrs="{'invisible': [('related_identification', '!=', '1')]}" /> 
+				</field>
+			</field>
+		</record>
+		<record id="view_partner_form_inherit_ruc" model="ir.ui.view">
+			<field name="name">res.partner.form.inherit.ruc</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//form/sheet" position="before">
+					<header class="oe_edit_only">
+						<button string="Consultar RUC" name="verify_ruc" type="object" class="oe_highlight"/>
+					</header>
+				</xpath>
+				<field name="category_id" position="after">
+					<field name="direccion_complete_it"
+						   groups="query_ruc_dni.group_show_adreess_complete"  />
+					<field name="direccion_complete_ubigeo_it"
+					       groups="query_ruc_dni.group_show_adreess_complete" />
+
+				</field>
+				<xpath expr="//page[@name='sales_purchases']" position="before">
+					<page name="con_sunat" string="Consulta Sunat">
+                            <group>
+                                <group  >
+                                    <field name="ruc_state" readonly="1"/>
+					                <field name="ruc_condition" readonly="1"/>
+									<field name="n2_dir_fiscal" invisible="1"/>
+									<field name="n2_nom_comer" readonly="1"/>
+									<field name="n2_sis_contab" readonly="1"/>
+									<field name="n2_see" readonly="1"/>
+									<field name="is_partner_retencion" />
+                                </group>
+                                <group >
+                                    <field name="n2_actv_econ" readonly="1"/>
+									<field name="n2_actv_econ_1" readonly="1"/>
+									<field name="n2_actv_econ_2" readonly="1" />
+									<field name="n2_actv_econ_3" readonly="1" />
+					                <field name="n2_init_actv" readonly="1"  />
+									<field name="n2_act_com_ext" readonly="1" invisible="1"  />
+									<field name="n2_afi_ple" readonly="1"/>
+									<field name="n2_cp_auto" readonly="1" invisible="1" />
+									<field name="n2_padrones" readonly="1"  />
+									<field name="n2_tipo_contr" readonly="1"/>
+
+                                </group>
+                            </group>
+					</page>
+				</xpath>
+			</field>
+		</record>
+		<record id="multiple_verify_ruc" model="ir.actions.server">
+			<field name="name">Consulta RUC multiple</field>
+			<field name="model_id" ref="base.model_res_partner"/>
+			<field name="binding_model_id" ref="base.model_res_partner"/>
+			<field name="state">code</field>
+			<field name="code">action = records.verify_ruc()</field>
+		</record>
+
+		<record id="multiple_ubigeo" model="ir.actions.server">
+			<field name="name">Actualizar Ubigeo Masivamente</field>
+			<field name="model_id" ref="base.model_res_partner"/>
+			<field name="binding_model_id" ref="base.model_res_partner"/>
+			<field name="state">code</field>
+			<field name="code">action = records.change_distrito()</field>
+		</record>
+
+	</data>
+</odoo>

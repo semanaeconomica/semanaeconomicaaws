@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record model="ir.actions.server" id="action_update_account_id_it">
+		<field name="name">Actualizar Cuentas</field>
+		<field name="model_id" ref="account.model_account_move_line"/>
+		<field name="binding_model_id" ref="account.model_account_move_line" />
+		<field name="state">code</field>
+		<field name="code">action = model.action_update_account_id_it()</field>
+	</record>
+
+    <record id="view_account_move_line_filter_inherit" model="ir.ui.view">
+			<field name="name">account.move.line.search.inherit</field>
+			<field name="inherit_id" ref="account.view_account_move_line_filter"/>
+			<field name="model">account.move.line</field>
+			<field name="arch" type="xml">
+				<xpath expr="/search/group/filter[@name='group_by_partner']" position="before">
+					<filter string="Nro Comprobante" name="group_by_nro_comprobante" domain="[]" context="{'group_by': 'nro_comp'}"/>
+				</xpath>
+			</field>
+		</record>
+</odoo>

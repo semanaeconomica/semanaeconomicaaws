@@ -1,0 +1,26 @@
+<odoo>
+	<data noupdate="1">
+		<record model='einvoice.catalog.51'><field name='name'>Venta interna</field><field name='code'>0101</field><field name='voucher_asociated'>Factura, Boletas</field><field name="pse_code">1</field></record>
+		<record model='einvoice.catalog.51'><field name='name'>Venta Interna - Sustenta Gastos Deducibles Persona Natural</field><field name='code'>0112</field><field name='voucher_asociated'>Factura </field></record>
+		<record model='einvoice.catalog.51'><field name='name'>Venta Interna-NRUS</field><field name='code'>0113</field><field name='voucher_asociated'>Boleta</field></record>
+		<record model='einvoice.catalog.51'><field name='name'>Venta interna anticipos</field><field name='code'>0101</field><field name='voucher_asociated'>Factura, Boletas</field><field name="pse_code">4</field></record>
+		<record model='einvoice.catalog.51'><field name='name'>Exportación de Bienes</field><field name='code'>0200</field><field name='voucher_asociated'>Factura, Boletas</field><field name="pse_code">2</field></record>
+		<record model='einvoice.catalog.51'><field name='name'>Exportación de Servicios – Prestación servicios realizados íntegramente en el país</field><field name='code'>0201</field><field name='voucher_asociated'>Factura, Boletas</field></record>
+		<record model='einvoice.catalog.51'><field name='name'>Exportación de Servicios – Prestación de servicios de hospedaje No Domiciliado</field><field name='code'>0202</field><field name='voucher_asociated'>Factura, Boletas</field></record>
+		<record model='einvoice.catalog.51'><field name='name'>Exportación de Servicios – Transporte de navieras</field><field name='code'>0203</field><field name='voucher_asociated'>Factura, Boletas</field></record>
+		<record model='einvoice.catalog.51'><field name='name'>Exportación de Servicios – Servicios  a naves y aeronaves de bandera extranjera</field><field name='code'>0204</field><field name='voucher_asociated'>Factura, Boletas</field></record>
+		<record model='einvoice.catalog.51'><field name='name'>Exportación de Servicios  - Servicios que conformen un Paquete Turístico</field><field name='code'>0205</field><field name='voucher_asociated'>Factura, Boletas</field></record>
+		<record model='einvoice.catalog.51'><field name='name'>Exportación de Servicios – Servicios complementarios al transporte de carga</field><field name='code'>0206</field><field name='voucher_asociated'>Factura, Boletas</field></record>
+		<record model='einvoice.catalog.51'><field name='name'>Exportación de Servicios – Suministro de energía eléctrica a favor de sujetos domiciliados en ZED</field><field name='code'>0207</field><field name='voucher_asociated'>Factura, Boletas</field></record>
+		<record model='einvoice.catalog.51'><field name='name'>Exportación de Servicios – Prestación servicios realizados parcialmente en el extranjero</field><field name='code'>0208</field><field name='voucher_asociated'>Factura, Boletas</field></record>
+		<record model='einvoice.catalog.51'><field name='name'>Operaciones con Carta de porte aéreo (emitidas en el ámbito nacional)</field><field name='code'>0301</field><field name='voucher_asociated'>Factura, Boletas</field></record>
+		<record model='einvoice.catalog.51'><field name='name'>Operaciones de Transporte ferroviario de pasajeros</field><field name='code'>0302</field><field name='voucher_asociated'>Factura, Boletas</field></record>
+		<record model='einvoice.catalog.51'><field name='name'>Operaciones de Pago de regalía petrolera</field><field name='code'>0303</field><field name='voucher_asociated'>Factura, Boletas</field></record>
+		<record model='einvoice.catalog.51'><field name='name'>Ventas no domiciliados que no califican como exportación</field><field name='code'>0401</field><field name='voucher_asociated'>Factura, Boletas</field><field name="pse_code">29</field></record>
+		<record model='einvoice.catalog.51'><field name='name'>Operación Sujeta a Detracción</field><field name='code'>1001</field><field name='voucher_asociated'>Factura, Boletas</field><field name="pse_code">30</field></record>
+		<record model='einvoice.catalog.51'><field name='name'>Operación Sujeta a Detracción- Recursos Hidrobiológicos</field><field name='code'>1002</field><field name='voucher_asociated'>Factura, Boletas</field></record>
+		<record model='einvoice.catalog.51'><field name='name'>Operación Sujeta a Detracción- Servicios de Transporte Pasajeros</field><field name='code'>1003</field><field name='voucher_asociated'>Factura, Boletas</field></record>
+		<record model='einvoice.catalog.51'><field name='name'>Operación Sujeta a Detracción- Servicios de Transporte Carga</field><field name='code'>1004</field><field name='voucher_asociated'>Factura, Boletas</field><field name="pse_code">33</field></record>
+		<record model='einvoice.catalog.51'><field name='name'>Operación Sujeta a Percepción</field><field name='code'>2001</field><field name='voucher_asociated'>Factura, Boletas</field><field name="pse_code">34</field></record>
+	</data>
+</odoo>

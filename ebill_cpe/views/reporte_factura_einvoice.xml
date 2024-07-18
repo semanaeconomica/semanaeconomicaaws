@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+
+    <record id="reporte_tree_einvoice" model="ir.ui.view">
+           <field name="name">account.move.tree</field>
+           <field name="model">account.move</field>
+           <field name="arch" type="xml">
+              <tree string="Tree"  delete="false">
+                <field name="name" optional="show"/>
+                <field name="ref" optional="show" />
+                <field name="amount_total" optional="show" />
+                <field name="einvoice_id" optional="show" />
+                <field name="total_voucher" optional="hide" />
+                <field name="total_voucher_rounded" optional="show" />
+              </tree>
+           </field>
+    </record>
+
+    <record id="action_facturas_reportes_einvoice" model="ir.actions.act_window">
+        <field name="name">Reporte Facturas Einvoice</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="ebill_cpe.reporte_tree_einvoice" />
+    </record>
+
+    <menuitem action="action_facturas_reportes_einvoice"
+              groups="ebill.group_electronic_billing"
+              id="menu_action_facturas_reportes_einvoice"
+              parent="base.menu_custom"/>
+</odoo>

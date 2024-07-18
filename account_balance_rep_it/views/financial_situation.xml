@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_dynamic_financial_situation_form" model="ir.ui.view">
+		<field name="name">dynamic_financial_situation_form</field>
+		<field name="model">dynamic.financial.situation</field>
+		<field name="arch" type="xml">
+			<form string="Situacion Financiera" create="0" edit="0" delete="0">
+				<sheet>
+					<group>
+						<group string="ACTIVO">
+						</group>
+						<group string="PASIVO Y PATRIMONIO">
+						</group>
+					</group>
+					<group>
+						<group id="activo_corriente" string="ACTIVO CORRIENTE">
+						</group>
+						<group id="pasivo_corriente" string="PASIVO CORRIENTE">
+						</group>
+					</group>
+					<group>
+						<group id="activo_no_corriente" string="ACTIVO NO CORRIENTE">
+						</group>
+						<group id="pasivo_no_corriente" string="PASIVO NO CORRIENTE">
+						</group>
+					</group>
+					<group>
+						<group>
+						</group>
+						<group id="patrimonio" string="PATRIMONIO">
+						</group>
+					</group>
+					<group>
+						<group>
+						</group>
+						<group id="resultado_periodo">
+						</group>
+					</group>
+					<group>
+						<group id="total_activo">
+						</group>
+						<group id="total_pasivo">
+						</group>
+					</group>
+				</sheet>
+				<script>
+					$(".o_td_label").css("width","100%");
+				</script>
+			</form>
+		</field>
+	</record>
+</odoo>

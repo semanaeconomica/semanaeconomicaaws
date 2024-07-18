@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+ebillparam,ebillparam,model_ebill_parameter,,1,1,1,1
+access_einvoice_catalog_08_user,einvoice.catalog.08.user,model_einvoice_catalog_08,account_base_it.group_account_tables_user,1,1,1,1
