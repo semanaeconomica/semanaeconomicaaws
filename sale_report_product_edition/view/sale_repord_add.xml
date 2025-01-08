@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="inherit_view_id_inherit_sale_report_pivot" model="ir.ui.view">
+        <field name="name">sale.report.view.form.inherit</field>
+        <field name="model">sale.report</field>
+        <field name="inherit_id" ref="sale_enterprise.sale_report_view_pivot"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='price_total']" position="after">
+                <field name="format_id" type="col"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
