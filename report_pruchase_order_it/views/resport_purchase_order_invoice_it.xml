@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-	<record id="group_purchase_order_report_13" model="res.groups">
-		<field name="name">Grupo reporte de compras</field>
-	</record>
 	<record model="ir.ui.view" id="view_resport_purchase_order_invoice_it_tree">
 		<field name="name">resport.purchase.order.invoice.it.tree</field>
 		<field name="model">resport.purchase.order.invoice.it</field>
