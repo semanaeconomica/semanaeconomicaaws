@@ -74,7 +74,8 @@ class ReportMrpBomLine(models.Model):
 							pol.name, 
 							pol.product_id, 
 							am.currency_id, 
-							aml.price_total
+							aml.price_total,
+							am.company_id
 
 		"""
 		self._cr.execute(query, (company_id,))  # Usa % para el comodín en SQL
