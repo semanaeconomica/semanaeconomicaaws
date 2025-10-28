@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="libro_reclamaciones_tree_view" model="ir.ui.view">
+        <field name="name">libro.reclamaciones.tree</field>
+        <field name="model">libro.reclamaciones</field>
+        <field name="arch" type="xml">
+            <tree string="Libro de Reclamaciones">
+                <field name="numero_reclamo"/>
+                <field name="create_date"/>
+                <field name="nombre_completo"/>
+                <field name="correo_electronico"/>
+                <field name="dni_ruc"/>
+                <field name="telefono"/>
+                <field name="tipo"/>
+                <field name="bien_contratado"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="libro_reclamaciones_form_view" model="ir.ui.view">
+        <field name="name">libro.reclamaciones.form</field>
+        <field name="model">libro.reclamaciones</field>
+        <field name="arch" type="xml">
+            <form string="Reclamo">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="enviado,proceso,resuelto"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="numero_reclamo" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Información del Reclamante">
+                            <field name="nombre_completo"/>
+                            <field name="correo_electronico"/>
+                            <field name="dni_ruc"/>
+                            <field name="domicilio"/>
+                            <field name="telefono"/>
+                            <field name="es_menor_edad"/>
+                        </group>
+                        <group string="Información del Reclamo">
+                            <field name="tipo"/>
+                            <field name="bien_contratado"/>
+                            <field name="create_date"/>
+                        </group>
+                    </group>
+                    <group attrs="{'invisible': [('es_menor_edad', '=', False)]}">
+                        <group string="Datos del Representante Legal">
+                            <field name="representante_nombre"/>
+                            <field name="representante_correo"/>
+                            <field name="representante_telefono"/>
+                            <field name="representante_domicilio"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Descripción">
+                            <field name="descripcion" nolabel="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Respuesta">
+                            <field name="respuesta" nolabel="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="libro_reclamaciones_search_view" model="ir.ui.view">
+        <field name="name">libro.reclamaciones.search</field>
+        <field name="model">libro.reclamaciones</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Reclamos">
+                <field name="numero_reclamo"/>
+                <field name="nombre_completo"/>
+                <field name="correo_electronico"/>
+                <field name="dni_ruc"/>
+                <field name="telefono"/>
+                <filter string="Reclamos" name="reclamo" domain="[('tipo', '=', 'reclamo')]"/>
+                <filter string="Otros" name="otro" domain="[('tipo', '=', 'otro')]"/>
+                <separator/>
+                <filter string="Productos" name="producto" domain="[('bien_contratado', '=', 'producto')]"/>
+                <filter string="Servicios" name="servicio" domain="[('bien_contratado', '=', 'servicio')]"/>
+                <separator/>
+                <filter string="Enviados" name="enviado" domain="[('state', '=', 'enviado')]"/>
+                <filter string="En Proceso" name="proceso" domain="[('state', '=', 'proceso')]"/>
+                <filter string="Resueltos" name="resuelto" domain="[('state', '=', 'resuelto')]"/>
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Estado" name="state" context="{'group_by':'state'}"/>
+                    <filter string="Tipo" name="tipo" context="{'group_by':'tipo'}"/>
+                    <filter string="Bien Contratado" name="bien_contratado" context="{'group_by':'bien_contratado'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="libro_reclamaciones_action" model="ir.actions.act_window">
+        <field name="name">Libro de Reclamaciones</field>
+        <field name="res_model">libro.reclamaciones</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="libro_reclamaciones_search_view"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No hay reclamos registrados
+            </p>
+            <p>
+                Los reclamos enviados desde el portal web aparecerán aquí.
+            </p>
+        </field>
+    </record>
+
+    <record id="seq_libro_reclamaciones" model="ir.sequence">
+        <field name="name">Libro de Reclamaciones</field>
+        <field name="code">libro.reclamaciones</field>
+        <field name="prefix">REC-</field>
+        <field name="padding">5</field>
+        <field name="number_next">1</field>
+        <field name="number_increment">1</field>
+    </record>
+
+</odoo>
+

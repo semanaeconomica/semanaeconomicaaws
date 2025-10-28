@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="libro_reclamaciones_form_template" name="Libro de Reclamaciones - Formulario">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="s_cover parallax s_parallax_is_fixed" data-vcss="001" data-snippet="s_cover" data-scroll-background-ratio="1" style="background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%); padding: 20px 0;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <h1 class="text-white mb-0" style="font-size: 1.75rem; font-weight: 700;">Libro de Reclamaciones</h1>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="container mt-4 mb-5">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-9">
+                            <div class="card shadow-lg border-0">
+                                <div class="card-body p-4">
+                                    <t t-if="error and error != ''">
+                                        <div class="alert alert-danger" role="alert">
+                                            <strong>Error:</strong> <t t-esc="error"/>
+                                        </div>
+                                    </t>
+
+                                    <form action="/libro-reclamaciones/submit" method="POST">
+                                        
+                                        <!-- Sección 1: Datos de la persona -->
+                                        <div class="mb-4">
+                                            <h5 class="text-dark mb-3 pb-2" style="border-bottom: 3px solid #c0392b; font-weight: 600;">
+                                                Datos de la persona que presenta el reclamo
+                                            </h5>
+                                            
+                                            <div class="row">
+                                                <!-- Checkbox Menor de Edad -->
+                                                <div class="col-md-12 mb-3">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" 
+                                                               type="checkbox" 
+                                                               id="es_menor_edad" 
+                                                               name="es_menor_edad"
+                                                               onchange="toggleRepresentanteFields(this.checked)"
+                                                               t-att-checked="'checked' if values.get('es_menor_edad') else None"/>
+                                                        <label class="form-check-label text-dark" for="es_menor_edad">
+                                                            <strong>Es menor de edad</strong>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="nombre_completo" class="form-label text-dark">
+                                                        <strong>Nombre Completo</strong> <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input type="text" 
+                                                           class="form-control" 
+                                                           id="nombre_completo" 
+                                                           name="nombre_completo" 
+                                                           required="required"
+                                                           t-att-value="values.get('nombre_completo', '')"
+                                                           placeholder="Ingrese su nombre completo"/>
+                                                </div>
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="correo_electronico" class="form-label text-dark">
+                                                        <strong>Correo Electrónico</strong> <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input type="email" 
+                                                           class="form-control" 
+                                                           id="correo_electronico" 
+                                                           name="correo_electronico" 
+                                                           required="required"
+                                                           t-att-value="values.get('correo_electronico', '')"
+                                                           placeholder="ejemplo@correo.com"/>
+                                                </div>
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="dni_ruc" class="form-label text-dark">
+                                                        <strong>DNI o RUC o CE</strong> <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input type="text" 
+                                                           class="form-control" 
+                                                           id="dni_ruc" 
+                                                           name="dni_ruc" 
+                                                           required="required"
+                                                           t-att-value="values.get('dni_ruc', '')"
+                                                           placeholder="Ingrese su DNI, RUC o CE"/>
+                                                </div>
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="domicilio" class="form-label text-dark">
+                                                        <strong>Domicilio</strong> <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input type="text" 
+                                                           class="form-control" 
+                                                           id="domicilio" 
+                                                           name="domicilio" 
+                                                           required="required"
+                                                           t-att-value="values.get('domicilio', '')"
+                                                           placeholder="Ingrese su dirección"/>
+                                                </div>
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="telefono" class="form-label text-dark">
+                                                        <strong>Teléfono</strong> <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input type="tel" 
+                                                           class="form-control" 
+                                                           id="telefono" 
+                                                           name="telefono" 
+                                                           required="required"
+                                                           t-att-value="values.get('telefono', '')"
+                                                           placeholder="Ingrese su teléfono"/>
+                                                </div>
+
+                                                <!-- Campos del Representante (ocultos por defecto) -->
+                                                <div class="col-md-12 mt-3" id="representante_section" style="display: none;">
+                                                    <div class="alert" style="background-color: #fff5f5; border-left: 4px solid #c0392b;">
+                                                        <h6 class="text-dark mb-3" style="font-weight: 600;">
+                                                            Datos del Padre/Madre o Representante Legal
+                                                        </h6>
+                                                        
+                                                        <div class="row">
+                                                            <div class="col-md-12 mb-3">
+                                                                <label for="representante_nombre" class="form-label text-dark">
+                                                                    <strong>Nombre Completo del Representante</strong> <span class="text-danger">*</span>
+                                                                </label>
+                                                                <input type="text" 
+                                                                       class="form-control" 
+                                                                       id="representante_nombre" 
+                                                                       name="representante_nombre"
+                                                                       t-att-value="values.get('representante_nombre', '')"
+                                                                       placeholder="Ingrese el nombre completo del representante"/>
+                                                            </div>
+
+                                                            <div class="col-md-6 mb-3">
+                                                                <label for="representante_correo" class="form-label text-dark">
+                                                                    <strong>Correo Electrónico del Representante</strong> <span class="text-danger">*</span>
+                                                                </label>
+                                                                <input type="email" 
+                                                                       class="form-control" 
+                                                                       id="representante_correo" 
+                                                                       name="representante_correo"
+                                                                       t-att-value="values.get('representante_correo', '')"
+                                                                       placeholder="ejemplo@correo.com"/>
+                                                            </div>
+
+                                                            <div class="col-md-6 mb-3">
+                                                                <label for="representante_telefono" class="form-label text-dark">
+                                                                    <strong>Teléfono del Representante</strong> <span class="text-danger">*</span>
+                                                                </label>
+                                                                <input type="tel" 
+                                                                       class="form-control" 
+                                                                       id="representante_telefono" 
+                                                                       name="representante_telefono"
+                                                                       t-att-value="values.get('representante_telefono', '')"
+                                                                       placeholder="Ingrese el teléfono del representante"/>
+                                                            </div>
+
+                                                            <div class="col-md-12 mb-3">
+                                                                <label for="representante_domicilio" class="form-label text-dark">
+                                                                    <strong>Domicilio del Representante</strong> <span class="text-danger">*</span>
+                                                                </label>
+                                                                <input type="text" 
+                                                                       class="form-control" 
+                                                                       id="representante_domicilio" 
+                                                                       name="representante_domicilio"
+                                                                       t-att-value="values.get('representante_domicilio', '')"
+                                                                       placeholder="Ingrese la dirección del representante"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Sección 2: Detalles del reclamo -->
+                                        <div class="mb-4">
+                                            <h5 class="text-dark mb-3 pb-2" style="border-bottom: 3px solid #c0392b; font-weight: 600;">
+                                                Detalles de su reclamo
+                                            </h5>
+                                            
+                                            <div class="row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="bien_contratado" class="form-label text-dark">
+                                                        <strong>Bien Contratado</strong> <span class="text-danger">*</span>
+                                                    </label>
+                                                    <select class="form-control" id="bien_contratado" name="bien_contratado" required="required">
+                                                        <option value="">Seleccione una opción</option>
+                                                        <option value="producto" t-att-selected="'selected' if values.get('bien_contratado') == 'producto' else None">
+                                                            Producto
+                                                        </option>
+                                                        <option value="servicio" t-att-selected="'selected' if values.get('bien_contratado') == 'servicio' else None">
+                                                            Servicio
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="tipo" class="form-label text-dark">
+                                                        <strong>Tipo</strong> <span class="text-danger">*</span>
+                                                    </label>
+                                                    <select class="form-control" id="tipo" name="tipo" required="required">
+                                                        <option value="">Seleccione una opción</option>
+                                                        <option value="reclamo" t-att-selected="'selected' if values.get('tipo') == 'reclamo' else None">
+                                                            Reclamo
+                                                        </option>
+                                                        <option value="otro" t-att-selected="'selected' if values.get('tipo') == 'otro' else None">
+                                                            Otro
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="descripcion" class="form-label text-dark">
+                                                        <strong>Descripción del Reclamo</strong>
+                                                    </label>
+                                                    <textarea class="form-control" 
+                                                              id="descripcion" 
+                                                              name="descripcion" 
+                                                              rows="5"
+                                                              placeholder="Describa detalladamente su reclamo o consulta"><t t-esc="values.get('descripcion', '')"/></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Texto informativo de Política de Privacidad -->
+                                        <div class="row mt-4 mb-3">
+                                            <div class="col-md-12">
+                                                <div class="alert alert-light border" role="alert">
+                                                    <small class="text-muted">
+                                                        <i class="fa fa-info-circle" style="color: #c0392b;"/> 
+                                                        Para mayor información sobre el uso de sus datos personales, puede revisar nuestra 
+                                                        <a href="/#" style="color: #c0392b; font-weight: 600; text-decoration: underline;">Política de Privacidad</a>.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Botón de envío -->
+                                        <div class="row mt-3">
+                                            <div class="col-md-12 text-center">
+                                                <button type="submit" class="btn btn-lg text-white" style="background-color: #c0392b; border-color: #c0392b; padding: 12px 40px; font-weight: 600;">
+                                                    <i class="fa fa-paper-plane"/> Enviar Reclamo
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-3">
+                                            <div class="col-md-12 text-center">
+                                                <small class="text-muted">
+                                                    <span class="text-danger">*</span> Campos obligatorios
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    <!-- JavaScript para manejar el toggle de campos del representante -->
+                                    <script type="text/javascript">
+                                        function toggleRepresentanteFields(isChecked) {
+                                            var representanteSection = document.getElementById('representante_section');
+                                            var representanteNombre = document.getElementById('representante_nombre');
+                                            var representanteCorreo = document.getElementById('representante_correo');
+                                            var representanteTelefono = document.getElementById('representante_telefono');
+                                            var representanteDomicilio = document.getElementById('representante_domicilio');
+                                            
+                                            if (isChecked) {
+                                                representanteSection.style.display = 'block';
+                                                representanteNombre.setAttribute('required', 'required');
+                                                representanteCorreo.setAttribute('required', 'required');
+                                                representanteTelefono.setAttribute('required', 'required');
+                                                representanteDomicilio.setAttribute('required', 'required');
+                                            } else {
+                                                representanteSection.style.display = 'none';
+                                                representanteNombre.removeAttribute('required');
+                                                representanteCorreo.removeAttribute('required');
+                                                representanteTelefono.removeAttribute('required');
+                                                representanteDomicilio.removeAttribute('required');
+                                            }
+                                        }
+
+                                        // Verificar el estado inicial al cargar la página
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            var checkbox = document.getElementById('es_menor_edad');
+                                            if (checkbox &amp;&amp; checkbox.checked) {
+                                                toggleRepresentanteFields(true);
+                                            }
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+
+    <template id="libro_reclamaciones_success_template" name="Libro de Reclamaciones - Confirmación">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="s_cover parallax s_parallax_is_fixed" data-vcss="001" data-snippet="s_cover" data-scroll-background-ratio="1" style="background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%); padding: 20px 0;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <h1 class="text-white mb-0" style="font-size: 1.75rem; font-weight: 700;">Libro de Reclamaciones</h1>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="container mt-4 mb-5">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="card shadow-lg border-0">
+                                <div class="card-body text-center p-5">
+                                    <i class="fa fa-check-circle" style="font-size: 5em; color: #27ae60;"/>
+                                    <h3 class="mt-4 text-dark" style="font-weight: 700;">¡Reclamo Enviado Exitosamente!</h3>
+                                    <p class="lead mt-3 text-muted">
+                                        Su reclamo ha sido registrado correctamente.
+                                    </p>
+                                    <div class="alert mt-4 p-4" role="alert" style="background-color: #f8f9fa; border-left: 4px solid #c0392b;">
+                                        <div class="text-left">
+                                            <p class="mb-2"><strong style="color: #c0392b;">Número de Reclamo:</strong> <span class="text-dark"><t t-esc="numero_reclamo"/></span></p>
+                                            <p class="mb-0"><strong style="color: #c0392b;">Nombre:</strong> <span class="text-dark"><t t-esc="nombre"/></span></p>
+                                        </div>
+                                    </div>
+                                    <p class="mt-4 text-muted">
+                                        Nos pondremos en contacto con usted a la brevedad posible para dar respuesta a su solicitud.
+                                    </p>
+                                    <div class="mt-5">
+                                        <a href="/" class="btn btn-lg text-white mr-2" style="background-color: #c0392b; border-color: #c0392b; font-weight: 600;">
+                                            <i class="fa fa-home"/> Volver al Inicio
+                                        </a>
+                                        <a href="/libro-reclamaciones" class="btn btn-lg btn-outline-secondary" style="font-weight: 600;">
+                                            <i class="fa fa-plus"/> Enviar Otro Reclamo
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+
+    <record id="menu_libro_reclamaciones_website" model="website.menu">
+        <field name="name">Libro de Reclamaciones</field>
+        <field name="url">/libro-reclamaciones</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence" type="int">60</field>
+    </record>
+
+</odoo>
+

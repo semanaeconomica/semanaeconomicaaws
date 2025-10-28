@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <menuitem 
+        id="menu_libro_reclamaciones_root"
+        name="Libro de Reclamaciones"
+        parent="crm.crm_menu_root"
+        sequence="50"/>
+
+    <menuitem 
+        id="menu_libro_reclamaciones"
+        name="Libro de Reclamaciones"
+        parent="menu_libro_reclamaciones_root"
+        action="libro_reclamaciones_action"
+        sequence="10"/>
+
+</odoo>
+
