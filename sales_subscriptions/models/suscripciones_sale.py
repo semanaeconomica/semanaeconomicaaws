@@ -336,10 +336,10 @@ class SaleReport(models.Model):
                     left join uom_uom u2 on (u2.id=t.uom_id)
                     left join product_pricelist pp on (s.pricelist_id = pp.id)
                     left join (
-                            select osr_i.suscription_id ,min(osr_i.order_id) as order_id,sub_i.product_yaros_id as product_id, array_agg(sub_i.orden)::varchar as names_sub from
+                            select osr_i.suscription_id ,min(osr_i.order_id) as order_id,sub_i.product_yaros_id as product_id, array_agg(sub_i.orden ORDER BY sub_i.orden)::varchar as names_sub from
                             order_suscrpitions_rel osr_i
                             inner join suscription_sale_order sub_i on sub_i.id = osr_i.order_id
-                            group by sub_i.product_yaros_id,EXTRACT(YEAR FROM date_start),EXTRACT(MONTH FROM date_start),suscription_id
+                            group by sub_i.product_yaros_id, suscription_id
                         ) as osr on osr.suscription_id = s.id and osr.product_id = l.product_id
                     left join suscription_sale_order sub on sub.id = osr.order_id
                     left join product_edition_it pei on pei.id = l.edition_id
