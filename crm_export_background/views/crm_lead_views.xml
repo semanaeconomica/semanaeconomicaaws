@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_server_crm_export_excel" model="ir.actions.server">
+        <field name="name">Exportar Oportunidades a Excel</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="binding_model_id" ref="crm.model_crm_lead"/>
+        <field name="binding_type">action</field>
+        <field name="state">code</field>
+        <field name="code">
+ctx = env.context.copy()
+ctx['active_ids'] = records.ids
+ctx['active_domain'] = env.context.get('active_domain', [])
+action = {
+    'type': 'ir.actions.act_window',
+    'name': 'Exportar Oportunidades a Excel',
+    'res_model': 'crm.export.wizard',
+    'view_mode': 'form',
+    'target': 'new',
+    'context': ctx,
+}
+        </field>
+    </record>
+</odoo>
