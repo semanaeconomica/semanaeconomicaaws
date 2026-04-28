@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Un usuario normal solo ve sus propios jobs. El superuser los ve
+             todos (record rules se saltean para el admin). -->
+        <record id="export_xlsx_job_own_rule" model="ir.rule">
+            <field name="name">Async export jobs: propios</field>
+            <field name="model_id" ref="model_export_xlsx_job"/>
+            <field name="domain_force">[('user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+    </data>
+</odoo>

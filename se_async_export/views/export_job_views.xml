@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_export_xlsx_job_tree" model="ir.ui.view">
+        <field name="name">export.xlsx.job.tree</field>
+        <field name="model">export.xlsx.job</field>
+        <field name="arch" type="xml">
+            <tree string="Mis exportaciones">
+                <field name="create_date"/>
+                <field name="name"/>
+                <field name="model_name"/>
+                <field name="total_rows"/>
+                <field name="progress" widget="progressbar"/>
+                <field name="state"/>
+                <field name="user_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_export_xlsx_job_form" model="ir.ui.view">
+        <field name="name">export.xlsx.job.form</field>
+        <field name="model">export.xlsx.job</field>
+        <field name="arch" type="xml">
+            <form string="Exportación">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="model_name"/>
+                        <field name="state"/>
+                        <field name="progress" widget="progressbar"/>
+                        <field name="total_rows"/>
+                        <field name="user_id"/>
+                        <field name="started_at"/>
+                        <field name="finished_at"/>
+                        <field name="attachment_id"/>
+                        <field name="error_msg" attrs="{'invisible': [('state','!=','failed')]}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_export_xlsx_job" model="ir.actions.act_window">
+        <field name="name">Mis exportaciones</field>
+        <field name="res_model">export.xlsx.job</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('user_id','=',uid)]</field>
+    </record>
+
+    <menuitem id="menu_export_xlsx_job_root"
+              name="Mis exportaciones"
+              parent="base.menu_administration"
+              action="action_export_xlsx_job"
+              sequence="99"/>
+</odoo>
